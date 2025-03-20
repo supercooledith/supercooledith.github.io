@@ -1,0 +1,314 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>关键词搜索修正</title>
+  
+  <meta name="author" content="Shuang Liang">
+  
+  <meta name="description" content="由 python 2.7 编写作用是从常用自然疑问句中查询关键字从“珠穆朗玛峰有多高？”到[“珠穆朗玛峰”,”高度”]">
+  
+  
+  
+  <meta property="og:title" content="关键词搜索修正" />
+  <meta property="og:site_name" content="Hexo" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  关键词搜索修正
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-12-14T18:12:50.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-12-15
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/Geek-Talks/">Geek Talks</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>由 python 2.7 编写<br>作用是从常用自然疑问句中查询关键字<br>从“珠穆朗玛峰有多高？”到[“珠穆朗玛峰”,”高度”]  </p>
+<span id="more"></span>
+<p>我才知道 utf-8 是三个三个存的中文。</p>
+<h1 id="常用语句与答案"><a href="#常用语句与答案" class="headerlink" title="常用语句与答案"></a>常用语句与答案</h1><ol>
+<li>《Rather Be》的制作者是谁？ </li>
+<li>这周五是几号？</li>
+<li>从成都到天津的航班号是多少？</li>
+<li>成都市的日本大使馆在哪里？</li>
+<li>苹果公司的股票价格？</li>
+<li>今天人民币比韩元的汇率是多少？</li>
+</ol>
+<p>下面是良好的答案  </p>
+<ol>
+<li>[“Rather Be”,”制作者”]</li>
+<li>[“这周五”]</li>
+<li>[“成都”,”天津”,”航班号”]</li>
+<li>[“成都市”,”日本大使馆”]</li>
+<li>[“苹果公司”,”股票价格”]</li>
+<li>[“今天”,”人民币”,”韩元”,”汇率”]</li>
+</ol>
+<h1 id="分析一下问题"><a href="#分析一下问题" class="headerlink" title="分析一下问题"></a>分析一下问题</h1><p>第一是分词。<br>比如说 “成都市的日本大使馆在哪里？” 这一句，最好是分成“成都市 的 日本大使馆 在哪里？”，或者是其他的分词方式，至少不会是这样：“成 都市 的日本大 使馆在哪里？”<br>第二是分词之后对关键词的选择。<br>比如说分词完美，已经是这样了：“成都市 的 日本 大使馆 在哪里？”，在此之后，选择出来的关键词是[“成都市”,”日本”,”大使馆”],而不是把我不想要的信息选择出来：[“日本”,”在哪里”]。</p>
+<h1 id="分词"><a href="#分词" class="headerlink" title="分词"></a>分词</h1><p>比如说这么一段：“甲乙丙丁戊戌变法”  </p>
+<ol>
+<li>为“甲乙”评分，然后为“乙丙”评分，然后为“丙丁”评分……</li>
+<li>为“甲乙丙”评分，然后是“乙丙丁”……</li>
+<li>然后是“甲乙丙丁”，然后“戊戌变法”。</li>
+<li>最后通过评分高低确定几个关键字。<br>其中关键步骤就是评分的规则，以及给出评分后去留的规则。<br>以前貌似看到过这个相关的东西，现在找不到了，这两天有点空的时间可以找一找。</li>
+</ol>
+<p><em>2015年12月15日02:41:57</em></p>
+<h1 id="关键词选择"><a href="#关键词选择" class="headerlink" title="关键词选择"></a>关键词选择</h1><p>这个的话应该和上一段中评分和确定去留的规则类似。<br>关键还是这两个：评分规则，选择规则。  </p>
+<h1 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h1><p>既然提到了评分规则了，那么在优化过程中还可以加入遗传算法。  </p>
+<ol>
+<li>生成初始群体，相当于自然界中的种群。在这里就是不同的评分公式。</li>
+<li>计算适应度，相当于自然选择给的约束。在这里应该需要我人工干预吧，暂时没有想到更好的办法。</li>
+<li>进化。先选出适应度高的，作为父母公式。根据父母公式的参数确定下一代公式的参数。然后在子代公式中添加变异，变异的体现我暂时没有想出来，这一步很关键不能省略，甚至决定了进化过程中的适应度优化速度。</li>
+</ol>
+<hr>
+<p>暂时到这里，先休息了<br><em>2015年12月15日02:54:44</em></p>
+<h1 id="分词的实现"><a href="#分词的实现" class="headerlink" title="分词的实现"></a>分词的实现</h1><p>这个是《数学之美》这本书里面看到的，一句话里所有单字的排列组合的评分和最高者优先。<br>尝试一下  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pinfen</span>(<span class="params">keyword1</span>):</span><br><span class="line">    url = <span class="string">"http://www.baidu.com/s?wd="</span> + keyword1</span><br><span class="line"></span><br><span class="line">    request = urllib2.Request(url)</span><br><span class="line">    response = urllib2.urlopen(request)</span><br><span class="line">    rawhtml = response.read()</span><br><span class="line"></span><br><span class="line">    headposition = rawhtml.index(<span class="string">'相关结果约'</span>)</span><br><span class="line">    tailposition = rawhtml.index(</span><br><span class="line">        <span class="string">'''个&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript"&gt;'''</span>)</span><br><span class="line">    result = rawhtml[headposition + <span class="number">15</span>:tailposition].split(<span class="string">','</span>)</span><br><span class="line">    result = <span class="built_in">int</span>(<span class="string">''</span>.join(result))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> pinfen(<span class="string">"发展"</span>) + pinfen(<span class="string">"中国家"</span>)</span><br><span class="line"><span class="built_in">print</span> pinfen(<span class="string">"发展中"</span>) + pinfen(<span class="string">"国家"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>发展 中国家  170300000<br>比<br>发展中 国家  157900000<br>得分高  </p>
+<p>然后增加了一些，这个作为分词的另一种参考：  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pinfen</span>(<span class="params">keyword1</span>):</span><br><span class="line">    url = <span class="string">"http://www.baidu.com/s?wd="</span> + keyword1</span><br><span class="line"></span><br><span class="line">    request = urllib2.Request(url)</span><br><span class="line">    response = urllib2.urlopen(request)</span><br><span class="line">    rawhtml = response.read()</span><br><span class="line"></span><br><span class="line">    headposition = rawhtml.index(<span class="string">'相关结果约'</span>)</span><br><span class="line">    tailposition = rawhtml.index(</span><br><span class="line">        <span class="string">'''个&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript"&gt;'''</span>)</span><br><span class="line">    result = rawhtml[headposition + <span class="number">15</span>:tailposition].split(<span class="string">','</span>)</span><br><span class="line">    result = <span class="built_in">int</span>(<span class="string">''</span>.join(result))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">liangzifenci</span>(<span class="params">keyword0</span>):</span><br><span class="line">    list0 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(keyword0) - <span class="number">3</span>, <span class="number">3</span>):</span><br><span class="line">        list0.append(keyword0[i] + keyword0[i + <span class="number">1</span>] + keyword0[i + <span class="number">2</span>] +</span><br><span class="line">                     keyword0[i + <span class="number">3</span>] + keyword0[i + <span class="number">4</span>] + keyword0[i + <span class="number">5</span>])</span><br><span class="line">    <span class="keyword">return</span> list0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">liangduanfenci</span>(<span class="params">keyword2</span>):</span><br><span class="line">    list2 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, <span class="built_in">len</span>(keyword2), <span class="number">3</span>):</span><br><span class="line">        list2.append(keyword2[:i])</span><br><span class="line">        list2.append(keyword2[i:])</span><br><span class="line">    <span class="keyword">return</span> list2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> liangduanfenci(<span class="string">"贾斯丁比伯"</span>):</span><br><span class="line">    <span class="built_in">print</span> pinfen(i), i</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> liangzifenci(<span class="string">"贾斯丁比伯"</span>):</span><br><span class="line">    <span class="built_in">print</span> pinfen(i), i</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>结果如下：  </p>
+<figure class="highlight basic"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">20500000 </span>贾</span><br><span class="line"><span class="symbol">47900 </span>斯丁比伯</span><br><span class="line"><span class="symbol">706000 </span>贾斯</span><br><span class="line"><span class="symbol">499 </span>丁比伯</span><br><span class="line"><span class="symbol">118000 </span>贾斯丁</span><br><span class="line"><span class="symbol">1250000 </span>比伯</span><br><span class="line"><span class="symbol">393000 </span>贾斯丁比</span><br><span class="line"><span class="symbol">100000000 </span>伯</span><br><span class="line"></span><br><span class="line"><span class="symbol">706000 </span>贾斯</span><br><span class="line"><span class="symbol">2370000 </span>斯丁</span><br><span class="line"><span class="symbol">74600 </span>丁比</span><br><span class="line"><span class="symbol">1250000 </span>比伯</span><br></pre></td></tr></tbody></table></figure>
+<p>可以看到评分越少的，越容易存在分段，中间用于确定“是否”的关键性参数我不用自己来设定，这个交给 GA。</p>
+<hr>
+<p>今天先到这里，明天再来。<br><em>2015年12月15日23:31:41</em><br>主要是发现，当使用两段分词方法的时候，一个字的评分结果一般都是最大值，所以把最前和最后的都去掉了，不作考虑。<br>看看结果（例句“相关结构对”）：</p>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">62300000 相关</span><br><span class="line">14800000 结构对</span><br><span class="line">9330000 相关结</span><br><span class="line"><span class="section">8700000 构对</span></span><br><span class="line"><span class="section">-----------------------</span></span><br><span class="line">62300000 相关</span><br><span class="line">17200000 关结</span><br><span class="line">52300000 结构</span><br><span class="line">8700000 构对</span><br></pre></td></tr></tbody></table></figure>
+<p>这五个字我感觉最好是分成[[“相关”,”结构”],”对”]<br>可以从答案中看到，[“相关”,”结构对”]的得分比[“相关结”,”构对”]要高；然后“构对”之间需要分词。</p>
+<hr>
+<p>#加入多线程<br>先看结果  </p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">讽刺 : <span class="type">thread</span> created</span><br><span class="line">刺实 : <span class="type">thread</span> created</span><br><span class="line">实现 : <span class="type">thread</span> created</span><br><span class="line">讽刺 : 3770000</span><br><span class="line">刺实 : 403000</span><br><span class="line">实现 : 27200000</span><br><span class="line">讽刺 | 实现</span><br></pre></td></tr></tbody></table></figure>
+<p>这个是输入“讽刺实现”的结果<br>下面是源代码  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> thread</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line">word = <span class="string">"讽刺实现"</span></span><br><span class="line">size = <span class="built_in">len</span>(word) / <span class="number">3</span> - <span class="number">1</span></span><br><span class="line">dic = {}</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输入为需要评分的词，会在 dic 中储存{123:相关,124:关结,122:结果}，评分过程中会输出分数，size 用于等待进程结束</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">pinfen</span>(<span class="params">keyword1</span>):</span><br><span class="line">    url = <span class="string">"http://www.baidu.com/s?wd="</span> + keyword1</span><br><span class="line">    request = urllib2.Request(url)</span><br><span class="line">    response = urllib2.urlopen(request)</span><br><span class="line">    rawhtml = response.read()</span><br><span class="line">    response.close()</span><br><span class="line">    headposition = rawhtml.index(<span class="string">'相关结果约'</span>)</span><br><span class="line">    tailposition = rawhtml.index(</span><br><span class="line">        <span class="string">'''个&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;script type="text/javascript"&gt;'''</span>)</span><br><span class="line">    result = rawhtml[headposition + <span class="number">15</span>:tailposition].split(<span class="string">','</span>)</span><br><span class="line">    result = <span class="built_in">int</span>(<span class="string">''</span>.join(result))</span><br><span class="line">    dic[word.index(keyword1) / <span class="number">3</span>] = result</span><br><span class="line">    <span class="built_in">print</span> keyword1, <span class="string">":"</span>, result</span><br><span class="line">    <span class="keyword">global</span> size</span><br><span class="line">    size -= <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">liangzifenci</span>(<span class="params">keyword0</span>):  <span class="comment"># 两个字为一组进行分词</span></span><br><span class="line">    list0 = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(keyword0) - <span class="number">3</span>, <span class="number">3</span>):</span><br><span class="line">        list0.append(keyword0[i] + keyword0[i + <span class="number">1</span>] + keyword0[i + <span class="number">2</span>] +</span><br><span class="line">                     keyword0[i + <span class="number">3</span>] + keyword0[i + <span class="number">4</span>] + keyword0[i + <span class="number">5</span>])</span><br><span class="line">    <span class="keyword">return</span> list0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">shuchu</span>(<span class="params">dic</span>):</span><br><span class="line">    dic = {value: key <span class="keyword">for</span> key, value <span class="keyword">in</span> dic.items()}</span><br><span class="line">    position = dic[<span class="built_in">sorted</span>(dic.keys())[<span class="number">0</span>]] * <span class="number">3</span></span><br><span class="line">    <span class="built_in">print</span> word[<span class="number">0</span>:position + <span class="number">3</span>], <span class="string">"|"</span>, word[position + <span class="number">3</span>:]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 以下都是处理线程用的</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> liangzifenci(word):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        thread.start_new_thread(pinfen, (x,))</span><br><span class="line">        <span class="built_in">print</span> x, <span class="string">": thread created"</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span> x, <span class="string">": unable to start new thread "</span></span><br><span class="line"><span class="keyword">while</span> size != <span class="number">0</span>:</span><br><span class="line">    time.sleep(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">shuchu(dic)</span><br></pre></td></tr></tbody></table></figure>
+<p>突然发现不知道应该在哪里加入 GA 的东西了。。。略尴尬</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>开始使用Sublime Text 3</title>
+  
+  <meta name="author" content="Shuang Liang">
+  
+  <meta name="description" content="windows上面基本上是个文件都可以用notepad++打开在我遇见sublime text之前我都是使用文本编辑.app 来打开的但是好像并不能打开Hexo的配置文件_config.yml然后就开始使用sublime text了">
+  
+  
+  
+  <meta property="og:title" content="开始使用Sublime Text 3" />
+  <meta property="og:site_name" content="Hexo" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  开始使用Sublime Text 3
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-09-10T09:34:12.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-09-10
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+<div class="tags">
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash">
+    <line x1="4" y1="9" x2="20" y2="9"></line>
+    <line x1="4" y1="15" x2="20" y2="15"></line>
+    <line x1="10" y1="3" x2="8" y2="21"></line>
+    <line x1="16" y1="3" x2="14" y2="21"></line>
+  </svg>
+  <a href="/tags/howto/">howto</a>&nbsp;·&nbsp;<a href="/tags/sublime/">sublime</a>
+</div>
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>windows上面基本上是个文件都可以用notepad++打开<br>在我遇见sublime text之前我都是使用<code>文本编辑.app</code> 来打开的<br>但是好像并不能打开Hexo的配置文件<code>_config.yml</code><br>然后就开始使用sublime text了</p>
+<span id="more"></span>  
+<hr>
+<h1 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h1><p>很容易就可以在网络上找到sublime text 2/sublime text 3的安装包<br>好像还有破解版，但是看人家说的貌似这个可以无限免费试用<br>也就是说正式版就只是向作者donate而已<br>那就用着试用版吧<br>下载链接👉 <a target="_blank" rel="noopener" href="//www.sublimetext.com">sublime text</a>  </p>
+<hr>
+<h1 id="设置"><a href="#设置" class="headerlink" title="设置"></a>设置</h1><h2 id="Package-Control"><a href="#Package-Control" class="headerlink" title="Package Control"></a>Package Control</h2><p>同众多的编辑器一样，sublime text一样有一大批插件可供使用<br>安装插件最方便的方法就是使用Package Control了<br>右边链接介绍了安装方法–&gt;<a target="_blank" rel="noopener" href="https://packagecontrol.io/installation#Simple">Installation - Package Control</a>   </p>
+<blockquote>
+<p>简单来说就是<br>点开<code>View &gt; Show Console</code>或者快捷键<code>ctrl+` </code>进入console<br>sublime text 3 输入以下命令然后回车  </p>
+</blockquote>
+<pre><code>import urllib.request,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)  
+</code></pre>
+<p>sublime text 2 输入以下命令然后回车  </p>
+<pre><code>import urllib2,os,hashlib; h = 'eb2297e1a458f27d836c04bb0cbaf282' + 'd0e7a3098092775ccb37ca9d6b2e4b7d'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')  
+</code></pre>
+<p>安装成功后点击Preference就可以看到Package Setting和Package Control</p>
+<hr>
+<h2 id="安装各种插件"><a href="#安装各种插件" class="headerlink" title="安装各种插件"></a>安装各种插件</h2><p>例如Theme - Spacegray<br>这是一个好看的主题 Github主页👉<a target="_blank" rel="noopener" href="https://github.com/kkga/spacegray">Theme - Spacegray</a><br>安装好了Package Control之后可以在Command Palette中找到Theme - Spacegray  </p>
+<ol>
+<li>打开Command Palette:<code>Tools -&gt; Command Palette</code>或者使用快捷键<code>shift+cmd+P</code>  </li>
+<li>输入<code>PCIP</code>就可以定位到<code>Package Control: Install Package</code>然后回车  </li>
+<li>搜索<code>Theme - Spacegray</code>然后回车  </li>
+<li>在<code>Sublime Text -&gt; Preferences -&gt; Setting - User</code>(快捷键<code>cmd + ,</code>)中输入</li>
+</ol>
+<pre><code>{
+  "theme": "Spacegray Eighties.sublime-theme",
+  "color_scheme": "Packages/Theme - Spacegray/base16-eighties.dark.tmTheme"
+}  
+</code></pre>
+<ol start="5">
+<li>重启sublime就可以看到效果了</li>
+</ol>
+<hr>
+<h1 id="sublime-text-也是个大坑"><a href="#sublime-text-也是个大坑" class="headerlink" title="sublime text 也是个大坑"></a>sublime text 也是个大坑</h1><p>何止是文档打开工具呢？简直就是生产力工具<br>就把网页链接放这里吧，懒得<code>cmd + d</code>了  </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="//www.sheyilin.cn/2015/05/sublime_text_3_tiao_jiao_ni_de_si_ren_li_qi_1/"> Sublime Text 3 调教你的私人利器（上）</a>👈插件介绍，推荐设置，快捷键修改，默认html补全，插件调教<br><a target="_blank" rel="noopener" href="//www.sheyilin.cn/2015/05/sublime_text_3_tiao_jiao_ni_de_si_ren_li_qi_2/"> Sublime Text 3 调教你的私人利器（下）</a>👈（接上条）插件调教，推荐设置<br><a target="_blank" rel="noopener" href="https://github.com/jikeytang/sublime-text">jikeytang/sublime-text</a>插件介绍,推荐设置,快捷键,<strong>网页推荐</strong><br><a target="_blank" rel="noopener" href="https://packagecontrol.io/">Package Control</a>Package Control官网，插件介绍<br><a target="_blank" rel="noopener" href="//zh.lucida.me/blog/sublime-text-complete-guide/">Sublime Text 全程指南</a>什么都有<br><a target="_blank" rel="noopener" href="//www.jianshu.com/p/25cdc7d608bb">Mac下Sublime Text 2使用心得</a>写的比我好多了就是了</p>
+</blockquote>
+<p>另知乎提问  </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="//www.zhihu.com/question/24896283">Sublime Text 有哪些使用技巧？</a><br><a target="_blank" rel="noopener" href="//www.zhihu.com/question/24736400">sublime text 3 插件推荐？</a>  </p>
+</blockquote>
+<hr>
+<h1 id="这总不算烂尾了吧？"><a href="#这总不算烂尾了吧？" class="headerlink" title="这总不算烂尾了吧？"></a>这总不算烂尾了吧？</h1><p>终于把打开的那么多页面关差不多了好舒心。</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

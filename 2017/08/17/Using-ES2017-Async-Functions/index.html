@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>「翻译」使用 ES2017 Async 函数</title>
+  
+  <meta name="author" content="Shuang Liang">
+  
+  <meta name="description" content="翻译自Using ES2017 Async Functions
+ES2017 在六月最终敲定了，随之而来的是对我最喜欢的 async 函数的广泛支持。如果你也曾为异步 Javascript 而头疼，那么这就是解药。如果你没有的话，额，你有可能是个天才。
+使用 async 让你或多或少以顺序的方式编写">
+  
+  
+  
+  <meta property="og:title" content="「翻译」使用 ES2017 Async 函数" />
+  <meta property="og:site_name" content="Hexo" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  「翻译」使用 ES2017 Async 函数
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2017-08-17T15:13:43.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2017-08-17
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>翻译自<a target="_blank" rel="noopener" href="https://css-tricks.com/using-es2017-async-functions/">Using ES2017 Async Functions</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/tc39/proposals/blob/master/finished-proposals.md">ES2017 在六月最终敲定了</a>，随之而来的是对我最喜欢的 <code>async</code> 函数的广泛支持。如果你也曾为异步 Javascript 而头疼，那么这就是解药。如果你没有的话，额，你有可能是个天才。</p>
+<p>使用 <code>async</code> 让你或多或少以顺序的方式编写 JS 代码，而不用把逻辑放在回调、生成器、promises 里。</p>
+<p>考虑有如下代码：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">logger</span>(<span class="params"></span>) {</span><br><span class="line">    <span class="keyword">let</span> data = <span class="title function_">fetch</span>(<span class="string">'http://sampleapi.com/posts'</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">logger</span>()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果你写过 JS 的话，你应该知道上面的代码为啥不会如愿运行。</p>
+<p>但是下面的代码会如愿运行：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">logger</span>(<span class="params"></span>) {</span><br><span class="line">    <span class="keyword">let</span> data = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'http:sampleapi.com/posts'</span>)</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="title function_">logger</span>()</span><br></pre></td></tr></tbody></table></figure>
+
+<p>只用添加两个关键词，代码简洁直观，也能正常运行。</p>
+<h1 id="在-ES6-之前的异步-JS"><a href="#在-ES6-之前的异步-JS" class="headerlink" title="在 ES6 之前的异步 JS"></a>在 ES6 之前的异步 JS</h1><p>在讲 <code>asybc</code> 和 <code>await</code> 之前，有必要先了解一下 promises。要弄懂 promises，还要再往前讲讲老式的回调。</p>
+<p>ES6 里添加了 Promises，这让我们编写异步的 JS 有了飞跃。不再有所谓的 “回调地狱”。</p>
+<p>我们可以为一个主函数传入一个可以在任意时候作为返回值调用的回调函数。这也是 JS 的基础。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">readFile</span>(<span class="params"><span class="string">'file.txt'</span>, (data) =&gt; {</span></span><br><span class="line"><span class="params">  // 在回调内</span></span><br><span class="line"><span class="params">  <span class="variable language_">console</span>.log(data)</span></span><br><span class="line"><span class="params">}</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面的函数会从一个文件记录数据，这也只能在文件完全被读完之后进行。看起来很简单，但是如果你想按顺序读取并记录五个不同的文件怎么办呢？</p>
+<p>在 Promises 出现之前，为了执行顺序你需要嵌套回调，如下：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下为标准的回调地狱</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">combineFiles</span>(<span class="params">file1, file2, file3, printFileCallBack</span>) {</span><br><span class="line">    <span class="keyword">let</span> newFileText = <span class="string">''</span></span><br><span class="line">    <span class="title function_">readFile</span>(string1, <span class="function">(<span class="params">text</span>) =&gt;</span> {</span><br><span class="line">        newFileText += text</span><br><span class="line">        <span class="title function_">readFile</span>(string2, <span class="function">(<span class="params">text</span>) =&gt;</span> {</span><br><span class="line">            newFileText += text</span><br><span class="line">            <span class="title function_">readFile</span>(string3, <span class="function">(<span class="params">text</span>) =&gt;</span> {</span><br><span class="line">                newFileText += text</span><br><span class="line">                <span class="title function_">printFileCallBack</span>(newFileText)</span><br><span class="line">            }</span><br><span class="line">        }</span><br><span class="line">    } </span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>上面的代码难以理解，这还是没有包括错误处理（比如其中一个文件不存在）的代码。</p>
+<h1 id="我保证这会变好（你懂了？！）"><a href="#我保证这会变好（你懂了？！）" class="headerlink" title="我保证这会变好（你懂了？！）"></a>我保证这会变好（你懂了？！）</h1><p>*译者注：这里作者用了 Promise 的双关，既是‘保证’意，又是 Promise 关键字意。</p>
+<p>这时 <code>Promise</code> 就派上用场了。Promise 是一种提前知晓暂未出现数据的方式。<a target="_blank" rel="noopener" href="https://github.com/getify/You-Dont-Know-JS">You Don’t Know JS 系列</a>的作者 Kyle Simpson 是知名的异步 JS 布道者。<a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Qg1SvpIau6U">他对 Promise 的解释是</a>：就像在快餐店点餐。</p>
+<ol>
+<li>点餐。</li>
+<li>付钱并取得餐号小票。</li>
+<li>等餐。</li>
+<li>当餐准备好了，他们会叫你的号。</li>
+<li>取餐。</li>
+</ol>
+<p>正如他指出的，当你在等餐的时候不可能吃你的菜，但是你可以盼它，你可以为你的餐做好准备。当你等餐的时候你可以继续你的人生，即使现在没有拿到菜，因为食物已经被“允诺”给你了。这就是 Promise。一个用于表示终将出现数据的对象。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="title function_">readFile</span>(file1)</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">file1-data</span>) =&gt;</span> { <span class="comment">/* do something */</span> })</span><br><span class="line">  .<span class="title function_">then</span>(<span class="function">(<span class="params">previous-promise-data</span>) =&gt;</span> { <span class="comment">/* do the next thing */</span> })</span><br><span class="line">  .<span class="title function_">catch</span>( <span class="comment">/* handle errors */</span> )</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是 <code>Promise</code> 的语法。就主要好在可以用直观的方式链接顺序事件。上面的例子看上去还不错，但是我们还是在使用回调函数。Promise 只是把回调简单包装了一下，让它更直观了。</p>
+<h1 id="最好（且最新）的方式：-Async-／-Await"><a href="#最好（且最新）的方式：-Async-／-Await" class="headerlink" title="最好（且最新）的方式： Async ／ Await"></a>最好（且最新）的方式： Async ／ Await</h1><p>几年前，async 函数被纳入了 JavaScript 生态系统。截止上个月已作为一种官方语法得到了广泛的支持。</p>
+<p><code>async</code> 和 <code>await</code> 关键字基于 pormise 和 generator 做了简单的封装。本质上，它允许我们在所需的任意位置使用 <code>await</code> 关键字“暂停”一个函数。</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">logger</span>(<span class="params"></span>) {</span><br><span class="line">  <span class="comment">// 获取到值之前都会暂停</span></span><br><span class="line">  <span class="keyword">let</span> data = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'http://sampleapi.com/posts'</span>)</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(data)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这段代码能按照你想象的运行。它记录来自 API 调用的数据。如果这都看不懂我也不知道咋办了。</p>
+<p>这样做的好处就是直观。 你以大脑思考的方式编写代码，然后告诉代码在所需的位置暂停。</p>
+<p>另一个好处就是可以使用 promise 不能使用的 <code>try</code> 和 <code>catch</code>：</p>
+<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">logger</span> ()  {</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        <span class="keyword">let</span> user_id = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'/api/users/username'</span>)</span><br><span class="line">        <span class="keyword">let</span> posts = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'/api/`${user_id}`'</span>)</span><br><span class="line">        <span class="keyword">let</span> object = <span class="title class_">JSON</span>.<span class="title function_">parse</span>(user.<span class="property">posts</span>.<span class="title function_">toString</span>())</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(posts)</span><br><span class="line">    } <span class="keyword">catch</span> (error) {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">'Error:'</span>, error) </span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是个故意构造的例子，但至少证明了一点： <code>catch</code> 可以捕获在该过程中发生的任意错误。至少有三个位置 <code>try</code> 可能出错，这也是迄今为止处理一部代码最简洁的方式。</p>
+<p>我们也可以使用 async 函数让循环和判断不再令人头疼：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">count</span>(<span class="params"></span>) {</span><br><span class="line">    <span class="keyword">let</span> counter = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">100</span>; i++) {</span><br><span class="line">        counter += <span class="number">1</span></span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(counter)</span><br><span class="line">        <span class="keyword">await</span> <span class="title function_">sleep</span>(<span class="number">1000</span>)</span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是一个愚蠢的例子，但至少会按照预期运行并且容易阅读。 如果您在控制台中运行此操作，你会看到代码在调用 sleep 的时候暂停，下一个循环也不会等一秒钟再启动。</p>
+<h1 id="细节"><a href="#细节" class="headerlink" title="细节"></a>细节</h1><p>现在你领略了 <code>async</code> 和 <code>await</code> 的美，让我们深入了解它的细节：</p>
+<ul>
+<li><code>async</code> 和 <code>await</code> 基于 <code>promise</code>。 使用 <code>async</code> 的函数将始终返回一个 promise 对象。 这一点很重要，你有可能会陷入一种“我懂了”的假象。</li>
+<li>在使用 <code>await</code> 的时候我们暂停了函数，而非整段代码。</li>
+<li><code>async</code> 和 <code>await</code> 是非阻塞的。</li>
+<li>你仍然可以使用 <code>Promise</code> 例如 <code>Promise.all()</code>，这是我们之前的代码：<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">logPosts</span> ()  {</span><br><span class="line">    <span class="keyword">try</span> {</span><br><span class="line">        <span class="keyword">let</span> user_id = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'/api/users/username'</span>)</span><br><span class="line">        <span class="keyword">let</span> post_ids = <span class="keyword">await</span> <span class="title function_">fetch</span>(<span class="string">'/api/posts/&lt;code&gt;${user_id}'</span>)</span><br><span class="line">        <span class="keyword">let</span> promises = post_ids.<span class="title function_">map</span>(<span class="function"><span class="params">post_id</span> =&gt;</span> {</span><br><span class="line">            <span class="keyword">return</span>  <span class="title function_">fetch</span>(<span class="string">'/api/posts/${post_id}'</span>)</span><br><span class="line">        }</span><br><span class="line">        <span class="keyword">let</span> posts = <span class="keyword">await</span> <span class="title class_">Promise</span>.<span class="title function_">all</span>(promises)</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">log</span>(posts)</span><br><span class="line">    } <span class="keyword">catch</span> (error) {</span><br><span class="line">        <span class="variable language_">console</span>.<span class="title function_">error</span>(<span class="string">'Error:'</span>, error) </span><br><span class="line">    }</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+<li><code>await</code> 只能在已被声明为 <code>async</code> 的函数内使用。</li>
+<li>所以不能在全局使用 <code>await</code>。<figure class="highlight js"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 抛出异常</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">logger</span> (callBack) {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> callBack)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="comment">// 对了!</span></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">logger</span> () {</span><br><span class="line">    <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="keyword">await</span> callBack)</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure></li>
+</ul>
+<h1 id="现在就可以用啦"><a href="#现在就可以用啦" class="headerlink" title="现在就可以用啦"></a>现在就可以用啦</h1><p>截至2017年6月，几乎所有浏览器都可以使用 <code>async</code> 和 <code>await</code> 关键字。更好的是，为了确保您的代码在任何地方都可以工作，请使用 Babel 将 JS 预处理为旧版本支持的语法。</p>
+<p>如果您对 ES2017 的更多内容感兴趣，可以<a target="_blank" rel="noopener" href="//2ality.com/2016/02/ecmascript-2017.html">在这里查看完整的 ES2017 功能列表</a>。</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

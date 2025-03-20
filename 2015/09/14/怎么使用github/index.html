@@ -1,0 +1,420 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>开始使用 GitHub</title>
+  
+  <meta name="author" content="Shuang Liang">
+  
+  <meta name="description" content="我自己也是刚开始使用 GitHub 没几天，写得不好我就写自己常用的吧  
+
+2015年9月20日下午3:19更新  
+
+知乎上这个答案写得好👉天猪(刘勇)的答案">
+  
+  
+  
+  <meta property="og:title" content="开始使用 GitHub" />
+  <meta property="og:site_name" content="Hexo" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  开始使用 GitHub
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-09-14T12:19:46.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-09-14
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+<div class="tags">
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash">
+    <line x1="4" y1="9" x2="20" y2="9"></line>
+    <line x1="4" y1="15" x2="20" y2="15"></line>
+    <line x1="10" y1="3" x2="8" y2="21"></line>
+    <line x1="16" y1="3" x2="14" y2="21"></line>
+  </svg>
+  <a href="/tags/howto/">howto</a>&nbsp;·&nbsp;<a href="/tags/GitHub/">GitHub</a>
+</div>
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>我自己也是刚开始使用 GitHub 没几天，写得不好<br>我就写自己常用的吧  </p>
+<blockquote>
+<p>2015年9月20日下午3:19更新  </p>
+</blockquote>
+<p>知乎上这个答案写得好👉<a target="_blank" rel="noopener" href="//www.zhihu.com/question/20070065">天猪(刘勇)的答案</a>  </p>
+<span id="more"></span>  
+<hr>
+<h1 id="什么是-GitHub／Git-？"><a href="#什么是-GitHub／Git-？" class="headerlink" title="什么是 GitHub／Git ？"></a>什么是 GitHub／Git ？</h1><h2 id="什么是Git"><a href="#什么是Git" class="headerlink" title="什么是Git"></a>什么是Git</h2><p>一个分布式的，文件<strong>版本控制</strong>系统<br>分布式，指没有物理上的「主」储存位置<br>文件，指的是某一个文件或者是一系列文件组成的文件树<br>版本控制，指的是对修改信息的记录和管理<br>修改，指的是多个编辑者在多个机器，或者多个时间对同一文件进行的修改<br>综上 Git 可以让编辑者方便的管理所有修改</p>
+<h2 id="什么是-GitHub-？"><a href="#什么是-GitHub-？" class="headerlink" title="什么是 GitHub ？"></a>什么是 GitHub ？</h2><p>是一个 Git 的<strong>托管平台</strong>  </p>
+<hr>
+<h1 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h1><p>在我的这一篇文章👉<a target="_blank" rel="noopener" href="//gaoryrt.github.io/2015/09/09/howto/">这个博客建立的流程</a>提到过了  </p>
+<blockquote>
+<p>在 <a target="_blank" rel="noopener" href="//git-scm.com">Git 官网</a>可以下载到安装包  </p>
+</blockquote>
+<p><strong>或者</strong>使用 <a target="_blank" rel="noopener" href="//mxcl.github.com/homebrew/">Homebrew</a>，<a target="_blank" rel="noopener" href="//www.macports.org/">MacPorts</a> 进行安装  </p>
+<p>通过查看版本信息检查是否安装成功：</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="comment">--version</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>如果你使用 Mac，Xcode 就自带 Git<br>找找 Xcode -&gt; Preference -&gt; Download 里面的 <code>Command Line Tools</code><br>更新好了就可以在 shell 里使用 git 命令了  </p>
+<p>为一个文件夹使用 git 管理，只用定位到文件夹下使用：</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git init</span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后这个文件夹就变成了一个 Git 仓库<br>该文件夹下的所有文件都受这个 Git 仓库管理</p>
+<hr>
+<h1 id="使用Git"><a href="#使用Git" class="headerlink" title="使用Git"></a>使用Git</h1><p><em>这里指的git使用仅限于本地</em><br>添加文件使用<code>add</code>命令，提交则是<code>commit</code>命令<br>比如我要把一个<code>HelloWorld.c</code>提交到git 仓库<br>先把这个文件放在git的主文件夹中，然后定位到这个文件所在的文件夹使用</p>
+<figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git add HelloWorld.c</span><br><span class="line"><span class="variable">$ </span>git commit</span><br></pre></td></tr></tbody></table></figure>
+
+<p>就行了<br>Git的使用和GitHub使用有重复的，请继续往下看GitHub的使用<br>常用命令看这里👉<a target="_blank" rel="noopener" href="//www.zhihu.com/question/31246445">知乎问题 git？</a>  </p>
+<hr>
+<h1 id="使用GitHub"><a href="#使用GitHub" class="headerlink" title="使用GitHub"></a>使用GitHub</h1><blockquote>
+<p>就是一网站哎呀自己看说明我要玩MC去了<br>坑挖在这里等着填 2015年9月14日 下午9:14  </p>
+</blockquote>
+<p>2015年9月20日下午3:30 填坑  </p>
+<p>看了一些网页发现github起步实在是太困难了<br>在这里只能给大家，（主要是给自己）指一些方向<br>等看完了才能总结，总结完了才能写<br>不知不觉坑就挖好了</p>
+<hr>
+<h2 id="在GitHub上注册和登录"><a href="#在GitHub上注册和登录" class="headerlink" title="在GitHub上注册和登录"></a>在<a target="_blank" rel="noopener" href="https://github.com/">GitHub</a>上注册和登录</h2><p><em>下面部分来自<a target="_blank" rel="noopener" href="https://help.github.com/articles/set-up-git/">官网help文档</a>的翻译</em>  </p>
+<ol>
+<li><a target="_blank" rel="noopener" href="//git-scm.com/downloads">下载并安装git</a>  </li>
+<li>打开 <code>Terminal.app</code>  </li>
+<li>告诉git你的名字，Type everything after the <code>$</code> here:</li>
+</ol>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config <span class="attr">--global</span> user<span class="selector-class">.name</span> <span class="string">"YOUR NAME"</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>告诉git你的email地址，这里输入的地址必须和你在注册GitHub时使用的相同， 如果你想隐藏你的email地址，请参考<a target="_blank" rel="noopener" href="https://help.github.com/articles/keeping-your-email-address-private">“Keeping your email address private”</a>。</li>
+</ol>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config <span class="attr">--global</span> user<span class="selector-class">.email</span> <span class="string">"YOUR EMAIL ADDRESS"</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<h2 id="下一步：在Git上关联GitHub"><a href="#下一步：在Git上关联GitHub" class="headerlink" title="下一步：在Git上关联GitHub"></a>下一步：在Git上关联GitHub</h2><p>当你在Git上连接了一个GitHub知识库，你需要使用HTTPS或者SSH与GitHub关联  </p>
+<h3 id="使用HTTPS关联-推荐"><a href="#使用HTTPS关联-推荐" class="headerlink" title="使用HTTPS关联(推荐)"></a>使用HTTPS关联(推荐)</h3><blockquote>
+<p>克隆HTTPS链接对每一个知识库都有效，你可以得到一个只读或者读写的地址，取决于它公开与否，以及你的允许。</p>
+</blockquote>
+<blockquote>
+<p>链接在哪里都有效，即使你在墙后或者使用了代理，在某些情况下，如果你选择SSH，你只能<a target="_blank" rel="noopener" href="https://help.github.com/articles/using-ssh-over-the-https-port">使用SSH的部分</a>。</p>
+</blockquote>
+<blockquote>
+<p>当你通过HTTPS在git上使用<code>git fetch</code>、<code>git pull</code>、<code>git push</code>、<code>git remote</code>命令时，你会被要求输入GitHub的用户名以及密码。</p>
+</blockquote>
+<blockquote>
+<p>如果你使用了<a target="_blank" rel="noopener" href="https://help.github.com/articles/about-two-factor-authentication">两个身份的验证</a>，你必须<a target="_blank" rel="noopener" href="https://help.github.com/articles/creating-an-access-token-for-command-line-use">创建一个身份地址令牌</a>来使用GitHub，而非你的GitHub密码。<br>你可以使用<a target="_blank" rel="noopener" href="https://help.github.com/articles/caching-your-github-password-in-git">验证助手</a>，这样你就不用每次登陆都输入密码了。</p>
+</blockquote>
+<h3 id="在git上缓存你的GitHub密码"><a href="#在git上缓存你的GitHub密码" class="headerlink" title="在git上缓存你的GitHub密码"></a>在git上缓存你的GitHub密码</h3><p>你需要确定你的Git是1.7.10版本及以上<br>如果你是通过<a target="_blank" rel="noopener" href="//brew.sh/">homebrew</a>安装的git，那么你已经装好了OSXkeychain helper<br>下面是安装方法  </p>
+<blockquote>
+<ol>
+<li>确定你的计算机上是否已经安装了OSXkeychain helper，尝试以下命令：</li>
+</ol>
+</blockquote>
+<figure class="highlight crystal"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git credential-osxkeychain  </span><br><span class="line"><span class="comment"># 如果已经安装的话返回如下  </span></span><br><span class="line"><span class="comment"># Usage: git credential-osxkeychain &lt;get|store|erase&gt;  </span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="2">
+<li>如果OSXkeychain helper尚未安装，使用以下命令通过curl安装：</li>
+</ol>
+<figure class="highlight shell"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">git credential-osxkeychain</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果没有安装的话返回如下</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">git: <span class="string">'credential-osxkeychain'</span> is not a git <span class="built_in">command</span>. See <span class="string">'git --help'</span>.</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>继续  </p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ curl -s -O \</span><br><span class="line">https:<span class="regexp">//gi</span>thub-media-downloads.s3.amazonaws.com<span class="regexp">/osx/gi</span>t-credential-osxkeychain</span><br><span class="line"><span class="comment"># 这就开始下载了  </span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>然后</p>
+<figure class="highlight bash"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">chmod</span> u+x git-credential-osxkeychain</span><br><span class="line"><span class="comment"># Fix the permissions on the file so it can be run</span></span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="3">
+<li>将OSXkeychain helper和git安装到同一个文件夹：</li>
+</ol>
+<figure class="highlight pgsql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo mv git-credential-osxkeychain \</span><br><span class="line">"$(dirname $(which git))/git-credential-osxkeychain"</span><br><span class="line"># <span class="keyword">Move</span> the helper <span class="keyword">to</span> the <span class="type">path</span> <span class="keyword">where</span> git <span class="keyword">is</span> installed</span><br><span class="line"># <span class="keyword">Password</span>: [enter your <span class="keyword">password</span>]</span><br></pre></td></tr></tbody></table></figure>
+
+<ol start="4">
+<li>告诉git使用<code>credential.helper</code>来进行全局配置：</li>
+</ol>
+<figure class="highlight applescript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config <span class="comment">--global credential.helper osxkeychain</span></span><br><span class="line"><span class="comment"># Set git to use the osxkeychain credential helper</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>下一次你使用HTTPS url进行克隆的时候就会开启OSXkeychain helper缓存了，然后你再使用的时候就不会再要求你输入用户名及密码了。</p>
+<hr>
+<p><em>以下来自于网站 <a target="_blank" rel="noopener" href="//rogerdudler.github.io/git-guide/index.zh.html">git简明指南</a></em></p>
+<h1 id="获得一个知识库-repository"><a href="#获得一个知识库-repository" class="headerlink" title="获得一个知识库(repository)"></a>获得一个知识库(repository)</h1><p>使用以下命令以获得一个远端服务器上的知识库版本：  </p>
+<figure class="highlight elixir"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git clone username<span class="variable">@host</span><span class="symbol">:/path/to/repository</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="工作流"><a href="#工作流" class="headerlink" title="工作流"></a>工作流</h1><p>你的本地仓库由 git 维护的三棵“树”组成。第一个是你的 <strong>工作目录</strong>，它持有实际文件；第二个是 <strong>暂存区（Index）</strong>，它像个缓存区域，临时保存你的改动；最后是 <strong>HEAD</strong>，它指向你最后一次提交的结果。  </p>
+<h2 id="添加和提交"><a href="#添加和提交" class="headerlink" title="添加和提交"></a>添加和提交</h2><p>你可以提出更改（把它们添加到**暂存区(index)**），使用如下命令：  </p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> &lt;filename&gt;</span><br><span class="line">git <span class="built_in">add</span> *  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>这是 git 基本工作流程的第一步；<br>使用如下命令以实际提交改动：</p>
+<figure class="highlight nginx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git</span> commit -m <span class="string">"代码提交信息"</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>现在，你的改动已经提交到了 <strong>HEAD</strong>，但是还没到你的远端仓库。  </p>
+<h2 id="推送"><a href="#推送" class="headerlink" title="推送"></a>推送</h2><p>你的改动现在已经在本地仓库的 HEAD 中了。执行如下命令以将这些改动提交到远端仓库：</p>
+<figure class="highlight crmsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push origin <span class="keyword">master</span>  <span class="title"></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>可以把 master 换成你想要推送的任何分支。   </p>
+<p>如果你还没有克隆现有仓库，并欲将你的仓库连接到某个远程服务器，你可以使用如下命令添加：</p>
+<figure class="highlight mipsasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote <span class="keyword">add </span><span class="keyword">origin </span>&lt;server&gt;  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>如此你就能够将你的改动推送到所添加的服务器上去了。  </p>
+<h1 id="分支"><a href="#分支" class="headerlink" title="分支"></a>分支</h1><p>分支是用来将特性开发绝缘开来的。<br>在你创建仓库的时候，master 是“默认的”分支。<br>在其他分支上进行开发，完成后再将它们合并到主分支上。<br>创建一个叫做“feature_x”的分支，并切换过去：  </p>
+<figure class="highlight armasm"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">git</span> checkout -<span class="keyword">b</span> feature_x  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>切换回主分支：  </p>
+<figure class="highlight crmsh"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="keyword">master</span>  <span class="title"></span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>再把新建的分支删掉：   </p>
+<figure class="highlight ebnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git branch -d feature_x</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>除非你将分支推送到远端仓库，不然该分支就是 不为他人所见的：  </p>
+<figure class="highlight maxima"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">push</span> <span class="built_in">origin</span> &lt;branch&gt;  </span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="更新与合并"><a href="#更新与合并" class="headerlink" title="更新与合并"></a>更新与合并</h1><p>要更新你的本地仓库至最新改动，执行：  </p>
+<figure class="highlight ebnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">git pull</span>  </span><br></pre></td></tr></tbody></table></figure>
+
+<p>以在你的工作目录中 获取（fetch） 并 合并（merge） 远端的改动。<br>要合并其他分支到你的当前分支（例如 master），执行：</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge <span class="tag">&lt;<span class="name">branch</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>在这两种情况下，git 都会尝试去自动合并改动。遗憾的是，这可能并非每次都成功，并可能出现冲突（conflicts）。<br>这时候就需要你修改这些文件来手动合并这些冲突（conflicts）。改完之后，你需要执行如下命令以将它们标记为合并成功：</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> &lt;filename&gt;</span><br></pre></td></tr></tbody></table></figure>
+
+<p>在合并改动之前，你可以使用如下命令预览差异：</p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff <span class="tag">&lt;<span class="name">source_branch</span>&gt;</span> <span class="tag">&lt;<span class="name">target_branch</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<h1 id="替换本地改动"><a href="#替换本地改动" class="headerlink" title="替换本地改动"></a>替换本地改动</h1><p>假如你操作失误（当然，这最好永远不要发生），你可以使用如下命令替换掉本地改动：</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout <span class="comment">-- &lt;filename&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+
+<p>此命令会使用 HEAD 中的最新内容替换掉你的工作目录中的文件。已添加到暂存区的改动以及新文件都不会受到影响。  </p>
+<p>假如你想丢弃你在本地的所有改动与提交，可以到服务器上获取最新的版本历史，并将你本地主分支指向它：</p>
+<figure class="highlight maxima"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git fetch <span class="built_in">origin</span></span><br><span class="line">git <span class="built_in">reset</span> --hard <span class="built_in">origin</span>/master</span><br></pre></td></tr></tbody></table></figure>
+
+<hr>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

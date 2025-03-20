@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>一个Calcu App的实现</title>
+  
+  <meta name="author" content="Shuang Liang">
+  
+  <meta name="description" content="突然又想写代码了，于是今天心血来潮想做一个类似于win7上面计算器（程序员版）的app我果手机的科学计算器并没有这个功能，在我专业某些时候使用还是挺无力的，不如自己写一个，也花不了几天calcu的github">
+  
+  
+  
+  <meta property="og:title" content="一个Calcu App的实现" />
+  <meta property="og:site_name" content="Hexo" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  一个Calcu App的实现
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-09-21T15:15:59.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-09-21
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+<div class="tags">
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash">
+    <line x1="4" y1="9" x2="20" y2="9"></line>
+    <line x1="4" y1="15" x2="20" y2="15"></line>
+    <line x1="10" y1="3" x2="8" y2="21"></line>
+    <line x1="16" y1="3" x2="14" y2="21"></line>
+  </svg>
+  <a href="/tags/swift/">swift</a>&nbsp;·&nbsp;<a href="/tags/app/">app</a>
+</div>
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>突然又想写代码了，于是今天<strong>心血来潮</strong>想做一个类似于win7上面计算器（程序员版）的app<br>我果手机的科学计算器并没有这个功能，在我专业某些时候使用还是挺无力的，不如自己写一个，也花不了几天<br><a target="_blank" rel="noopener" href="https://github.com/gaoryrt/calcu">calcu的github</a>  </p>
+<span id="more"></span>  
+<p>主界面差不多就这样：<img src="//ww4.sinaimg.cn/large/a243ad6cjw1ewahgtk8v5j20g3099aaa.jpg" alt="主界面"></p>
+<h1 id="界面"><a href="#界面" class="headerlink" title="界面"></a>界面</h1><p>功能看图，写得很明白了<br>Hex Dec Oct Bin就是十六进制，十进制，八进制，二进制<br>然后是循环左移循环右移，或运算异或运算，左移右移，非运算和运算<br>然后是0～F数字<br>再往右是加减乘除<br>然后是clean，backspace，求余数，等于  </p>
+<hr>
+<h1 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h1><p>上面写道的功能都有<br>然后就是在1024上面留64个二进制位，跟windows上面程序员的用途一样<br>并没有往里添加小数点，这个是因为windows的那个版本没有小数点  </p>
+<blockquote>
+<p>windows版本有左右括号，我暂时没有思路就没有做<br>另外就是＋－符号没有添加，这个的话，手动也不难  </p>
+</blockquote>
+<hr>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>暂时把写了一半的代码放下面<br>我实在是有点晕了，现在（2015年9月21日下午11:30）的思路跟上午开始时的思路不一样了<br>说明做事情要善始善终，不然就白费好多功夫   </p>
+<hr>
+<h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><ol>
+<li>输入一个数，按了加减乘除之后存成数据到temp（num1）里面，还要用一个字符串存这时候的运算符ope   </li>
+<li>再输入一个数，再按加减乘除的话，通过temp、这个数、ope计算出值，放在resul位置，然后把刚才resul的位置上的数覆盖在temp上面，这样点击等号的话可以继续计算  </li>
+<li>还有不知道怎么实现在二进制的时候其他数字按钮不可选中，选中二进制的时候该按钮高亮</li>
+<li>十六进制的ABCDEF怎么转化为10进制这个问题暂时没有开始想  </li>
+<li>左移右移这个也是问题</li>
+</ol>
+<hr>
+<h1 id="x2F-x2F-不要说我鸽"><a href="#x2F-x2F-不要说我鸽" class="headerlink" title="//不要说我鸽"></a>//不要说我鸽</h1><p>这个肯定写得完，只可惜明天从天亮上课上到天黑～<br>那么就把思路要点先放在这里，等明儿晚上继续</p>
+<hr>
+<h1 id="2015年9月23日上午12-02-继续"><a href="#2015年9月23日上午12-02-继续" class="headerlink" title="2015年9月23日上午12:02 继续"></a>2015年9月23日上午12:02 继续</h1><p>今天重新开始了 把思路缕了一缕<br>从算法设计开始重新来</p>
+<hr>
+<h1 id="2015年9月23日上午1-59-update"><a href="#2015年9月23日上午1-59-update" class="headerlink" title="2015年9月23日上午1:59 update"></a>2015年9月23日上午1:59 update</h1><p> 十进制功能完成了</p>
+<hr>
+<h2 id="进制转换功能完成"><a href="#进制转换功能完成" class="headerlink" title="进制转换功能完成"></a>进制转换功能完成</h2><p>本来想放代码的，想想算了，把以前的都给删除了  </p>
+<blockquote>
+<p>//方法1: 定义一个变量表示原进制，另一个Int表示目的进制，原进制2，8，10，16进制用数字0，1，2，3表示；目的进制用1，5，9，13表示<br>    //      进行进制转换调用一转换函数，函数通过原进制和目的进制变量的和得知（4*4-4）中的一种转换   需要写12种转换方式<br>    //方法2: swift里面吧所有的0x 0o 0b全部以十进制存储<br>    //      在输入的时候，实时将String转换为Int  专为十进制的时候只用一个方法，转出方法（短除法）也只有一中<br>    //      需要一个temp放十进制的数，每次进制转换都从temp来转<br>    //      可以用resultLabel0直接接短除法的输出的，但是resultLabel0会在用户面前变化，为了避免这种情况发生，需要一个String来记录输出<br>    //      用一个变量告诉转入十进制方法原进制，告诉转出方法目的进制</p>
+</blockquote>
+<p>然后采用了第二种方式，不同进制的运算都转换到十进制，突然感觉第一种转换还有点困难啊。。。</p>
+<h2 id="问题-1"><a href="#问题-1" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>在非十进制的情况下点击opeButton/eqaButton的时候会闪退  </li>
+<li>backspace没有设置  </li>
+<li>Or Xor Not And 没有设置  </li>
+<li>输入太多了就退出了，重要的是我也不知道为何<br>不祥的预感   是不是要重写计算按钮</li>
+</ol>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><ol>
+<li>非十进制下不能进行其他操作 ＝。＝别怪我</li>
+</ol>
+<hr>
+<h1 id="2015年9月24日-睡前更新"><a href="#2015年9月24日-睡前更新" class="headerlink" title="2015年9月24日 睡前更新"></a>2015年9月24日 睡前更新</h1><p>遇见个特傻逼的问题还debug了半天<br>结果就是我为了调用一个含参的Action(sender: AnyObject)<br>把中间的sender: AnyObject给删除了<br>于是AppDelegate: UIResponder, UIApplicationDelegate就爆炸了<br>找了半天，把github上昨晚版本都clone下来了。。。  </p>
+<h2 id="更新内容有："><a href="#更新内容有：" class="headerlink" title="更新内容有："></a>更新内容有：</h2><ol>
+<li>向十进制和二进制分别制定了可操作按钮，完全不给特殊情况机会。。。主要是懒难得debug了  </li>
+<li>backspace键完成了  </li>
+<li>在现实区域上面添加了位数的指示，就是在storyboard上加了几个label而已。。</li>
+</ol>
+<h2 id="还需要完成："><a href="#还需要完成：" class="headerlink" title="还需要完成："></a>还需要完成：</h2><ol>
+<li>最上面还要一行／多行    用于or xor not and操作的可视化，毕竟自己都不知道怎么做  </li>
+<li>ui改进  这个等最后来吧  </li>
+<li>左右挺进／循环挺进  </li>
+<li>位数限制，避免内存太大。。<br><em><strong>结尾打卡</strong></em>2015年9月24日下午11:32</li>
+</ol>
+<hr>
+<h1 id="2015年9月25日下午3-36"><a href="#2015年9月25日下午3-36" class="headerlink" title="2015年9月25日下午3:36"></a>2015年9月25日下午3:36</h1><h2 id="完成"><a href="#完成" class="headerlink" title="完成"></a>完成</h2><ol>
+<li>左右挺进／循环挺进</li>
+</ol>
+<h2 id="问题-2"><a href="#问题-2" class="headerlink" title="问题"></a>问题</h2><ol>
+<li>二进制超过12位，瞬间爆炸</li>
+<li>其他进制同理，等着最后debug或添加约束  </li>
+<li>代码的简化，多个action可以用if精简到一起</li>
+<li>10（123）＋ bin 直接出来。。</li>
+</ol>
+<hr>
+<h1 id="2015年9月26日上午2-13-停止更新"><a href="#2015年9月26日上午2-13-停止更新" class="headerlink" title="2015年9月26日上午2:13 停止更新"></a>2015年9月26日上午2:13 <del>停止更新</del></h1><p>有其他更重要的事情做，停止更新<br>四个逻辑按钮功能已经写出来，可以在git上看到主代码<br>没有debug，其他功能可用  </p>
+<p>可能是兴趣到此为止了<br>开始的时候着急了 规划出了问题<br>应该想清楚功能分区的<br>现在好几个地方都混在一起了 改都不好改 莫名其妙跳到Hex上面<br>不写了 宁愿重写个逻辑运算器都不在这上面改了  </p>
+<hr>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>
