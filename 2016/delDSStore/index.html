@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>一个思考</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="一个思考" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  一个思考
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2016-04-14T14:31:45.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2016-04-14
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>原本第一句话是『.DS_store是git的敌人』，我想了一下，还是默默改成了下面这一句。  </p>
+<blockquote>
+<p>DS.store是hexo generate的敌人。</p>
+</blockquote>
+<hr>
+<h1 id="起"><a href="#起" class="headerlink" title="起"></a>起</h1><p>本来还想举例说git使用中<code>.DS_store</code>文件很麻烦，后来想到添加gitignore就可以了。<br><strong>但是</strong><br>我不知道如何向hexo generator中添加忽略文件，所以每一次带有<code>hexo generate</code>的操作都会得到以下错误：</p>
+<figure class="highlight subunit"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ERROR </span>Process failed: layout/_partial/.DS_Store</span><br><span class="line">TypeError: Cannot read property 'compile' of undefined</span><br></pre></td></tr></tbody></table></figure>
+<p>虽然不会影响网页生成，但是总碍眼。</p>
+<hr>
+<h1 id="承"><a href="#承" class="headerlink" title="承"></a>承</h1><p><code>.DS_store</code>本身是为了文章显示而生成的，OSX自带这个东西。<br>删除了会因为finder的访问重新出来，每一次都用相同的<code>rm .DS_store</code>总是不现实的。<br>加之<code>layout/</code>下有几个文件夹，就有几个<code>.DS_store</code>,挨个删除也麻烦。<br>那么可以尝试<code>禁止系统创建</code>：<br>（建议在执行之前看看<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/20345704">知乎上相关的讨论</a>，以及<a target="_blank" rel="noopener" href="//stackoverflow.com/questions/18015978/how-to-stop-creating-ds-store-on-mac">StackOverflow上相关的讨论</a>）</p>
+<figure class="highlight pgsql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults <span class="keyword">write</span> com.apple.desktopservices DSDontWriteNetworkStores -<span class="type">bool</span> <span class="keyword">TRUE</span></span><br></pre></td></tr></tbody></table></figure>
+<p>下面是恢复：  </p>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults delete com<span class="selector-class">.apple</span><span class="selector-class">.desktopservices</span> DSDontWriteNetworkStores</span><br></pre></td></tr></tbody></table></figure>
+<p>也可以使用如下的命令删除一个文件夹下的所有<code>.DS_Store</code>文件：  </p>
+<figure class="highlight pgsql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find &lt;your <span class="type">path</span>&gt; -<span class="type">name</span> ".DS_Store" -<span class="keyword">delete</span></span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h1 id="转"><a href="#转" class="headerlink" title="转"></a>转</h1><p>想了想其实可以写一个python脚本来干这个事情。<br>往脚本里添加路径，执行时遍历这几个路径删除所有的<code>.DS_store</code>。<br>然后可以把这个python脚本变成全局命令，这样想删除的时候就只用输入几个字母就行了。<br>比如<code>DDS</code>，也不知道shell命令区分大小写不呢？<br><strong>但是</strong><br>想到每一次<code>hexo s</code>之前都要<code>DDS</code>跑一遍，总是增加了操作成本的。<br>哈哈，可以在<code>.zshrc</code>中添加<code>alias</code>。<br>那么这个<code>DelDS_store.py</code>文件应该怎么写呢？  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">pathList = [<span class="string">'/Volumes/HHD/应用/hexo/themes/pln/layout'</span>,</span><br><span class="line">            <span class="string">'/Volumes/HHD/应用/Github/hexo-theme-pln/layout'</span>]</span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> pathList:</span><br><span class="line">    command = <span class="string">'find '</span> + path + <span class="string">' -name ".DS_Store" -delete'</span></span><br><span class="line">    os.system(command)</span><br></pre></td></tr></tbody></table></figure>
+<p>这个是绝对没有问题的版本，可以自定义路径到<code>pathList</code>当中，执行时全部都给删除完。<br>然后想了一下能不能多线程：  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">pathList = [<span class="string">'/Volumes/HHD/应用/hexo/themes/pln/layout'</span>,</span><br><span class="line">            <span class="string">'/Volumes/HHD/应用/Github/hexo-theme-pln/layout'</span>]</span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> pathList:</span><br><span class="line">    command = <span class="string">'find '</span> + path + <span class="string">' -name ".DS_Store" -delete'</span></span><br><span class="line">    threading.Thread(target=os.system(command)).start()</span><br></pre></td></tr></tbody></table></figure>
+<p>冲哥和奶神都说说线程会自动回收掉，但是我知道有kill的存在。<br>但是看了一下执行完成的flag也是0，这下真不知道如何确认执行完成再正确关闭了。<br>SOF上说不要盲目kill，那就这样了？<br><a target="_blank" rel="noopener" href="//zhuanlan.zhihu.com/p/20167077?refer=auxten">点击这里查看更多Python线程</a></p>
+<hr>
+<h1 id="结"><a href="#结" class="headerlink" title="结"></a>结</h1><blockquote>
+<p>这里使用的是多线程版本。  </p>
+</blockquote>
+<h2 id="第一步"><a href="#第一步" class="headerlink" title="第一步"></a>第一步</h2><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>DelDS_store.py</span><br></pre></td></tr></tbody></table></figure>
+<p>然后用编辑器打开，无论你是<code>open .</code>之后右键选择打开方式，还是直接  </p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>DelDS_store.py</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="第二步"><a href="#第二步" class="headerlink" title="第二步"></a>第二步</h2><p>打开之后往这个文件里写入以下内容：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">pathList = [<span class="string">'/Volumes/HHD/应用/hexo/themes/pln/layout'</span>,</span><br><span class="line">            <span class="string">'/Volumes/HHD/应用/Github/hexo-theme-pln/layout'</span>]</span><br><span class="line"><span class="keyword">for</span> path <span class="keyword">in</span> pathList:</span><br><span class="line">    command = <span class="string">'find '</span> + path + <span class="string">' -name ".DS_Store" -delete'</span></span><br><span class="line">    threading.Thread(target=os.system(command)).start()</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="第三步"><a href="#第三步" class="headerlink" title="第三步"></a>第三步</h2><p>为这个文件添加执行权限：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x <span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>DelDS_store.py</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="第四步"><a href="#第四步" class="headerlink" title="第四步"></a>第四步</h2><p>打开你的<code>bashrc</code>/<code>fishrc</code>/<code>zshrc</code>,这个取决于你使用的shell。<br>在里面添加一个别名：</p>
+<figure class="highlight abnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alias DDS<span class="operator">=</span><span class="string">"/usr/local/bin/DelDS_store.py"</span></span><br></pre></td></tr></tbody></table></figure>
+<p>或者是，直接添加一行：</p>
+<figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="regexp">/usr/</span>local<span class="regexp">/bin/</span>DelDS_store.py</span><br></pre></td></tr></tbody></table></figure>
+<p>这样做的后果就是，每一次新建shell都会执行一遍删除命令。</p>
+<h2 id="完成！"><a href="#完成！" class="headerlink" title="完成！"></a>完成！</h2><p>这样就可以使用shell，在任何地方通过<code>DDS</code>这个命令来删除指定文件夹下的<code>.DS_Store</code>文件了。</p>
+<hr>
+<p>以上。</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

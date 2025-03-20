@@ -1,56 +1,53 @@
-$bg: #F1F3F5;
-$theme: #555;
-$c1: #547ab2;
-$c2: #547ab2;
-$c3: #3eacab;
-$c4: #3eacab;
-$c5: #3eacab;
-$c6: #3eacab;
-$c7: #5a5050;
-
-figure {
-    overflow-x: auto;
+table {
+  border-spacing: 0;
 }
 
-td.gutter {
-    width: 50px;
+figure {
+  margin: 0;
+  overflow-x: auto;
+  td.gutter {
+    flex-shrink: 0;
+    flex-grow: 0;
+    text-align: right;
+    padding: 0 1em 0 0;
+    color: var(--color-dimtext);
+  }
+  td.code {
+    padding: 0;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
 }
 
 code,
 pre {
-    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
 }
 
 pre {
-    font-size: 14px;
-    line-height: 2em;
-    margin-bottom: 0;
-    padding: 15px;
-    border: 0;
-    border-radius: 0px;
-    tab-size: 4;
-    color: $theme;
-    background: transparent;
-    background-size: auto 4em;
-    background-origin: content-box;
-    background-image: linear-gradient($bg 50%, transparent 0);
-    .comment {
-        color: lighten($theme, 30%);
-    }
-    .line {
-        height: 30px;
-    }
+  font-size: 14px;
+  line-height: 2em;
+  margin: 0;
+  border: 0;
+  tab-size: 2;
+  background: transparent;
+  background-size: auto 4em;
+  background-origin: content-box;
+  background-image: linear-gradient(var(--color-bg1) 50%, var(--color-bg2) 0);
+  overflow-x: auto;
+  .comment {
+    color: var(--color-dimtext);
+  }
+  .line {
+    height: 30px;
+  }
 }
 
 code {
-    word-wrap: break-word;
-    line-height: 2em;
-    font-size: .97em;
-    color: $theme;
-    background: $bg;
+  word-wrap: break-word;
+  line-height: 2em;
+  font-size: 0.97em;
 }
-
-
 
 pre .variable,
 pre .attribute,
@@ -63,13 +60,10 @@ pre .xml .doctype,
 pre .html .doctype,
 pre .css .id,
 pre .css .class,
-pre .css .pseudo {
-    color: $c1;
-}
-
+pre .css .pseudo,
 pre .keyword,
 pre .javascript .function {
-    color: $c2;
+  color: var(--color-highlight);
 }
 
 pre .number,
@@ -78,17 +72,12 @@ pre .built_in,
 pre .literal,
 pre .params,
 pre .constant {
-    color: $c3;
+  color: var(--color-highlight);
 }
 
-pre .ruby .class .title,
-pre .css .rules .attribute {
-    color: $c4;
-}
-
-pre .title,
+pre .css .rules .attribute,
 pre .css .hexcolor {
-    color: $c5;
+  color: var(--color-theme);
 }
 
 pre .string,
@@ -97,9 +86,11 @@ pre .inheritance,
 pre .header,
 pre .ruby .symbol,
 pre .xml .cdata {
-    color: $c6;
+  color: var(--color-theme);
 }
 
+pre .ruby .class .title,
+pre .title,
 pre .function,
 pre .python .decorator,
 pre .python .title,
@@ -108,21 +99,5 @@ pre .ruby .title .keyword,
 pre .perl .sub,
 pre .javascript .title,
 pre .coffeescript .title {
-    color: $c7;
-}
-
-@media screen and (max-width:782px) {
-    figure {
-        width: 110%;
-        margin-left: -5%;
-    }
-    pre {
-        font-size: 1.2rem;
-        line-height: 18px;
-        padding: 10px;
-        background-size: auto 36px;
-    }
-    code {
-        line-height: 1.9em;
-    }
+  color: inherit;
 }

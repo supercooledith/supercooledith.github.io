@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>开始Python3抓取数据</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="开始Python3抓取数据" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  开始Python3抓取数据
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-10-04T03:39:01.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-10-04
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+<div class="tags">
+
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-hash">
+    <line x1="4" y1="9" x2="20" y2="9"></line>
+    <line x1="4" y1="15" x2="20" y2="15"></line>
+    <line x1="10" y1="3" x2="8" y2="21"></line>
+    <line x1="16" y1="3" x2="14" y2="21"></line>
+  </svg>
+  <a href="/tags/python/">python</a>&nbsp;·&nbsp;<a href="/tags/abc/">abc</a>
+</div>
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>暂时没有看<a target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000/001431658427513eef3d9dd9f7c48599116735806328e81000">廖雪峰的python3教程</a>，而是直接看了这个👉<a target="_blank" rel="noopener" href="//www.2cto.com/shouce/Pythonbbf/index.html">笨办法学Python</a><br>笨办法学python - Learn Python The Hard Way 里面写的基本上是初级语法<br>看了一会儿发现这是针对无基础人士写的<strong>python2</strong>教程<br>看完之后就一个感觉：  </p>
+<blockquote>
+<p>python语法还是蛮简单的，但是swift还要简单一些  </p>
+</blockquote>
+<span id="more"></span>
+<hr>
+<h1 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h1><p>终极目标是写一个python脚本，用于抓取热点微博，并定时转发<br>看了一下<a target="_blank" rel="noopener" href="//open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI">新浪微博api</a>，为了完成该目标就需要  </p>
+<ol>
+<li><a target="_blank" rel="noopener" href="//open.weibo.com/wiki/%E5%BE%AE%E5%8D%9AAPI">转发一条微博信息</a></li>
+<li><a target="_blank" rel="noopener" href="//open.weibo.com/wiki/2/statuses/update">发布一条微博信息</a></li>
+<li><a target="_blank" rel="noopener" href="//open.weibo.com/wiki/2/statuses/public_timeline">获取最新的公共微博</a></li>
+</ol>
+<p>在深入的话还需要微博登录</p>
+<hr>
+<h1 id="step-by-step"><a href="#step-by-step" class="headerlink" title="step by step"></a>step by step</h1><p>api看不懂就看看demo<br>demo看不懂至少我看懂了post包里面需要什么数据<br>那么就直接开始尝试建立post或者get<br>还是不行，那么开始python抓取网页数据吧————这也是抓取热点微博的一个方法  </p>
+<hr>
+<h2 id="简单抓取网页数据"><a href="#简单抓取网页数据" class="headerlink" title="简单抓取网页数据"></a>简单抓取网页数据</h2><p>注意使用的是python3版本<br>不要用错了人家老版本的了 必须的urllib库变了：  </p>
+<blockquote>
+<p>python 3.x中urllib库和urilib2库合并成了urllib库<br>其中urllib2.urlopen()变成了urllib.request.urlopen()<br>urllib2.Request()变成了urllib.request.Request() </p>
+</blockquote>
+<p>参考了这两个网页<a target="_blank" rel="noopener" href="//blog.csdn.net/mr_tank_/article/details/14104103">Python3 urllib GET方式获取数据</a>和<a target="_blank" rel="noopener" href="//wenku.baidu.com/link?url=d9Sxcd98Io4X8IYxx12J_YLBk7DPS2CFAlq-oUwzh8SByj90HMv3fTDCi4wgYpXjTR_luZDu7VzwbdHQ6k7aDHvl9bv2UyVmmqn9t2TX8R_">python3.3 抓取网页数据</a>  </p>
+<p>代码如下<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ewn711zq9lj20cg0crgo5.jpg" alt="image"><br>我直接查询了一下我的微博的主页<br>本来写的是百度的，东西太多了看不过来。。。。。<br>网页的html数据就被储存在z_data当中，re库能够通过html的语法进行查询<br>第一个查询标题，第二个循环了查询链接<br>回显如下<br><img src="//ww3.sinaimg.cn/large/a243ad6cjw1ewn7109tpqj20qj06qdik.jpg" alt="image"></p>
+<hr>
+<h1 id="更新2015-10-04-23-06-34"><a href="#更新2015-10-04-23-06-34" class="headerlink" title="更新2015-10-04 23:06:34"></a>更新2015-10-04 23:06:34</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>是把网页中sidebar目录里的所有网页连接给装到一个 dic 字典当中<br>或者装到txt 文件当中，这样以后可以用脚本使用该 txt 文档<br>然后把文档里的所有东西都给拖下来<br>相当于是通过给出来的目录，下载整个网站<br>通过脚本可以吧<code>.html</code>文档简单的变成 markdown 文档</p>
+<h2 id="操作"><a href="#操作" class="headerlink" title="操作"></a>操作</h2><p>此次操作当中最重要的弄懂 python3 的正则表达式和目录操作<br>相关网页：  </p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="//python3.h.baike.com/article-362233.html">re模块 正则表达式</a><br><a target="_blank" rel="noopener" href="//blog.csdn.net/jcjc918/article/details/9366011">Python 3语法小记（四）字典 dictionary</a>  </p>
+</blockquote>
+<h2 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h2><figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">import urllib<span class="selector-class">.request</span></span><br><span class="line">import re</span><br><span class="line"></span><br><span class="line">dic = {<span class="string">'name'</span>:<span class="string">'urls'</span>}</span><br><span class="line"></span><br><span class="line">url = <span class="string">"the url u want"</span></span><br><span class="line"></span><br><span class="line">data = urllib<span class="selector-class">.request</span><span class="selector-class">.urlopen</span>(url)<span class="selector-class">.read</span>()<span class="selector-class">.decode</span>(<span class="string">"UTF-8"</span>)</span><br><span class="line"></span><br><span class="line">urllib<span class="selector-class">.request</span><span class="selector-class">.urlopen</span>(url)<span class="selector-class">.close</span>()</span><br><span class="line"></span><br><span class="line">links = re<span class="selector-class">.compile</span>(<span class="string">'000"&gt;(.+?)&lt;/'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> urls <span class="keyword">in</span> links<span class="selector-class">.findall</span>(data):</span><br><span class="line">    <span class="keyword">if</span> <span class="string">"&lt;a"</span> <span class="keyword">in</span> urls:</span><br><span class="line">        pass</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        urls<span class="selector-class">.replace</span>(<span class="string">'/'</span>,<span class="string">'_'</span>)</span><br><span class="line">        dic<span class="selector-attr">[<span class="string">'%s'</span>%urls]</span> = <span class="string">'-'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> names <span class="keyword">in</span> dic<span class="selector-class">.keys</span>():</span><br><span class="line"></span><br><span class="line">    temp = <span class="string">'href="(.+?)"&gt;'</span>+names</span><br><span class="line">    urlses = re<span class="selector-class">.compile</span>(temp)</span><br><span class="line">    try:</span><br><span class="line">        urlname = urlses<span class="selector-class">.findall</span>(data)<span class="selector-attr">[0]</span></span><br><span class="line">    except:</span><br><span class="line">        continue</span><br><span class="line">    dic<span class="selector-attr">[names]</span> = urlname</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="title">print</span><span class="params">(dic)</span></span></span><br></pre></td></tr></tbody></table></figure>
+<p>关键在于两个正则表达式：<br><code>temp = 'href="(.+?)"&gt;'+names</code><br><code>links = re.compile('000"&gt;(.+?)&lt;/')</code><br>这两个的构造是通过网页源代码来的，我想找的代码段是<code>(.+?)</code>里的内容<br>本来只用一个正则就行了的，但是整个网页当中有两段目录<br>于是 dic 显示一个名字<code>names</code>对应了两个<code>url</code><br>所以有了第二段 url 用于约束，也就是定位到 sidebar 当中  </p>
+<h2 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h2><p>看图<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ewpily64i4j20zk0m8b29.jpg" alt="image"><br>👆成功了哟👆<br>接下来的就是把<code>/wiki/</code>开头的相对路径添加成为含有网址的绝对路径<br><del>然后存为 txt  拿给其他的脚本使用了</del><br>更新：用<code> pickle</code>储存，见下方更新</p>
+<hr>
+<h1 id="更新2015-10-06-20-00-10"><a href="#更新2015-10-06-20-00-10" class="headerlink" title="更新2015-10-06 20:00:10"></a>更新2015-10-06 20:00:10</h1><h2 id="添加成绝对路径"><a href="#添加成绝对路径" class="headerlink" title="添加成绝对路径"></a>添加成绝对路径</h2><p>还是以<a target="_blank" rel="noopener" href="//www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">廖雪峰的 python3 教程</a>为例<br>我们在上面已经得到了这样的url 字符串：</p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000</span><br></pre></td></tr></tbody></table></figure>
+<p>这也是我们两行正则表达式的查找标准之一<br>在这里把url 改成绝对路径：</p>
+<figure class="highlight asciidoc"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">urlname = "<span class="link">http://www.liaoxuefeng.com"+urlses.findall(data)</span>[<span class="string">0</span>]</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="存档以便以后使用"><a href="#存档以便以后使用" class="headerlink" title="存档以便以后使用"></a>存档以便以后使用</h2><p>这里使用<code> pickle</code><br>参考网页：<a target="_blank" rel="noopener" href="//blog.csdn.net/mr_tank_/article/details/14224141">Python3 pickle序列化</a><br>使用方法如下：<br><strong>👇写入👇</strong></p>
+<figure class="highlight fsharp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="keyword">open</span>(<span class="string">"the_name_you_want.pickle"</span>,<span class="string">"wb"</span>) <span class="keyword">as</span> f<span class="operator">:</span></span><br><span class="line">    pickle.dump(dic,f)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>👇读出👇</strong></p>
+<figure class="highlight livecodeserver"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">'the_name_you_want.pickle'</span>,<span class="string">'rb'</span>) <span class="keyword">as</span> f:  </span><br><span class="line">    dic=pickle.<span class="built_in">load</span>(f)</span><br></pre></td></tr></tbody></table></figure>
+<p><strong>这里的<code>dic</code>是一个字典</strong></p>
+<h2 id="用一个函数来生成-html-文档"><a href="#用一个函数来生成-html-文档" class="headerlink" title="用一个函数来生成 html 文档"></a>用一个函数来生成 html 文档</h2><p>输入一个<code>{names:url}</code>储存的字典，效果是把储存的所有网页都下载下来<br>一下就写好了，代码如下：</p>
+<figure class="highlight cos"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import urllib.request</span><br><span class="line"></span><br><span class="line">def store_the_page(dic):</span><br><span class="line">    <span class="keyword">for</span> names in dic:</span><br><span class="line">        url = dic[names]</span><br><span class="line">        data=urllib.request.urlopen(url).<span class="keyword">read</span>()</span><br><span class="line">        urllib.request.urlopen(url).<span class="keyword">close</span>()</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            fp = <span class="keyword">open</span>(<span class="string">"%s.html"</span><span class="built_in">%names</span>,<span class="string">"wb"</span>)</span><br><span class="line">        except:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        fp.<span class="keyword">write</span>(data)</span><br><span class="line">        fp.<span class="keyword">close</span>()</span><br><span class="line">        <span class="keyword">print</span>(<span class="string">"%s.html\t写入完成"</span><span class="built_in">%names</span>)</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure>
+<p>两个<code>.py</code>怎么互相调用呢？  </p>
+<blockquote>
+<p>假如我有一个 <code>b.py</code>  </p>
+</blockquote>
+<figure class="highlight isbl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">def</span> <span class="function"><span class="title">method</span>():</span></span><br><span class="line"><span class="function">    <span class="title">print</span>(<span class="string">"hello world"</span>)</span></span><br></pre></td></tr></tbody></table></figure>
+<blockquote>
+<p>在<code>a.py</code>里就该这样调用：  </p>
+</blockquote>
+<figure class="highlight oxygene"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import b</span><br><span class="line"> blah</span><br><span class="line"> blah</span><br><span class="line"> blah</span><br><span class="line"><span class="keyword">method</span><span class="params">()</span></span><br></pre></td></tr></tbody></table></figure>
+<p>也就是说，只用 import 就行了，因为在同一文件夹里，直接写<code>import b</code>  </p>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>看图：<br><img src="//ww2.sinaimg.cn/large/a243ad6cjw1ewrpfh0mbsj20ff0lnjy0.jpg" alt="image"><br>看着文件一个一个生成还是蛮开心的<br>最后的错误是因为文件名中带有<code>/</code>这个特殊的符号<br>我们可以通过替换<code>names</code>字符串中的<code>/</code>来解决<br>或者是用<code>try</code> <code>except</code>来忽略它<br>看看 finder：<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ewrpk4u85lj211i0opdp5.jpg" alt="image"> </p>
+<hr>
+<p>至此就完成了查找目录-下载目录-下载网站的过程</p>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

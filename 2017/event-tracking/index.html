@@ -1,0 +1,321 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>关于数据埋点</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="关于数据埋点" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  关于数据埋点
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2017-08-29T14:31:13.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2017-08-29
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/Geek-Talks/">Geek Talks</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>项目中需要埋点的地方越来越多，急需一套通用的埋点解决方案。之前基于后端 + api 的 PV／UV 统计方式不够精细、操作复杂，对于前端会入侵逻辑，后端在接收信息和事后统计时也不好处理逻辑。</p>
+<p>结合<a target="_blank" rel="noopener" href="https://help.growingio.com/Features/overview.html">GrowingIO的展示信息</a>大概想了一下，需要采集的信息不过就是：</p>
+<ol>
+<li>打开的链接与打开的时间</li>
+<li>用户个人信息（这个基本上都需要后端来做）</li>
+<li>（需要统计的）元素展示时间与时长</li>
+<li>（需要统计的）元素点击时间</li>
+<li>关闭或跳转时间（和目标）</li>
+</ol>
+<p>需求自然而然就出来了：</p>
+<ol>
+<li>高效埋点</li>
+<li>数据格式化，便于处理</li>
+<li>精细埋点</li>
+<li>兼容各种框架</li>
+</ol>
+<h2 id="所以选用什么方式呢"><a href="#所以选用什么方式呢" class="headerlink" title="所以选用什么方式呢"></a>所以选用什么方式呢</h2><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/27659302">百度外卖前端有篇</a>写得犹抱琵琶半遮面的文章就讲了一下他们的方案。写的挺详细的，就是没有开源。</p>
+<p>里面讲了当今常用的几种埋点方式：</p>
+<ol>
+<li>命令式，大概就是我们这边的原始埋点方式</li>
+<li>声明式，就是在 DOM 上声明需要采集的元素数据以及相关操作</li>
+</ol>
+<p>然后埋点行为就三个：</p>
+<ol>
+<li>ready 绑定就算</li>
+<li>click 点击就算</li>
+<li>show 统计时长</li>
+</ol>
+<p>声明式在现在动态操作 DOM 较多的现代框架中好像还不怎么好做，什么时候绑定呢，什么时候解绑呢，会不会重复绑定呢，展示时长怎么做呢？</p>
+<p>首先想到的思路是监听、劫持全局的点击事件和滚动事件，然后如果检测到相关元素就绑定+采集，关闭或跳转前统一上传。然后上面的链接里面提供了一个更优雅的方式，<code>MutationObserver</code> + pollyfill，把用在自定义指令上的绑定更新解绑都放在普通元素上来了。所以可以结合两者，只用 <code>new</code> 一次就完成了埋点。</p>
+<p>上面文章里写的方式直接结合了 vue 的自定义指令，绑定、更新、解绑一个不落，我想要的是在一个 json 里面声明需要采集的元素选择器名、至多到什么 <code>before</code>、<code>after</code>、<code>once</code>、<code>creatCounter</code>、<code>creatTimer</code> 就完了，使用的时候大概这样：</p>
+<figure class="highlight javascript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="title class_">EventTrack</span>([</span><br><span class="line">    {</span><br><span class="line">        <span class="attr">node</span>: <span class="string">'.buyButton'</span>,</span><br><span class="line">        <span class="attr">before</span>: <span class="title function_">beforeClick</span>(<span class="string">'click'</span>),</span><br><span class="line">        <span class="attr">after</span>: <span class="title function_">afterClick</span>(<span class="string">'click'</span>)</span><br><span class="line">    },</span><br><span class="line">    {</span><br><span class="line">        <span class="attr">node</span>: <span class="string">'#banner7'</span>,</span><br><span class="line">        <span class="attr">once</span>: <span class="title class_">OnceShow</span>(<span class="string">'show'</span>),</span><br><span class="line">        creatCounter,</span><br><span class="line">        creatTimer</span><br><span class="line">    }</span><br><span class="line">], <span class="function">(<span class="params">{ node, event, param }</span>) =&gt;</span> {</span><br><span class="line">    <span class="comment">// 每一次事件调用都执行一次本函数</span></span><br><span class="line">})</span><br></pre></td></tr></tbody></table></figure>
+<p>支持自定义函数（<code>beforeClick</code> 和 <code>afterClick</code>），以及多次绑定。</p>
+<blockquote>
+<p>侵入式的埋点复杂度转移到了针对事件的分析上</p>
+</blockquote>
+<p>于是所有的埋点信息都统一变成了针对 node 的各种 event，后端用一个通用接口加一个通用数据库去存放所有操作日志。</p>
+<p>这样的话，<strong>侵入式的埋点复杂度就转移到了针对事件的分析上</strong>，前端不用对照着埋点文档思考在那个组件的哪个回调里埋点了、后端也不用为每个埋点新增单独的 restapi。前端的埋点是非侵入的，在页面加载完成后执行绑定即可。</p>
+<p>相较于之前「只记录需要的信息」，这种埋点方式记录了更多基本信息，便于之后的分析。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://github.com/Qquanwei/trackpoint-tools">trackpoint-tools</a>，针对组建化的 react 写的函数式埋点方案，我这个弱鸡看得很费劲，但是很有参考价值。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/lodash/lodash">lodash</a>，什么 <code>before</code>、<code>after</code>、<code>once</code> 都是 lodash 里面来的，lodash 注释写的是真的好啊。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/vissense/vissense">VisSense</a>，一个可视元素触发事件的库，展示时长就靠它了。</p>
+<hr>
+<p>以下内容更新于一天后（8-30）</p>
+<h2 id="遇见的坑"><a href="#遇见的坑" class="headerlink" title="遇见的坑"></a>遇见的坑</h2><p>我还是代码的阅读量太少了，基本上是不知道别人怎么进行埋点的，在写这个东西的时候就一直在问自己是不是别人写的时候都会直接在 DOM 上进行声明式埋点。虽然东西是差不多写出来了，但是需求却一直在变化，这在某一个方面上也说明了设计之初的不合理和不宽容。</p>
+<p>阅读量不够的另一个体现在于代码不够优雅，比如</p>
+<figure class="highlight scss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">function <span class="built_in">emailClients</span>(clients) {</span><br><span class="line">    clients<span class="selector-class">.forEach</span>(client =&gt; {</span><br><span class="line">        const clientRecord = database.lookup(client)</span><br><span class="line">        if (clientRecord.isActive()) {</span><br><span class="line">            <span class="built_in">email</span>(client)</span><br><span class="line">        }</span><br><span class="line">    })</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这种遍历数组的比较，其实可以变成：</p>
+<figure class="highlight ada"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title">emailClients</span>(clients) {</span><br><span class="line">    clients</span><br><span class="line">        .filter(<span class="keyword">is</span>ActiveClient)</span><br><span class="line">        .forEach(email)</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="title">isActiveClient</span>(client) {</span><br><span class="line">    const clientRecord = database.lookup(client)</span><br><span class="line">    <span class="keyword">return</span> <span class="type">clientRecord.isActive()</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>比如默认变量的使用：</p>
+<figure class="highlight actionscript"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">createMicrobrewery</span><span class="params">(name)</span> {</span><br><span class="line">    <span class="keyword">const</span> breweryName = name || <span class="string">'default name'</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>变成：</p>
+<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> create<span class="constructor">Microbrewery(<span class="params">breweryName</span> = '<span class="params">default</span> <span class="params">name</span>')</span> {}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>看着都令人赏心悦目。</p>
+<p>具体又一个逻辑的问题没有考虑清楚：解绑的时候如何入侵呢？ MutationObserver 是相当好用的，能够相对异步的提供事件勾子，但是如果一个元素已经在 DOM 树中被删除了，那么监听事件的解绑又如何谈起呢？再进一步问，如果一个元素在 DOM 树中被删除了，如果再一次被添加进去，那之前绑定的监听事件还存在么？是不是要采用提前劫持事件的方式？</p>
+<p>设计上还有很多不足的地方，比如自定义函数的传入方式、比如有没有必要将统一上传的功能集成在一起，如果不集成在一起，那么 log 是不是又要换一种方式返回出来，返回的格式又能不能自定义呢？</p>
+<p>另外，有没有 document.querySelector() 的逆函数呢？传入一个 DOMObject，返回它的选择器字符串？</p>
+<h2 id="经验"><a href="#经验" class="headerlink" title="经验"></a>经验</h2><p>上面提到的 document.querySelector() 的逆函数：<a target="_blank" rel="noopener" href="https://github.com/ericclemmons/unique-selector">unique-selector</a>。</p>
+<p>如果只想监听出现和消失事件，可以用 <a target="_blank" rel="noopener" href="https://github.com/jeremenichelli/hunt">huntjs</a>。</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

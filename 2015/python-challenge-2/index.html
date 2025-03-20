@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>Python Challenge 11-19</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="Python Challenge 11-19" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  Python Challenge 11-19
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-10-16T15:00:57.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-10-16
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>我感觉我是做入迷了<br>因为确实好玩啊。。。<br>学到的知识比看书多多了<br>我这种就适合考前突击</p>
+<span id="more"></span>
+<hr>
+<h1 id="第十一关-图片处理"><a href="#第十一关-图片处理" class="headerlink" title="第十一关 图片处理"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/evil.html">第十一关</a> 图片处理</h1><p>这一关还是考验图片处理的能力<br>但是对我来说却是考验安装第三方库、正确使用<code> Stack Overflow</code> 的能力<br>没有想到这一篇还要更新: <a target="_blank" rel="noopener" href="//gaoryrt.github.io/2015/10/16/install-python-package/">安装 Python 库文件</a><br>开始的时候<code>.jpg</code>文件还不能解析，换成了<code>.png</code>，结果一样不能用。。。<br>重装了与<code>Image</code>相关的库，重新装了<br>然后就简单了<br>题目是奇数偶数，然后图片叫做<code> cave</code>，意思就是空了里面有东西<br>下载下来放大看是这样的:<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex3eauvv3oj20lr0ca7c1.jpg"><br>想了一会儿还以为有另外一个图片拿给我放一起拼起来。。。<br>放大看其实里面不全是黑色的，话说 mac 的数码测色计真是好用啊<br>就是把有颜色的都去掉:</p>
+<figure class="highlight vim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line"><span class="keyword">im</span> = Image.<span class="keyword">open</span>(<span class="string">'cave.jpg'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="keyword">im</span>.size</span><br><span class="line"><span class="keyword">for</span> i in <span class="built_in">range</span>(<span class="number">640</span>):</span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">j</span> in <span class="built_in">range</span>(<span class="number">480</span>):</span><br><span class="line">        <span class="keyword">if</span> (i+<span class="keyword">j</span>)%<span class="number">2</span>==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">im</span>.putpixel((i,<span class="keyword">j</span>),(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>))</span><br><span class="line"><span class="keyword">im</span>.show()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex3easqgtcj20hy0awwg5.jpg"><br>看不清的话请调亮一点，算了还是我来:<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex3eaodiqvj20hy0brtg6.jpg"></p>
+<hr>
+<h1 id="第十二关-gfx-拆分"><a href="#第十二关-gfx-拆分" class="headerlink" title="第十二关 gfx 拆分"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/evil.html">第十二关</a> gfx 拆分</h1><p>题目是<code>dealing evil</code><br>只有一个图，<code>evil1.jpg</code>:<br><img src="//ww2.sinaimg.cn/large/a243ad6cjw1ex4dcijs2dj20hs0dcgno.jpg" alt="evil1"><br>然后就什么提示都没有了<br>想了半天想出来是应该有<code> evilx.jpg</code>的<br>当我看到<code>evil0.jpg</code>是404的时候确实挺失望的<br>幸好还有<code> evil2.jpg</code>。。。<br><code>not jpg - - .gfx</code><br>还有 <code>evil3.jpg</code><br><code>no more evils...</code><br>还有<code> evil4.jip</code>虽然不是 <code>jpg</code>格式的，但是下载下来打开还是有信息<br><code>burt is evil!go back!</code><br>查了一下这个<code>.gfx</code>格式  however跟后面解题完全无关了<br><strong>这里开始不是自己做的</strong><br>第一幅图里面是有个人在发牌，发了五张<br>正确的解题是下载<code> evil2.gfx</code>然后步进分成五个图片<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex4dghq992j20k404ojrw.jpg">  </p>
+<hr>
+<h1 id="第十三关-rpc-协议"><a href="#第十三关-rpc-协议" class="headerlink" title="第十三关 rpc 协议"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/disproportional.html">第十三关</a> rpc 协议</h1><p>是一个电话的图片<br><img src="//ww4.sinaimg.cn/large/a243ad6cjw1ex5r5ontkhj20hs0dcgm7.jpg"><br>查看源文件，跟前面哪个连线一样的，点击某个区域，跳转到<a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/phonebook.php">这个连接</a><br><strong>完全不会做</strong><br>下面是找到的方法:  </p>
+<blockquote>
+<p>xmlrpc是使用http协议做为传输协议的rpc机制，使用xml文本的方式传输命令和数据blablabla…<br>反正就是要用到python的xmlrpclib模块来连接这个php页面，然后查看其方法，其中有个名为phone方法就是答案。  </p>
+</blockquote>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">def disproportional():</span><br><span class="line">    import xmlrpclib</span><br><span class="line">    xml_rpc = xmlrpclib.ServerProxy(<span class="string">"http://www.pythonchallenge.com/pc/phonebook.php"</span>)</span><br><span class="line">    <span class="built_in">print</span> xml_rpc.system.listMethods()</span><br><span class="line">    <span class="built_in">print</span> xml_rpc.system.methodHelp(<span class="string">'phone'</span>)</span><br><span class="line">    <span class="built_in">print</span> xml_rpc.phone(<span class="string">'Bert'</span>)</span><br><span class="line"> &gt;&gt;&gt; [<span class="string">'phone'</span>, <span class="string">'system.listMethods'</span>, <span class="string">'system.methodHelp'</span>, <span class="string">'system.methodSignature'</span>, <span class="string">'system.multicall'</span>, <span class="string">'system.getCapabilities'</span>]</span><br><span class="line">    Returns the phone of a person</span><br><span class="line">    555-ITALY</span><br></pre></td></tr></tbody></table></figure>
+<p><code>rpc</code>协议以后来补，<del>however</del> ，答案就是 <code>italy</code>  </p>
+<hr>
+<h1 id="第十四关-编程"><a href="#第十四关-编程" class="headerlink" title="第十四关 编程"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/italy.html">第十四关</a> 编程</h1><p>有个螺旋形的面包，源代码提示<code>walk around</code>,<code>&lt;!-- remember: 100*100 = (100+99+99+98) + (...  --&gt;</code><br>下面一张图，格式相当奇葩<code>10000*1</code>的一个<code>png</code><br>猜到了就是读图然后按照螺旋写成一个<code>100*100</code>的图  </p>
+<figure class="highlight python"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">im = Image.<span class="built_in">open</span>(<span class="string">'wire.png'</span>)</span><br><span class="line">mi = Image.<span class="built_in">open</span>(<span class="string">'wire0.png'</span>)</span><br><span class="line">L = []</span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>):</span><br><span class="line">    L.append(im.getpixel((n,<span class="number">0</span>)))</span><br><span class="line"><span class="keyword">def</span> <span class="title function_">round</span>(<span class="params">n</span>):</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>-<span class="number">2</span>*n):</span><br><span class="line">        mi.putpixel((n+i,n),L.pop())</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99</span>-<span class="number">2</span>*n):</span><br><span class="line">        mi.putpixel((<span class="number">99</span>-n,j+<span class="number">1</span>+n),L.pop())</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">99</span>-<span class="number">2</span>*n):</span><br><span class="line">        mi.putpixel((<span class="number">98</span>-i-n,<span class="number">99</span>-n),L.pop())</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">98</span>-<span class="number">2</span>*n):</span><br><span class="line">        mi.putpixel((n,<span class="number">98</span>-j-n),L.pop())  </span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>):</span><br><span class="line">    <span class="built_in">round</span>(<span class="number">50</span>-i)</span><br><span class="line">mi.show()</span><br></pre></td></tr></tbody></table></figure>
+<p>出来是一只小猫。。。<br><img src="//ww3.sinaimg.cn/large/a243ad6cjw1ex6gli5dslj208808874t.jpg"><br>我就进入<code>cat.html</code>，但是貌似这个不是第十五关，毕竟左上角没有<code>15</code><br><img src="//ww4.sinaimg.cn/large/a243ad6cjw1ex6glgh7fcj20k70eyq5h.jpg"><br><code>cat.html</code>网页源码如下:  </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">title</span>&gt;</span>uzi<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">"stylesheet"</span> <span class="attr">type</span>=<span class="string">"text/css"</span> <span class="attr">href</span>=<span class="string">"../style.css"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">font</span> <span class="attr">color</span>=<span class="string">"gold"</span> <span class="attr">size</span>=<span class="string">"+1"</span>&gt;</span></span><br><span class="line">	and its name is <span class="tag">&lt;<span class="name">b</span>&gt;</span>uzi<span class="tag">&lt;/<span class="name">b</span>&gt;</span>. you'll hear from him later.</span><br><span class="line"><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"uzi.jpg"</span> <span class="attr">width</span>=<span class="string">"640"</span> <span class="attr">height</span>=<span class="string">"480"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>应该是另外一种旋转方法才对。。。<br>红色的应该就是信息，只绕了一又四分之一圈。。。<br>结果这样就出来了:  </p>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">im = Image<span class="selector-class">.open</span>(<span class="string">'wire.png'</span>)</span><br><span class="line">mi = Image<span class="selector-class">.open</span>(<span class="string">'wire0.png'</span>)</span><br><span class="line">L = <span class="selector-attr">[]</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">10000</span>):</span><br><span class="line">    L<span class="selector-class">.append</span>(im<span class="selector-class">.getpixel</span>((n,<span class="number">0</span>)))</span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">        mi<span class="selector-class">.putpixel</span>((<span class="selector-tag">i</span>,j),L<span class="selector-class">.pop</span>())</span><br><span class="line">mi<span class="selector-class">.show</span>()</span><br></pre></td></tr></tbody></table></figure>
+<p><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex6gw76pfsj205l05l0t2.jpg"><br>是<code> bit</code>？<br><strong>不！可！能！这！么！简！单</strong><br>果然，猫的名字是<code> uzi</code>，正确的页面应该是 uzi 才对</p>
+<hr>
+<h1 id="第十五关-编程"><a href="#第十五关-编程" class="headerlink" title="第十五关 编程"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/uzi.html">第十五关</a> 编程</h1><p>还是得看攻略。。。<br>这上面这个是1xx6年，右下角说这一年的二月有29天，然后<code>今天</code>是一月26号，这一年的1月27号有事情要买花。<br>就是查这个<code>&lt;!-- he ain't the youngest, he is the second --&gt;</code>  </p>
+<figure class="highlight apache"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">k</span> = <span class="number">6</span></span><br><span class="line"><span class="attribute">day</span> = <span class="number">26</span></span><br><span class="line"><span class="attribute">for</span> i in range (<span class="number">1006</span>,<span class="number">1997</span>):</span><br><span class="line">    <span class="attribute">if</span> i%<span class="number">4</span>==<span class="number">0</span> and i%<span class="number">100</span>!=<span class="number">0</span>:</span><br><span class="line">        <span class="attribute">day</span> += <span class="number">366</span></span><br><span class="line">    <span class="attribute">else</span>:</span><br><span class="line">        <span class="attribute">day</span> += <span class="number">365</span></span><br><span class="line">    <span class="attribute">if</span> day%<span class="number">7</span> == k and i%<span class="number">4</span>==<span class="number">0</span> and i%<span class="number">100</span>!=<span class="number">0</span> and i%<span class="number">10</span>==<span class="number">6</span>:</span><br><span class="line">        <span class="attribute">print</span>(str(i)+' is a leap year and <span class="number">26</span>.Jan is Monday, and is one of a <span class="number">1</span>xx6')</span><br></pre></td></tr></tbody></table></figure>
+<p>把日历打开看了一下才把这个<code>k = 6</code>的值找到，用来校准周信息<br>第二年轻的就是<code>1956 27.Jan</code>这个是<code>莫扎特</code>的生日</p>
+<hr>
+<h1 id="第十六关-list-操作"><a href="#第十六关-list-操作" class="headerlink" title="第十六关 list 操作"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/mozart.html">第十六关</a> list 操作</h1><p>一张图<code>let me get this straight</code>:<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex6lrv67j9g20hs0dc0zc.gif"><br>放大看每一行都有且只有一个<code>白紫紫紫紫紫白</code>，每一行都看做循环的，用这个标志对齐  </p>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">from PIL import Image</span><br><span class="line">im = Image<span class="selector-class">.open</span>(<span class="string">'mozart.png'</span>)</span><br><span class="line">L = <span class="selector-attr">[]</span></span><br><span class="line">front = <span class="selector-attr">[]</span></span><br><span class="line">back = <span class="selector-attr">[]</span></span><br><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">480</span>):</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">640</span>):</span><br><span class="line">        L<span class="selector-class">.append</span>(im<span class="selector-class">.getpixel</span>((m,n)))</span><br><span class="line">    L<span class="selector-class">.reverse</span>()</span><br><span class="line">    front = L<span class="selector-attr">[:L.index(195)]</span></span><br><span class="line">    back = L<span class="selector-attr">[(L.index(195)-640):]</span></span><br><span class="line">    L = back+front</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">640</span>):</span><br><span class="line">        im<span class="selector-class">.putpixel</span>((m,n),L<span class="selector-class">.pop</span>())</span><br><span class="line">    L = <span class="selector-attr">[]</span></span><br><span class="line">im<span class="selector-class">.show</span>()</span><br></pre></td></tr></tbody></table></figure>
+<p>其中的<code>195</code>是我先输出第一行之后找的，本来想找<code>249</code>这个白色的，但是从第二行开始就没有<code>249</code>的白色了，其实可以<code> try、except</code>的，太麻烦了。。。 就找后面的紫色<code>195</code>了<br><code>reverse()</code>函数把<code> L</code>给反过来再<code>pop()</code>，输出就不是镜像的<br>看图<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex6u9sowwwj20kw0hztnl.jpg"></p>
+<hr>
+<h1 id="第十七关这道题能自己做出来的都是大神"><a href="#第十七关这道题能自己做出来的都是大神" class="headerlink" title="第十七关这道题能自己做出来的都是大神"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/romance.html">第十七关</a>这道题能自己做出来的都是大神</h1><p>看到<code> cookie</code>现在都果断看不到趣多多了<br><img src="//ww4.sinaimg.cn/large/a243ad6cjw1ex6ue2hds4j20t3024q3u.jpg"><br>貌似要改 <code>cookie</code>但是不知道从哪里改呢。。。又要开始查答案了，没意思<br><strong>左下角是你做过的一道题，我反正记不得了</strong> <a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/def/linkedlist.php">木头人推磨</a><br>果然是这样的,就是在<a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/def/linkedlist.php?busynothing=12345">busynothing</a>这个<code> php</code>页面上进行不断获取<code> cookie</code>的事情，然后还要一遍获取<code> cookie</code>:  </p>
+<figure class="highlight pgsql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="keyword">import</span> urllib</span><br><span class="line"><span class="keyword">import</span> cookielib</span><br><span class="line"><span class="keyword">nothing</span> = "44827"</span><br><span class="line">cj = cookielib.CookieJar()</span><br><span class="line">j = "B"</span><br><span class="line"><span class="keyword">for</span> _ <span class="keyword">in</span> range(<span class="number">500</span>):</span><br><span class="line">    url = <span class="string">'http://www.pythonchallenge.com/pc/def/linkedlist.php?busynothing='</span>+<span class="keyword">nothing</span></span><br><span class="line">    <span class="keyword">global</span> <span class="keyword">nothing</span></span><br><span class="line">    opener = urllib2.build_opener(urllib2.HTTPCookieProcessor(cj))</span><br><span class="line">    urllib2.install_opener(opener)</span><br><span class="line">    <span class="keyword">nothing</span> = urllib2.urlopen(url).<span class="keyword">read</span>().decode()[<span class="number">27</span>:].strip()</span><br><span class="line">    print <span class="keyword">nothing</span></span><br><span class="line">    <span class="keyword">for</span> <span class="keyword">index</span>, cookie <span class="keyword">in</span> enumerate(cj):</span><br><span class="line">        cookie = str(cookie).replace(<span class="string">'&lt;Cookie info='</span>,<span class="string">''</span>).replace(<span class="string">' for .pythonchallenge.com/&gt;'</span>,<span class="string">''</span>).strip()</span><br><span class="line">        j+= cookie</span><br><span class="line">    print j</span><br><span class="line">   </span><br></pre></td></tr></tbody></table></figure>
+<p>最后是这样的<br><code>BZh91AY%26SY%94%3A%E2I%00%00%21%19%80P%81%11%00%AFg%9E%A0+%00hE%3DM%B5%23%D0%D4%D1%E2%8D%06%A9%FA%26S%D4%D3%21%A1%EAi7h%9B%9A%2B%BF%60%22%C5WX%E1%ADL%80%E8V%3C%C6%A8%DBH%2632%18%A8x%01%08%21%8DS%0B%C8%AF%96KO%CA2%B0%F1%BD%1Du%A0%86%05%92s%B0%92%C4Bc%F1w%24S%85%09%09C%AE%24%90</code><br>是以前做过的一道<code>bz2</code>压缩包的解密<br>但是他又告诉我这个<code>IOError: invalid data stream</code><br><strong>又要看答案了好伤心</strong>  </p>
+<blockquote>
+<p>import urllib<br>urllib.unquote(j)<br>然后里面有个加号，这里要把加号去掉:  </p>
+</blockquote>
+<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print bz2.<span class="constructor">BZ2Decompressor()</span>.decompress(urllib.unquote<span class="constructor">_plus(<span class="params">j</span>)</span>)   </span><br></pre></td></tr></tbody></table></figure>
+
+<p><strong>你以为有答案了么？图样</strong>  </p>
+<p><code>is it the 26th already? call his father and inform him that "the flowers are on their way". he'll understand.</code></p>
+<p>这里要告诉他的爸爸花在路上了。<br>谁的爸爸？莫扎特的爸爸。怎么告诉他？打电话。<br>百度莫扎特的爸爸:<code>Leopold</code><br>这里又要前面打电话的:</p>
+<figure class="highlight routeros"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import xmlrpclib</span><br><span class="line">xml_rpc = xmlrpclib.ServerProxy(<span class="string">"http://www.pythonchallenge.com/pc/phonebook.php"</span>)</span><br><span class="line"><span class="built_in">print</span> xml_rpc.system.listMethods()</span><br><span class="line"><span class="built_in">print</span> xml_rpc.system.methodHelp(<span class="string">'phone'</span>)</span><br><span class="line"><span class="built_in">print</span> xml_rpc.phone(<span class="string">'Leopold'</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>他爸爸的电话就有了:<code>555-VIOLIN</code><br><strong>你以为答案就出来了么？图样</strong><br>你要先进<code> violin.html</code>，然后根据提示来到<code>/stuff/violin.php</code><br><strong>你以为答案就出来了么？图样</strong><br>他爸爸就在这里，你要告诉他花在路上了<br>怎么告诉他?在 <code>cookie</code>里面,幸好我的 <code>chrome</code>还有<code> edit this cookie</code>插件<br>在<a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/stuff/violin.php">这个页面</a>新建一个<code> cookie</code>，名字叫<code> info</code>，值为<code>the+flowers+are+on+their+way</code>,然后刷新<br><img src="//ww1.sinaimg.cn/large/a243ad6cjw1ex6yq8ivokj209p08kdge.jpg">  </p>
+<hr>
+<h1 id="第十八关"><a href="#第十八关" class="headerlink" title="第十八关"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/balloons.html">第十八关</a></h1><p><code>difference</code> is <code>brigtness</code><br><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/return/brightness.html">brightness.html</a></p>
+<blockquote>
+<p>&lt;!– maybe consider deltas.gz –&gt;  </p>
+</blockquote>
+<p>download <code>deltas.pz</code> and unzip    </p>
+<figure class="highlight vim"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">import difflib</span><br><span class="line"></span><br><span class="line">both       = <span class="keyword">open</span>(<span class="string">'deltas'</span>).<span class="keyword">read</span>().<span class="keyword">split</span>(<span class="string">'\n'</span>)</span><br><span class="line"><span class="keyword">left</span>,<span class="keyword">right</span>,fileleft,fileright,filecommon = [],[],[],[],[]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span>    i in both: </span><br><span class="line">    <span class="keyword">left</span>.<span class="keyword">append</span>(i[:<span class="number">53</span>])</span><br><span class="line">    <span class="keyword">right</span>.<span class="keyword">append</span>(i[<span class="number">56</span>:])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">"differing..."</span></span><br><span class="line">diff  = <span class="keyword">list</span>(difflib.Differ().compare(<span class="keyword">left</span>,<span class="keyword">right</span>))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">line</span> in diff:</span><br><span class="line">    <span class="built_in">line</span> += <span class="string">'\n'</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">line</span>[<span class="number">0</span>]==<span class="string">' '</span>:</span><br><span class="line">        filecommon.<span class="keyword">append</span>(<span class="built_in">line</span>[<span class="number">2</span>:])</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">line</span>[<span class="number">0</span>]==<span class="string">'+'</span>:</span><br><span class="line">        fileright.<span class="keyword">append</span>(<span class="built_in">line</span>[<span class="number">2</span>:])</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">line</span>[<span class="number">0</span>]==<span class="string">'-'</span>:</span><br><span class="line">        fileleft.<span class="keyword">append</span>(<span class="built_in">line</span>[<span class="number">2</span>:])</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> n, data in enumerate((filecommon, fileright, fileleft)):  </span><br><span class="line">    temp = []  </span><br><span class="line">   </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">line</span> in data:  </span><br><span class="line">        temp.<span class="built_in">extend</span>([chr(<span class="keyword">int</span>(<span class="keyword">o</span>, <span class="number">16</span>)) <span class="keyword">for</span> <span class="keyword">o</span> in <span class="built_in">line</span>.strip().<span class="keyword">split</span>(<span class="string">" "</span>) <span class="keyword">if</span> <span class="keyword">o</span>])  </span><br><span class="line">   </span><br><span class="line">    h = <span class="keyword">open</span>(<span class="string">"%s.png"</span> % (n + <span class="number">1</span>), <span class="string">"wb"</span>)  </span><br><span class="line">    h.writelines(temp)  </span><br><span class="line">    h.<span class="keyword">close</span>() </span><br></pre></td></tr></tbody></table></figure>
+<p><img src="//ww2.sinaimg.cn/large/a243ad6cjw1ex8qkb44y3j20ro0a3my0.jpg">  </p>
+<hr>
+<h1 id="19-butter-fly"><a href="#19-butter-fly" class="headerlink" title="19 (butter+fly)"></a><a target="_blank" rel="noopener" href="//www.pythonchallenge.com/pc/hex/bin.html">19 (butter+fly)</a></h1><blockquote>
+<p>Content-type: audio/x-wav; name=”indian.wav”<br>Content-transfer-encoding: base64  </p>
+</blockquote>
+<p>download the messy code and store as txt,then <code>base64</code> decode as a <code>wav</code> file.</p>
+<figure class="highlight pgsql"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64  </span><br><span class="line"><span class="type">text</span> = <span class="keyword">open</span>(<span class="string">'indian.txt'</span>,<span class="string">'r'</span>).<span class="keyword">read</span>()  </span><br><span class="line">indian = <span class="keyword">open</span>(<span class="string">'indian.wav'</span>,<span class="string">'wb'</span>)  </span><br><span class="line">wav = base64.b64decode(<span class="type">text</span>)  </span><br><span class="line">indian.<span class="keyword">write</span>(wav)  </span><br><span class="line">indian.<span class="keyword">close</span>()  </span><br></pre></td></tr></tbody></table></figure>
+<p>somebody is yelling ‘sorry’, so jump to <code>sorry.html</code>  </p>
+<blockquote>
+<p> “what are you apologizing for?”  </p>
+</blockquote>
+<p>i can not continue myself, so i googled, sad.  </p>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import wave  </span><br><span class="line">wi = wave<span class="selector-class">.open</span>(<span class="string">'indian.wav'</span>,<span class="string">'rb'</span>)  </span><br><span class="line">wo = wave<span class="selector-class">.open</span>(<span class="string">'indian_out.wav'</span>,<span class="string">'wb'</span>)  </span><br><span class="line">wo<span class="selector-class">.setparams</span>(wi<span class="selector-class">.getparams</span>())  </span><br><span class="line"><span class="keyword">for</span> <span class="selector-tag">i</span> <span class="keyword">in</span> <span class="built_in">range</span>(wi<span class="selector-class">.getnframes</span>()):  </span><br><span class="line">    wo<span class="selector-class">.writeframes</span>(wi<span class="selector-class">.readframes</span>(<span class="number">1</span>)<span class="selector-attr">[::-1]</span>)  </span><br><span class="line">wi<span class="selector-class">.close</span>()  </span><br><span class="line">wo<span class="selector-class">.close</span>()  </span><br></pre></td></tr></tbody></table></figure>
+<p><code>you are an idiot,hah hah hah</code>  </p>
+<hr>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

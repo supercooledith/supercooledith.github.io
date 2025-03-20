@@ -1,0 +1,292 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>关于速度优化</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="关于速度优化" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  关于速度优化
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2016-05-08T07:04:12.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2016-05-08
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>最近一段时间干过的最差劲的事情就是每天起床守着<a target="_blank" rel="noopener" href="//tongji.baidu.com">百度统计</a>找存在感了。干脆删除掉，改用<a target="_blank" rel="noopener" href="//busuanzi.ibruce.info">不蒜子</a>。还有几处js的trick，这里也一起记录一下。  </p>
+<hr>
+<h2 id="删除百度统计"><a href="#删除百度统计" class="headerlink" title="删除百度统计"></a>删除百度统计</h2><p>本博客放在<a target="_blank" rel="noopener" href="https://github.com/gaoryrt/gaoryrt.github.io">github上</a>，所以百度的<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/30898326">爬虫并不能爬到</a>，有需要的可以看<a target="_blank" rel="noopener" href="//www.dozer.cc/2015/06/github-pages-and-cdn.html">这一篇</a>，也可以使用<a target="_blank" rel="noopener" href="//zhanzhang.baidu.com/linksubmit/index">百度的方法</a>：在浏览网页时提交给百度（我尝试了有半个月这个方法，结果还是不能再百度上通过<code>Blog Name Goes Here</code>或者<code>gaoryrt</code>找到自己，这也是我决心不用百度的原因之一）。<br>百度统计的js文件要求放在<code>&lt;/head&gt;</code>标签之前，这个也是反人类，凭什么在这个js加载完成之前就不能继续加载我的网页？<br>如果你是用的是<code>2016-05-08</code>之前版本的<code>hexo-theme-pln</code>，那么还请你手动在<code>/pln/layout/_partial/head.ejs</code>中删除第39到47行的内容。<br>在下一个版本的<code>hexo-theme-pln</code>中保证不用百度。应该是启用<a target="_blank" rel="noopener" href="//busuanzi.ibruce.info">不蒜子</a>，在出大问题之前暂时不换回来，我不想让自己浪费时间再去从一些数字上找存在感了。  </p>
+<hr>
+<h2 id="使用不蒜子"><a href="#使用不蒜子" class="headerlink" title="使用不蒜子"></a>使用不蒜子</h2><p>对于这行文字的展示，我暂时没有想到一个美妙的方式，于是将这个结果的展示放在了源文件中，并没有展示出来，如果你想看，可以在网页源代码的最后几行找到这个结果。  </p>
+<figure class="highlight xml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">async</span> <span class="attr">src</span>=<span class="string">"https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">'display:none'</span>&gt;</span></span><br><span class="line">总<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">客<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_site_uv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">读<span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"busuanzi_value_page_pv"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>展示的结果包括访问总量，访客数，页面阅读数。  </p>
+<hr>
+<h2 id="将简单的if-else语句换为三元运算符"><a href="#将简单的if-else语句换为三元运算符" class="headerlink" title="将简单的if-else语句换为三元运算符"></a>将简单的if-else语句换为三元运算符</h2><p>前提是简单，下面举一个包括else的例子：</p>
+<figure class="highlight reasonml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="constructor">$(<span class="params">current</span>)</span>.children(<span class="string">".dropdown-content"</span>).has<span class="constructor">Class(<span class="string">"open"</span>)</span>) {</span><br><span class="line">	<span class="constructor">$(<span class="params">current</span>)</span>.children(<span class="string">".dropdown-content"</span>).remove<span class="constructor">Class(<span class="string">"open"</span>)</span>;</span><br><span class="line">} <span class="keyword">else</span> {</span><br><span class="line">	<span class="constructor">$(<span class="params">current</span>)</span>.children(<span class="string">".dropdown-content"</span>).add<span class="constructor">Class(<span class="string">"open"</span>)</span>;</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<p>等价于：</p>
+<figure class="highlight arcade"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(current).children(<span class="string">".dropdown-content"</span>)[($(current).children(<span class="string">".dropdown-content"</span>).hasClass(<span class="string">"open"</span>))?<span class="string">'removeClass'</span>:<span class="string">'addClass'</span>](<span class="string">"open"</span>)</span><br></pre></td></tr></tbody></table></figure>
+<p>三元运算符是运算符，要是你想把所有if-else全部变成三元，需要注意，直接使用<code>A ? B : C</code> JSLint会报警告的，书上的示例代码是这样的：</p>
+<figure class="highlight ini"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">greeting</span> = <span class="string">"hello"</span> + (username ? username : <span class="string">"there"</span>)<span class="comment">;</span></span><br></pre></td></tr></tbody></table></figure>
+<p>等价于：</p>
+<figure class="highlight nginx"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">greeting</span> = <span class="string">"hello"</span>;</span><br><span class="line"><span class="attribute">if</span> (username)</span><br><span class="line">	greeting += username;</span><br><span class="line"><span class="attribute">else</span></span><br><span class="line">	greeting += <span class="string">"there"</span>;</span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<h2 id="加载的顺序"><a href="#加载的顺序" class="headerlink" title="加载的顺序"></a>加载的顺序</h2><p>难道我文字的展示需要等到不蒜子的js文件加载完成才能加载么？<br>那么为什么这里是<code>$(window).load(revealOnScroll)</code>而不是<code>$(document).ready(revealOnScroll)</code>。<br>我尝试了一下，加载的顺序是这样的：</p>
+<ol>
+<li>$(document).ready(function(){console.log(“docuready”)})</li>
+<li>$(“body”).ready(function(){console.log(“bodyready”)})</li>
+<li>$(window).ready(function(){console.log(“winready”)})</li>
+<li>$(window).load(function(){console.log(“winload”)})</li>
+</ol>
+<p>其中window.load居然是等到了disqus的js加载完毕之后才出现的。<br>所以还是果断使用前三个把。</p>
+<hr>
+<h2 id="近期目标"><a href="#近期目标" class="headerlink" title="近期目标"></a>近期目标</h2><ol>
+<li>不蒜子的展示</li>
+<li>网页内搜索</li>
+<li>文章列表需要一个导航，而非只有上一页下一页</li>
+<li>加载时需要一个loading animation</li>
+</ol>
+<hr>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>

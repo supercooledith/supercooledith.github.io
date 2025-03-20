@@ -1,0 +1,294 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="referrer" content="unsafe-url">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+
+  
+  <title>Linux网络编程复习</title>
+  
+  <meta name="author" content="gaoryrt">
+  
+  <meta name="description" content="digital diary of gaoryrt.">
+  
+  
+  
+  <meta property="og:title" content="Linux网络编程复习" />
+  <meta property="og:site_name" content="&gt; blog name goes here &lt;" />
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="&gt; blog name goes here &lt;" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  
+
+  <!-- Cloudflare Web Analytics -->
+  <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9e27ac03d3f64defaf6280efacc9ea9d"}'></script><!-- End Cloudflare Web Analytics -->
+<meta name="generator" content="Hexo 6.2.0">
+<style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
+</head>
+
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+  <div class="behind">
+    <a href="/" class="back">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-home">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+    </a>
+    <div class="description">
+      &nbsp;Gather ye rosebuds while ye may
+    </div>
+  </div>
+  <article class="standard post">
+    <div class="title">
+      
+
+<h1 class="page-title">
+  Linux网络编程复习
+</h1>
+
+
+
+    </div>
+    <div class="page-meta center">
+      <time datetime="2015-12-13T15:22:17.000Z" itemprop="datePublished">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar">
+    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+    <line x1="16" y1="2" x2="16" y2="6"></line>
+    <line x1="8" y1="2" x2="8" y2="6"></line>
+    <line x1="3" y1="10" x2="21" y2="10"></line>
+  </svg>
+  2015-12-13
+</time>
+
+
+<div class="categories">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag">
+    <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+    <line x1="7" y1="7" x2="7.01" y2="7"></line>
+  </svg>
+  <a href="/categories/扫盲教育/">扫盲教育</a>
+</div>
+
+
+
+
+
+<div class="reading">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+    <circle cx="12" cy="12" r="3"></circle>
+  </svg>
+  <span id="page_pv">…</span>
+</div>
+
+    </div>
+    <hr>
+    
+    <p>甘刚老师教的很不错的，对我们也很负责，真的是很好的一个老师。<br>但是江山易改本性难移，我们还是没有好好的听老师讲课，还是等着最后几天来复习。<br>这一篇就是在考试之后把复习的资料整理一下。  </p>
+<span id="more"></span>  
+<h1 id="套接字类型"><a href="#套接字类型" class="headerlink" title="套接字类型"></a>套接字类型</h1><h2 id="流式套接字-sock-stream"><a href="#流式套接字-sock-stream" class="headerlink" title="流式套接字  sock_stream"></a>流式套接字  sock_stream</h2><p> 使用了 TCP 协议，保证了数据传输是正确，顺序的<br> 提供可靠的，面向连接的通讯流<br> Telnet 就是流式连接，到达顺序和输入顺序一样  </p>
+<h2 id="数据报套接字-sock-dgram"><a href="#数据报套接字-sock-dgram" class="headerlink" title="数据报套接字  sock-dgram"></a>数据报套接字  sock-dgram</h2><p> 使用了 UDP 协议，不保证可靠无差错，是无序的<br> 无连接的服务，不需要维护一个打开的连接，只用打包加上 IP 然后发送<br> 使用 udp 的程序收到后需要返回 ack （确认）信号<br> tftp，bootp 就是数据报套接字  </p>
+<h2 id="原始套接字"><a href="#原始套接字" class="headerlink" title="原始套接字"></a>原始套接字</h2><p> 原始套接字主要用于一些协议的开发,可以进行比较底层的操作<br> 它功能强大,但是没有上面介绍的两种套接字使用方便<br> 一般的程序也涉及不到原始套接字  </p>
+<h1 id="socket套接字包含的元素"><a href="#socket套接字包含的元素" class="headerlink" title="socket套接字包含的元素"></a>socket套接字包含的元素</h1><p>  一个完整的 Socket 则用一个相关描述<br> {协议,本地地址,本地端口,远程地址,远程端口}<br>  每一个 Socket 有一个本地的唯一 Socket 号,由操作系统分配<br>  针对不同的C/S程序提供不同的 Socket 系统调用<br> Socket 利用C/S模式巧妙的解决了进程之间建立通信连接的问题<br>  服务器拥有全局公认的 Socket,任何客户都可以向它发出连接请求和信息请求<br>  两个完全随机的用户进程之间,因为没有任何一方的 Socket ,要通话是不可能的  </p>
+<h1 id="监听套接字和连接套接字的作用"><a href="#监听套接字和连接套接字的作用" class="headerlink" title="监听套接字和连接套接字的作用"></a>监听套接字和连接套接字的作用</h1><p>  listen()一直监听，accept()用于连接。<br>  listen(sockfd套接字描述符,backlog最大连接数)<br>  accept(listenfd套接字描述符,client对方地址,addrlen地质结构长度)   </p>
+<h1 id="IP地址复用的作用和设置"><a href="#IP地址复用的作用和设置" class="headerlink" title="IP地址复用的作用和设置"></a>IP地址复用的作用和设置</h1><p>  setsockopt()函数 和 SO_REUSEADDR 参数  </p>
+<h1 id="多进程和多线程对连接和监听套接字处理的区别"><a href="#多进程和多线程对连接和监听套接字处理的区别" class="headerlink" title="多进程和多线程对连接和监听套接字处理的区别"></a>多进程和多线程对连接和监听套接字处理的区别</h1><h2 id="多进程"><a href="#多进程" class="headerlink" title="多进程"></a>多进程</h2><p>1.connect 请求到达服务器时建立 connfd<br>2.fork()出一个子进程共享 listenfd，connfd<br>3.父进程关闭 connfd，子进程关闭 listenfd  </p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>1.子线程处理 listenfd：connect 请求，把 sockid 保存下来<br>2.主线程处理 connfd：遍历保存的 sockid，执行read/write,send/recv  </p>
+<h1 id="TSD的作用和使用方法"><a href="#TSD的作用和使用方法" class="headerlink" title="TSD的作用和使用方法"></a>TSD的作用和使用方法</h1><p> TSD线程特定数据来取代静态变量，类似全局变量，但是是每个线程私有的<br> tsd 是定义线程私有数据的唯一方法。<br> 在同进程中的同一数据都用一个唯一的 Key 来标志。<br>  创建一个类型为 pthread_key_t 类型的变量。  </p>
+<p>调用 pthread_key_create() 来创建该变量。该函数有两个参数，第一个参数就是上面声明的 pthread_key_t 变量，第二个参数是一个清理函数，用来在线程释放该线程存储的时候被调用。该函数指针可以设成 NULL ，这样系统将调用默认的清理函数。  </p>
+<p>当线程中需要存储特殊值的时候，可以调用 pthread_setspcific() 。该函数有两个参数，第一个为前面声明的 pthread_key_t 变量，第二个为 void* 变量，这样你可以存储任何类型的值。  </p>
+<p>如果需要取出所存储的值，调用 pthread_getspecific() 。该函数的参数为前面提到的 pthread_key_t 变量，该函数返回 void * 类型的值。  </p>
+<h1 id="I-x2F-O复用5种模型的区别"><a href="#I-x2F-O复用5种模型的区别" class="headerlink" title="I/O复用5种模型的区别"></a>I/O复用5种模型的区别</h1><p>阻塞，非阻塞，复用，信号驱动，异步<br>这个自己看书，书上有图。  </p>
+<h1 id="IGMP协议在原始套接字中的应用"><a href="#IGMP协议在原始套接字中的应用" class="headerlink" title="IGMP协议在原始套接字中的应用"></a>IGMP协议在原始套接字中的应用</h1><p>我不知道，但是也没有考。sorry。  </p>
+<h1 id="TCP-x2F-UDP套接字编程流程模版"><a href="#TCP-x2F-UDP套接字编程流程模版" class="headerlink" title="TCP/UDP套接字编程流程模版"></a>TCP/UDP套接字编程流程模版</h1><p>最基础的东西，书上2、3章，自己看图。  </p>
+<h1 id="创建IPV4原始套接字"><a href="#创建IPV4原始套接字" class="headerlink" title="创建IPV4原始套接字"></a>创建IPV4原始套接字</h1><p>1.socket第二个参数设置为sock_raw<br>int ipfd<br>ipfd = socket(AF_INFT,SOCK_RAW,IPPROTO_ICMP)<br>socket函数第三个参数用于指定套接口所使用的协议,如 icmp，igmp，egp<br>2.设置 IP_HDRINCL 套接口选项<br>const int on = 1<br>if(setsockopt (sockfd,IPPROTO_IP,IP_HDRINCL,&amp;on,szeof(on))&lt; 0)<br>下面异常处理<br>3.调用 bind，connect  </p>
+<h1 id="父进程ID和子进程ID的关系"><a href="#父进程ID和子进程ID的关系" class="headerlink" title="父进程ID和子进程ID的关系"></a>父进程ID和子进程ID的关系</h1><p>没有考到，了解一下。<br>在 fork 之后，创建子进程成功<br>子进程中，fork 返回 0<br>父进程中，fork 返回子进程的 pid<br>父进程的 fpid 指向子进程的 pid，子进程没有子进程，于是 fpid 为 0  </p>
+<h1 id="僵尸进程"><a href="#僵尸进程" class="headerlink" title="僵尸进程"></a>僵尸进程</h1><p>子进程结束了，父进程尚未等待（wait/waitpid）的时候是僵尸进程<br>所以要 waitpid 函数或者 wait 函数来关闭。<br>waitpid 是另一种 wait 函数，多了 pid 和 option 选项。<br>其中 pid 为子进程 id，-1时等待任何一个，这时和 wait 一样；大于1时，为等待该 pid 的进程<br>option 为 WNOHANG，没有子进程也会立即返回，不会一直等，一般 option 为 0  </p>
+<h1 id="套接字地址结构类型"><a href="#套接字地址结构类型" class="headerlink" title="套接字地址结构类型"></a>套接字地址结构类型</h1><figure class="highlight cpp"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">sockaddr_in</span></span><br><span class="line">{</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">short</span> sin_len;          <span class="comment">//ipv4地址长度</span></span><br><span class="line">  <span class="type">short</span> <span class="type">int</span>      sin_family;       <span class="comment">//指代协议簇，在 tcp 中只会是AF_INET</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">short</span> sin_port;         <span class="comment">//储存端口号</span></span><br><span class="line">  <span class="keyword">struct</span>         <span class="title class_">in_addr</span> sin_addr; <span class="comment">//储存 IP地址</span></span><br><span class="line">  <span class="type">unsigned</span> <span class="type">char</span>  sin_zero[<span class="number">8</span>];      <span class="comment">//保留位，用于保持长度相同</span></span><br><span class="line">}</span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">in_addr</span></span><br><span class="line">{</span><br><span class="line">  <span class="type">unsigned</span> <span class="type">long</span> s_addr;           <span class="comment">//网络字节序？？？？？？？的 IP地址</span></span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+
+<p>这个是 ipv4 的，ipv6 不用记。  </p>
+<h1 id="线程安全性中once函数的使用"><a href="#线程安全性中once函数的使用" class="headerlink" title="线程安全性中once函数的使用"></a>线程安全性中once函数的使用</h1><p>没有考到，了解一下<br>在多线程环境中，有些事仅需要执行一次。通常当初始化应用程序时，可以比较容易地将其放在main函数中。<br>但当你写一个库时，就不能在main里面初始化了，你可以用静态初始化，但使用一次初始化（pthread_once）会比较容易些。<br>int pthread_once(pthread_once_t *once_control, void (*init_routine) (void))；<br>功能：本函数使用初值为PTHREAD_ONCE_INIT的once_control变量保证init_routine()函数在本进程执行序列中仅执行一次。<br>在多线程编程环境下，尽管pthread_once()调用会出现在多个线程中，init_routine()函数仅执行一次，究竟在哪个线程中执行是不定的，是由内核调度来决定。<br>Linux Threads使用互斥锁和条件变量保证由pthread_once()指定的函数执行且仅执行一次，而once_control表示是否执行过。<br>如果once_control的初值不是PTHREAD_ONCE_INIT（Linux Threads定义为0），pthread_once() 的行为就会不正常。<br>在LinuxThreads中，实际”一次性函数”的执行状态有三种：NEVER（0）、IN_PROGRESS（1）、DONE （2）<br>如果once初值设为1，则由于所有pthread_once()都必须等待其中一个激发”已执行一次”信号，因此所有pthread_once ()都会陷入永久的等待中；如果设为2，则表示该函数已执行过一次，从而所有pthread_once()都会立即返回0。   </p>
+<h1 id="域名和IP、协议和协议号、服务和端口的处理函数"><a href="#域名和IP、协议和协议号、服务和端口的处理函数" class="headerlink" title="域名和IP、协议和协议号、服务和端口的处理函数"></a>域名和IP、协议和协议号、服务和端口的处理函数</h1><p>太多了这个自己看书。  </p>
+<figure class="highlight stylus"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">gethostbyname</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">gethostbyaddr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">uname</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">gethostname</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">getservbyname</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">getservbyport</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">inet_addr</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">inet_aton</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="title">inet_ntoa</span><span class="params">()</span></span></span><br></pre></td></tr></tbody></table></figure>
+<h1 id="创建守护进程"><a href="#创建守护进程" class="headerlink" title="创建守护进程"></a>创建守护进程</h1><h2 id="1-创建后台进程"><a href="#1-创建后台进程" class="headerlink" title="1 创建后台进程"></a>1 创建后台进程</h2><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>((pid = fork())&gt;<span class="number">0</span>)</span><br><span class="line">   <span class="keyword">exit</span>(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">else</span> <span class="keyword">if</span>(pid&lt;<span class="number">0</span>)</span><br><span class="line">{</span><br><span class="line">    perror(<span class="string">"fail to fork"</span>);</span><br><span class="line">    <span class="keyword">exit</span>(-<span class="number">1</span>);</span><br><span class="line">}</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="2-创建新会话"><a href="#2-创建新会话" class="headerlink" title="2 创建新会话"></a>2 创建新会话</h2><p>脱离控制终端，登录会话和进程组  </p>
+<figure class="highlight scss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setsid</span>(); </span><br></pre></td></tr></tbody></table></figure>
+<h2 id="3-禁止进程重新打开控制终端"><a href="#3-禁止进程重新打开控制终端" class="headerlink" title="3 禁止进程重新打开控制终端"></a>3 禁止进程重新打开控制终端</h2><figure class="highlight awk"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(pid=fork()) </span><br><span class="line">      <span class="keyword">exit</span>(<span class="number">0</span>);<span class="regexp">//</span>结束第一子进程，第二子进程继续（第二子进程不再是会话组长）</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="4-关闭所有文件描述符"><a href="#4-关闭所有文件描述符" class="headerlink" title="4 关闭所有文件描述符"></a>4 关闭所有文件描述符</h2><figure class="highlight isbl"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">for</span>(<span class="variable">i</span>=<span class="number">0</span>;<span class="variable">i</span>&lt;=<span class="title">getdtablesize</span>();<span class="variable">i</span>++)</span></span><br><span class="line"> <span class="function"><span class="title">close</span>(<span class="variable">i</span>);</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="5-改变当前工作目录"><a href="#5-改变当前工作目录" class="headerlink" title="5 改变当前工作目录"></a>5 改变当前工作目录</h2><figure class="highlight abnf"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chdir(<span class="string">"/tmp"</span>) <span class="comment">;</span></span><br></pre></td></tr></tbody></table></figure>
+<h2 id="6-重设权限掩码"><a href="#6-重设权限掩码" class="headerlink" title="6 重设权限掩码"></a>6 重设权限掩码</h2><figure class="highlight scss"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">umask</span>(<span class="number">0</span>);</span><br></pre></td></tr></tbody></table></figure>
+<h2 id="7-处理SIGCHLD信号"><a href="#7-处理SIGCHLD信号" class="headerlink" title="7 处理SIGCHLD信号"></a>7 处理SIGCHLD信号</h2><figure class="highlight qml"><table><tbody><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">signal</span><span class="string"></span>(SIGCHLD,SIG_IGN); </span><br></pre></td></tr></tbody></table></figure>
+<hr>
+<p>以上</p>
+
+    <hr>
+  </article>
+
+  <div id="comments">
+
+  <div id="disqus_thread"></div>
+  <script>
+    var disqus_config = function() {
+      this.page.url = location.href;
+      this.page.identifier = document.location.host + document.location.pathname;
+    };
+    (function() {
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://gaoryrt.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <hr />
+</div>
+
+</div>
+
+  </div>
+  <footer class="page-footer"></div>
+<div class="right-foot">
+  <div class="firstrow">
+    <a href="#top" target="_self">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-up">
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </a>
+    gaoryrt 2015-2025
+  </div>
+  <div class="secondrow">
+    <div id="heart-line">
+      <div id="heart-ctnr">
+        <div id="heart">❥</div>
+      </div>
+      <div id="heart-num">--</div>
+    </div>
+  </div>
+</div>
+</div>
+</footer>
+  <script src="/js/zoom-image.js"></script>
+<!-- <script src="https://app.embed.im/snow.js" defer></script> -->
+<script type="text/javascript">
+  // img zoom
+  var imgArr = document.getElementsByTagName('img')
+  for (var i = 0; i < imgArr.length; i += 1) {
+    zoom(imgArr[i])
+  }
+
+  // dropdown scripts
+  function _$(s) {
+    return document.querySelector(s)
+  }
+
+  function _$$(s) {
+    return document.querySelectorAll(s)
+  }
+
+  function get(api) {
+    return new Promise(function(resolve, reject) {
+      var xhr = new XMLHttpRequest()
+      xhr.open('GET', api)
+      xhr.onload = function() {
+        if (xhr.status === 200) {
+          try {
+            resolve(JSON.parse(xhr.response))
+          } catch (e) {
+            resolve(xhr.response)
+          }
+        } else {
+          reject(xhr.statusText)
+        }
+      }
+      xhr.send()
+    })
+  }
+
+  var dropDownElArr = _$$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = _$$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  _$$('a[href^="#"]').forEach(e => {
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      _$(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+
+  const timeElement = document.querySelector("time[itemprop='datePublished']");
+
+  if (timeElement) {
+    const dateText = timeElement.textContent.trim().slice(5); // Extract "12-15"
+    const currentPath = location.pathname; // "/2015/title/"
+
+    const match = currentPath.match(/^\/(\d{4})\/(.+?)\/$/);
+    if (match) {
+      const year = match[1]; // "2015"
+      const title = match[2]; // "title"
+
+      const oldPath = `/${year}/${dateText}-${title}/`;
+      get("https://42.gaoryrt.com/c/hit?hit=889&key=" + encodeURIComponent(oldPath))
+        .then(function(res) {
+          const pv_el = _$('#page_pv')
+          if (pv_el) pv_el.innerText = res.count;
+        })
+    }
+  }
+
+
+  var heart = _$('#heart')
+  if (heart) {
+    const url = "https://42.gaoryrt.com/c/hit?key=" + encodeURIComponent('heart click on gaoryrt.com')
+    get(url).then(function(res) {
+      _$('#heart-num').innerText = res.count
+    })
+    heart.addEventListener('click', function() {
+      const isActive = heart.classList.contains("is-active")
+      heart.classList.toggle("is-active");
+      if (!isActive) {
+        get(url + '&hit=777')
+          .then(function(res) {
+            _$('#heart-num').innerText = res.count
+          })
+      }
+    })
+  }
+</script>
+
+</body>
+
+</html>
