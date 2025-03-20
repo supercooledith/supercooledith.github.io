@@ -21,7 +21,7 @@
   <link rel="stylesheet" href="/css/m.min.css">
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
-  
+
 <meta name="generator" content="Hexo 6.2.0">
 <style>.github-emoji { position: relative; display: inline-block; width: 1.2em; min-height: 1.2em; overflow: hidden; vertical-align: top; color: transparent; }  .github-emoji > span { position: relative; z-index: 10; }  .github-emoji img, .github-emoji .fancybox { margin: 0 !important; padding: 0 !important; border: none !important; outline: none !important; text-decoration: none !important; user-select: none !important; cursor: auto !important; }  .github-emoji img { height: 1.2em !important; width: 1.2em !important; position: absolute !important; left: 50% !important; top: 50% !important; transform: translate(-50%, -50%) !important; user-select: none !important; cursor: auto !important; } .github-emoji-fallback { color: inherit; } .github-emoji-fallback img { opacity: 0 !important; }</style>
 </head>
@@ -113,33 +113,6 @@
 
 
     
-        <style>
-        .vcard .vimg{left:0;}
-        </style>
-        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
-        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-        <script>
-            var GUEST_INFO = ['nick','mail','link'];
-            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
-                return GUEST_INFO.indexOf(item) > -1
-            });
-            var notify = 'false' == true;
-            var verify = 'false' == true;
-            var valine = new Valine();
-            valine.init({
-                el: '.vcomment',
-                notify: notify,
-                verify: verify,
-                appId: "pXGIlBXFqxXIT3fM1cxcRq8P-gzGzoHsz",
-                appKey: "dRRfR7mfIfY3h63LCAla3p7r",
-                placeholder: "Just go go",
-                pageSize:'10',
-                avatar:'mp',
-                lang:'zh-cn'
-            })
-        </script>
-    
 
 
 
@@ -156,36 +129,69 @@
             <path d="M10 30 L26 16 10 2 Z"></path>
         </svg>
         </a>
-        © liangshuang 1999-2024
+        © XXX 2016-2020
     </div>
     <div class="secondrow">
         <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
-        super cool
+        Theme Pln
         </a>
     </div>
 </div>
 <div class="clearfix">
 </div>
 </footer>
-  <script src="//cdn.bootcss.com/jquery/2.2.1/jquery.min.js"></script>
-<script src="/js/search.min.js"></script>
-<script type="text/javascript">
+  <script type="text/javascript">
 
 // disqus scripts
 
 
 // dropdown scripts
-$(".dropdown").click(function(event) {
-  var current = $(this);
-  event.stopPropagation();
-  $(current).children(".dropdown-content")[($(current).children(".dropdown-content").hasClass("open"))?'removeClass':'addClass']("open")
-});
-$(document).click(function(){
-    $(".dropdown-content").removeClass("open");
-})
+function $(s) {
+    return document.querySelector(s)
+  }
 
-var path = "/search.xml";
-searchFunc(path, 'local-search-input', 'local-search-result');
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:https://supercooledith.github.io%20' + s, '_blank').focus()
+  }
+})
 
 </script>
 
