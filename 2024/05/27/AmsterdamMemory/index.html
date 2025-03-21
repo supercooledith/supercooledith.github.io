@@ -71,7 +71,7 @@
       <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
     </svg>
     &nbsp;
-    <a href="/categories/欧洲回忆录-尼德兰/">欧洲回忆录_尼德兰</a>
+    <a href="/categories/欧洲/">欧洲</a>
 
 
 
@@ -551,6 +551,33 @@ Van lolkers, 1977 -->
 
 
     
+        <style>
+        .vcard .vimg{left:0;}
+        </style>
+        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '.vcomment',
+                notify: notify,
+                verify: verify,
+                appId: "",
+                appKey: "",
+                placeholder: "Just go go",
+                pageSize:'10',
+                avatar:'mm',
+                lang:'zh-cn'
+            })
+        </script>
+    
 
 
 
@@ -567,11 +594,11 @@ Van lolkers, 1977 -->
             <path d="M10 30 L26 16 10 2 Z"></path>
         </svg>
         </a>
-        © XXX 2016-2020
+        © liangshuang 1999-2025
     </div>
     <div class="secondrow">
-        <a target="_blank" rel="noopener" href="https://github.com/gaoryrt/hexo-theme-pln">
-        Theme Pln
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
         </a>
     </div>
 </div>
