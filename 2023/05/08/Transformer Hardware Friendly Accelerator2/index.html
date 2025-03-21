@@ -1,0 +1,313 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="[object Object]" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>TransformerHardwareFriendlyAccelerator_2_基本概念</title>
+  <meta name="author" content="John Doe">
+  <meta name="description" content="深度学习张量概念张量（tensor）是在深度学习中广泛使用的一种多维数组，可以存储和处理大量的数据。它可以是任意维度的数组，可以包含数值、字符串等多种类型的数据。在PyTorch、TensorFlow等深度学习框架中，张量是构建模型、进行计算和优化的基本数据结构。
+量化概念量化是指將一個连续数值的信">
+  
+  
+  <meta property="og:title" content="TransformerHardwareFriendlyAccelerator_2_基本概念"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<!-- hexo injector head_end start -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S0J2DBYMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S0J2DBYMW');
+</script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        TransformerHardwareFriendlyAccelerator_2_基本概念
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2023-05-08T05:38:15.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2023-05-08
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/Ttransformer硬件加速/">Ttransformer硬件加速</a>
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0"><span class="toc-text">深度学习</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%A0%E9%87%8F"><span class="toc-text">张量</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5"><span class="toc-text">概念</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8F%E5%8C%96"><span class="toc-text">量化</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A6%82%E5%BF%B5-1"><span class="toc-text">概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8F%E5%8C%96%E5%9B%A0%E5%AD%90"><span class="toc-text">量化因子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%A1%E9%87%8F%E5%AD%98%E5%82%A8%E5%AE%B9%E9%87%8F"><span class="toc-text">计量存储容量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%9B%E5%88%B6"><span class="toc-text">进制</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#FPGA"><span class="toc-text">FPGA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HLS-high-level-synthesis-%E9%AB%98%E5%B1%82%E6%AC%A1%E7%BB%BC%E5%90%88"><span class="toc-text">HLS(high level synthesis)高层次综合</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HDL-hardware-description-language-%E7%A1%AC%E4%BB%B6%E6%8F%8F%E8%BF%B0%E8%AF%AD%E8%A8%80"><span class="toc-text">HDL(hardware description language)硬件描述语言</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RTL%E8%AE%BE%E8%AE%A1"><span class="toc-text">RTL设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RTL%E9%AA%8C%E8%AF%81"><span class="toc-text">RTL验证</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FPGA%E7%BB%93%E6%9E%84"><span class="toc-text">FPGA结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#FPGA%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-text">FPGA开发流程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B"><span class="toc-text">开发流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7"><span class="toc-text">开发工具</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#unix%E5%92%8Clinux"><span class="toc-text">unix和linux</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A8%A1%E5%9D%97"><span class="toc-text">模块</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%90%84%E7%A7%8D%E6%96%87%E4%BB%B6"><span class="toc-text">各种文件</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#sh%E6%96%87%E4%BB%B6"><span class="toc-text">.sh文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xclbin%E6%96%87%E4%BB%B6"><span class="toc-text">.xclbin文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#rpt%E6%96%87%E4%BB%B6"><span class="toc-text">.rpt文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pyc%E6%96%87%E4%BB%B6"><span class="toc-text">.pyc文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#scala%E6%96%87%E4%BB%B6"><span class="toc-text">.scala文件</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a>深度学习</h1><h2 id="张量"><a href="#张量" class="headerlink" title="张量"></a>张量</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>张量（tensor）是在深度学习中广泛使用的一种多维数组，可以存储和处理大量的数据。它可以是任意维度的数组，可以包含数值、字符串等多种类型的数据。在PyTorch、TensorFlow等深度学习框架中，张量是构建模型、进行计算和优化的基本数据结构。</p>
+<h2 id="量化"><a href="#量化" class="headerlink" title="量化"></a>量化</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p><strong>量化是指將一個连续数值的信号转换成为一個离散的数字信号</strong>。在深度学习中，量化的主要目的是减小模型的内存占用和计算量，并提高模型的推理速度。具体而言，通过将神经网络中的参数和激活值从32位浮点数（FP32）转换成8位整数（INT8）等低精度表示形式，可以在不显著降低模型性能的情况下，大大减小模型的体积和计算量。<br><strong>量化的核心思想是减少数字的表示范围，因为低精度的表示方式可以大大降低存储空间和计算复杂度</strong>。在量化中，通常会使用一些技术来最小化信息损失，例如<strong>对称量化和非对称量化</strong>等。对称量化通常是将数字范围划分为一些等间隔的区间，每个区间用一个整数表示，而非对称量化则是将数字范围划分为两个不同的区间，一个表示正数，一个表示负数，并分别用整数表示。<br>虽然量化可以提高模型的推理效率，但是在进行量化时，需要权衡精度和效率之间的平衡。因此，通常需要进行一定的实验和调整来找到最优的量化方式。</p>
+<h3 id="量化因子"><a href="#量化因子" class="headerlink" title="量化因子"></a>量化因子</h3><p><strong>量化因子是指用来将浮点数值转换为固定位宽整数表示的比例因子</strong>，它是在量化过程中使用的重要参数，量化因子的计算是基于量化后的张量计算的。<br>具体而言，tensor_quant_scale函数首先<strong>对张量进行范围量化，以确定量化后数据的上下限。然后计算量化因子，使量化后的数据最大值能够被固定为量化位宽的上限，从而最小化量化误差</strong>。<br>量化因子的计算公式为：scale &#x3D; (max_val - min_val) &#x2F; (2^(bits) - 1)，其中max_val和min_val分别是量化后张量的最大值和最小值。这样，我们可以使用scale将浮点数值量化为固定位宽整数表示。在后续推理过程中，我们将<strong>使用相同的量化因子对张量进行反量化操作，以恢复其原始浮点表示</strong>。</p>
+<h3 id="计量存储容量"><a href="#计量存储容量" class="headerlink" title="计量存储容量"></a>计量存储容量</h3><p>“bit” 是计算机科学中最小的信息单位，它代表着二进制的数据位，是二进制数字 0 或 1 的缩写，其中 0 表示低电压或关闭状态，而 1 表示高电压或打开状态。<br>位（bit）、千位（Kbit,Kb,kilobit）、兆位（Mbit,Mb,megabyte）、千兆字节（Gbit,Gb,gigabit）用于表示不同大小数据传输速度,转换关系如下：</p>
+<blockquote>
+<p>$$1Gbit &#x3D; 2^{10}Mbit &#x3D; 2^{20}Kbit &#x3D;2^{30}bit$$</p>
+</blockquote>
+<p>网络带宽通常用比特每秒（bps）或兆比特每秒（Mbps）表示<br>多个比特可以组合成更大的单位，如字节（byte）、千字节（KB,kilobyte）、兆字节（MB,megabyte）、千兆字节（GB,gigabyte）等，用于表示不同大小的存储容量，转换关系如下。</p>
+<blockquote>
+<p>$$8bit&#x3D;1byte$$<br>$$1GB &#x3D; 2^{10}MB &#x3D; 2^{20}KB &#x3D; 2^{30}byte &#x3D; 8*2^{30}bit$$</p>
+</blockquote>
+<p>硬盘容量通常用千兆字节（GB）或千亿字节（TB）表示<br>例如，当提到4Gbit的存储器时，表示该存储器的总容量为4千兆位。同样地，当谈论网络连接速度时，4Gbit&#x2F;s表示每秒传输4千兆位的数据量。<br><strong>常见数据类型和位数</strong></p>
+<blockquote>
+<ul>
+<li>单精度浮点数（float）：32 位 ｜ 4字节</li>
+<li>双精度浮点数（double）：64 位 ｜ 8 字节</li>
+<li>短整型（short int）：通常为 16 位 ｜ 2字节</li>
+<li>整型（int）：通常为 32 位 ｜ 4字节</li>
+<li>长整型（long int）：通常为 32 或 64 位 ｜ 4字节 或 8字节 </li>
+<li>长长整型（long long int）：通常为 64 位 ｜ 8字节</li>
+<li>字符型（char）：通常为 8 位 ｜ 1字节</li>
+<li>布尔型（bool）：通常为 1 位 </li>
+<li>无类型指针（void pointer）：通常为 32 或 64 位，取决于平台</li>
+</ul>
+</blockquote>
+<h3 id="进制"><a href="#进制" class="headerlink" title="进制"></a>进制</h3><blockquote>
+<ul>
+<li>二进制：Binary</li>
+<li>八进制：Octal</li>
+<li>十进制：Decimal</li>
+<li>十六进制：Hexadecimal</li>
+</ul>
+</blockquote>
+<h1 id="FPGA"><a href="#FPGA" class="headerlink" title="FPGA"></a>FPGA</h1><h2 id="HLS-high-level-synthesis-高层次综合"><a href="#HLS-high-level-synthesis-高层次综合" class="headerlink" title="HLS(high level synthesis)高层次综合"></a>HLS(high level synthesis)高层次综合</h2><h2 id="HDL-hardware-description-language-硬件描述语言"><a href="#HDL-hardware-description-language-硬件描述语言" class="headerlink" title="HDL(hardware description language)硬件描述语言"></a>HDL(hardware description language)硬件描述语言</h2><p>又名RTL(register transfer language)寄存器传输语言，用于描述数字电路的功能和行为的语言，可以在寄存器传输级，行为级，逻辑门级等描述电路。</p>
+<blockquote>
+<ul>
+<li>VHDL</li>
+<li>Verilog<br>可综合 Synthesizable：可以生成硬件电路<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> =<span class="number">0</span>;i&lt;<span class="number">8</span>;i++)</span><br><span class="line"><span class="keyword">begin</span> ...</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(en) b&gt;a;</span><br><span class="line"><span class="keyword">else</span> b&lt;a;</span><br></pre></td></tr></table></figure>
+<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span>(sel)</span><br><span class="line">...</span><br><span class="line">emdcase</span><br></pre></td></tr></table></figure>
+不可综合 Non-Synthesizable：不可以生成硬件电路</li>
+<li>System Verilog<br>加入了自定义类型，结构体联合体，接口等<br>仿真约束：随机约束，UVM<br>简化verilog中的语法表达，logic统一表达wire，reg</li>
+</ul>
+</blockquote>
+<h3 id="RTL设计"><a href="#RTL设计" class="headerlink" title="RTL设计"></a>RTL设计</h3><blockquote>
+<ul>
+<li>组合电路</li>
+<li>时序电路</li>
+<li>状态机</li>
+</ul>
+</blockquote>
+<h3 id="RTL验证"><a href="#RTL验证" class="headerlink" title="RTL验证"></a>RTL验证</h3><p>仿真工具</p>
+<blockquote>
+<p>modelsim</p>
+</blockquote>
+<h2 id="FPGA结构"><a href="#FPGA结构" class="headerlink" title="FPGA结构"></a>FPGA结构</h2><blockquote>
+<p>查找表，逻辑单元，逻辑快，DSP，存储器</p>
+</blockquote>
+<h2 id="FPGA开发流程"><a href="#FPGA开发流程" class="headerlink" title="FPGA开发流程"></a>FPGA开发流程</h2><h3 id="开发流程"><a href="#开发流程" class="headerlink" title="开发流程"></a>开发流程</h3><blockquote>
+<ul>
+<li>RTL设计</li>
+<li>仿真验证</li>
+<li>逻辑综合</li>
+<li>布局布线</li>
+<li>时序收敛</li>
+<li>下载与硬件调试</li>
+</ul>
+</blockquote>
+<h3 id="开发工具"><a href="#开发工具" class="headerlink" title="开发工具"></a>开发工具</h3><blockquote>
+<p>vivado</p>
+<ul>
+<li>熟悉开发流程</li>
+<li>熟悉常用IP配置和调用 </li>
+<li>熟悉时序分析的方法</li>
+</ul>
+</blockquote>
+<p>#LINUX</p>
+<h2 id="unix和linux"><a href="#unix和linux" class="headerlink" title="unix和linux"></a>unix和linux</h2><p>Unix 和 Linux 之间存在着密切的关系。Linux 是一种基于 Unix 设计原理和思想的开源操作系统。简单来说，Linux 可以看作是在 Unix 概念和设计的基础上进行开发和扩展的。</p>
+<p>Unix 是在 1970 年代早期由贝尔实验室开发的一种多用户、多任务操作系统。它具有强大的命令行界面和丰富的工具集，被广泛用于大型计算机和服务器领域。由于 Unix 的优秀设计和灵活性，它逐渐成为了许多操作系统的基础，并产生了多个变种和衍生版本。</p>
+<p>Linux 则是由芬兰的林纳斯·托瓦兹（Linus Torvalds）在 1991 年开发的操作系统内核，它采用了 Unix 的设计哲学，并基于 GNU 项目提供的自由软件工具和组件构建而成。因为 Linux 内核以及与之相关的软件都是开源的，所以任何人都可以自由地使用、修改和分发 Linux。</p>
+<p>Linux 和 Unix 之间的<strong>共同点在于它们都遵循了类 Unix 操作系统的原则和架构，包括使用 Shell 进行命令行操作、采用分层结构和模块化设计、支持多用户和多任务等</strong>。尽管 Linux 不是 Unix 的直接衍生物，但它借鉴了 Unix 的许多概念和设计，并通过不断发展和改进成为了现代计算机系统中广泛使用的操作系统之一。</p>
+<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>模块的全称是<strong>动态可加载内核模块</strong>，它是具有独立功能的程序，可以被单独编译，但不能独立运行。模块是为内核或其他模块提供功能的代码集合。这些模块可以是 Linux 源码中自带的，也可以是由硬件厂商开发的（可以想象成驱动）</p>
+<h1 id="各种文件"><a href="#各种文件" class="headerlink" title="各种文件"></a>各种文件</h1><h2 id="sh文件"><a href="#sh文件" class="headerlink" title=".sh文件"></a>.sh文件</h2><p>“sh” 是一种文件扩展名，通常用于表示 Shell 脚本文件。Shell 脚本是一种文本文件，其中包含一系列的命令和指令，可以在操作系统的命令行界面上执行。”sh” 扩展名通常与 Bourne Shell 或其他类 Unix Shell 相关联，这些 Shell 是在类 Unix 系统中使用的命令行解释器。</p>
+<p>通过编写 Shell 脚本，您可以自动化执行一系列命令，包括<strong>文件操作、程序运行、系统管理等</strong>。Shell 脚本非常有用，因为它们允许用户通过简单的脚本来批量处理任务，而无需手动逐个执行命令。</p>
+<h2 id="xclbin文件"><a href="#xclbin文件" class="headerlink" title=".xclbin文件"></a>.xclbin文件</h2><p>XCLBIN文件是一种特定的二进制文件格式，用于存储和表示FPGA（现场可编程门阵列）上的可执行硬件设计。XCLBIN代表”Xilinx Compiled Binary”，它是由赛灵思（Xilinx）公司的开发工具生成的。</p>
+<p>在FPGA开发中，设计工程师通常使用HDL（硬件描述语言）编写硬件设计，如Verilog或VHDL。然后，他们使用赛灵思的开发工具将HDL代码综合、优化和编译为可在FPGA上执行的二进制文件。这个二进制文件就是XCLBIN文件。</p>
+<p>XCLBIN文件包含了在FPGA上实现的各种逻辑和功能模块的配置信息和数据。它描述了FPGA中的逻辑电路、硬件模块、时序约束和其他相关信息。XCLBIN文件还包含了FPGA上运行的软件程序与硬件设计之间的接口信息。</p>
+<h2 id="rpt文件"><a href="#rpt文件" class="headerlink" title=".rpt文件"></a>.rpt文件</h2><p>RPT文件通常是指”Report”（报告）文件。RPT文件是一种常见的文件格式，用于存储和显示应用程序生成的报告或日志信息。这种文件格式通常由特定的软件或应用程序使用，并且其具体内容和结构取决于创建它的软件。</p>
+<p>不同的软件和应用程序可能使用RPT文件来保存不同类型的数据。例如，数据库软件（如Crystal Reports）使用RPT文件来保存生成的报告，包括表格、图表和其他数据可视化元素。另外，一些应用程序也可能使用RPT文件来记录错误日志、调试信息或其他程序运行时的详细信息。</p>
+<h2 id="pyc文件"><a href="#pyc文件" class="headerlink" title=".pyc文件"></a>.pyc文件</h2><p><strong>.pyc文件是Python源代码在被解释器执行之前经过编译后生成的字节码文件</strong>。当你运行Python程序时，解释器会首先将源代码转换为字节码形式，然后逐行执行字节码。这种编译和执行的过程使得Python程序可以更快地运行，因为解释器在执行字节码时可以跳过编译的步骤。</p>
+<p>当你运行一个Python脚本时，解释器会检查是否存在对应的.pyc文件。如果存在，它会检查.pyc文件的时间戳是否与对应的.py文件相匹配。如果时间戳匹配，解释器会加载.pyc文件并执行其中的字节码，从而跳过重新编译源代码的过程，提高了程序的启动速度。如果.pyc文件不存在或者时间戳不匹配，解释器将重新编译源代码并生成新的.pyc文件。</p>
+<p>.pyc文件通常与对应的.py文件位于同一目录下，并使用相同的文件名，只是扩展名不同。例如，如果你的Python脚本文件是 <code>example.py</code>，那么生成的.pyc文件将被命名为 <code>example.pyc</code>。</p>
+<p>需要注意的是，.pyc文件是与具体的Python解释器相关的，因此不同版本的解释器可能会生成不兼容的.pyc文件。如果你在不同的Python解释器版本之间切换，建议先删除旧的.pyc文件，以便解释器重新生成适用于当前版本的.pyc文件。</p>
+<h2 id="scala文件"><a href="#scala文件" class="headerlink" title=".scala文件"></a>.scala文件</h2><p>Scala是一种通用的编程语言，它结合了<strong>面向对象编程和函数式编程</strong>的特性。它的设计目标是提供一种<strong>高级的静态类型语</strong>言<strong>，同时保持简洁和表达力。</strong>Scala运行在Java虚拟机（JVM）上，因此它可以与Java代码无缝地互操作**。</p>
+<p>Scala源代码通常保存在以<code>.scala</code>为后缀的文件中。这些文件包含了用Scala编写的程序代码，可以通过Scala编译器进行编译，生成可在JVM上运行的字节码。Scala文件可以包含类、对象、特质（traits）以及函数和表达式等。</p>
+<p>除了常规的Scala源文件外，还有一种叫做Scala脚本（Scala script）的文件类型，它的后缀为<code>.sc</code>。与传统的Scala源文件不同，Scala脚本可以直接在命令行中运行，而无需事先编译成字节码。脚本文件通常用于快速测试和执行简单任务。</p>
+<p>无论是<code>.scala</code>文件还是<code>.sc</code>文件，都可以使用Scala编译器和解释器进行处理和执行。这使得Scala成为一种非常灵活和多用途的编程语言。</p>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+        <style>
+        .vcard .vimg{left:0;}
+        </style>
+        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '.vcomment',
+                notify: notify,
+                verify: verify,
+                appId: "",
+                appKey: "",
+                placeholder: "Just go go",
+                pageSize:'10',
+                avatar:'mm',
+                lang:'zh-cn'
+            })
+        </script>
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © liangshuang 1999-2025
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://example.com%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

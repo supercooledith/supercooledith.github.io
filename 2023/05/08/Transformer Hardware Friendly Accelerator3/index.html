@@ -1,0 +1,395 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="[object Object]" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>TransformerHardwareFriendlyAccelerator_3_各平台操作步骤</title>
+  <meta name="author" content="John Doe">
+  <meta name="description" content="Colab GoogleColab介绍Colab &amp;#x3D; “python版”Google doc + 免费GPU
+
+
+Jupyter Notebook : 在Colab中，python代码的执行是基于.ipynb文件，也就是Jupyter Notebook格式的python文件。这种笔记本文件">
+  
+  
+  <meta property="og:title" content="TransformerHardwareFriendlyAccelerator_3_各平台操作步骤"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="Hexo"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<!-- hexo injector head_end start -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S0J2DBYMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S0J2DBYMW');
+</script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        TransformerHardwareFriendlyAccelerator_3_各平台操作步骤
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2023-05-08T05:38:15.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2023-05-08
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/Ttransformer硬件加速/">Ttransformer硬件加速</a>
+
+
+
+
+
+    </div>
+    <hr>
+    
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Colab-Google"><span class="toc-text">Colab Google</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Colab%E4%BB%8B%E7%BB%8D"><span class="toc-text">Colab介绍</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Colab%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="toc-text">Colab工作流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E8%AE%A9%E4%BB%A3%E7%A0%81%E6%9C%89%E2%80%9C%E6%96%AD%E7%82%B9%E7%BB%AD%E4%BC%A0%E2%80%9D%E7%9A%84%E8%83%BD%E5%8A%9B%EF%BC%9F"><span class="toc-text">如何让代码有“断点续传”的能力？</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VIVADO"><span class="toc-text">VIVADO</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vivado-HLS"><span class="toc-text">vivado HLS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vivado"><span class="toc-text">vivado</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#VITIS"><span class="toc-text">VITIS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#vitis-HLS"><span class="toc-text">vitis HLS</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vitis"><span class="toc-text">vitis</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LINUX"><span class="toc-text">LINUX</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ubantu"><span class="toc-text">ubantu</span></a></li></ol></li></ol>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Colab-Google"><a href="#Colab-Google" class="headerlink" title="Colab Google"></a>Colab Google</h1><h2 id="Colab介绍"><a href="#Colab介绍" class="headerlink" title="Colab介绍"></a>Colab介绍</h2><p><strong>Colab &#x3D; “python版”Google doc + 免费GPU</strong></p>
+<blockquote>
+<ul>
+<li><strong>Jupyter Notebook</strong> : 在Colab中，python代码的执行是基于.ipynb文件，也就是Jupyter Notebook格式的python文件。这种笔记本文件与普通.py文件的区别是<strong>可以分块执行代码并立刻得到输出，同时也可以很方便地添加注释</strong>，这种互动式操作十分适合一些轻量的任务。</li>
+<li><strong>代码执行程序</strong> : 代码执行程序就是Colab在云端的”服务器”。简单来说，我们先在笔记本写好需要运行的代码，连接到代码执行程序，然后Colab会在云端执行代码，最后把结果传回浏览器。</li>
+<li><strong>实例空间</strong> : 连接到代码执行程序后，Colab需要为其分配实例空间(Instance)，可以简单理解为运行笔记本而创建的”虚拟机”，其中包含了执行ipynb文件时的默认配置、环境变量、自带的库等等。</li>
+<li><strong>会话</strong> : 当笔记本连接到代码执行程序并分配到实例空间后，就成为了一个会话(Session)，用户能开启的回话数量是有限的</li>
+</ul>
+</blockquote>
+<h2 id="Colab工作流程"><a href="#Colab工作流程" class="headerlink" title="Colab工作流程"></a>Colab工作流程</h2><blockquote>
+<ol>
+<li><p>将工程文件上传到Google drive的Colab Notebook文件夹</p>
+</li>
+<li><p>笔记本界面<br><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305101103110.jpg" alt="Colab窗口"></p>
+<ul>
+<li><strong>标题</strong>：笔记本的名称</li>
+<li><strong>代码块</strong>：分块执行的代码</li>
+<li><strong>文件浏览</strong>：Colab为笔记本分配的实例空间</li>
+<li><strong>代码执行程序</strong>：用于执行笔记本程序的服务器</li>
+<li><strong>代码段</strong>：常用的代码段，比如装载云端硬盘</li>
+<li><strong>命令面板</strong>：常用的命令，比如查找&#x2F;替换</li>
+<li><strong>终端</strong>：文件浏览下的终端（非常卡，不建议使用）</li>
+</ul>
+</li>
+<li><p>连接代码执行程序<br>连接到代码执行程序并分配实例空间，此时可以看到消耗的RAM和磁盘</p>
+<ul>
+<li><strong>RAM</strong>：虚拟机运行内存，更大内存意味着更大的算力</li>
+<li><strong>磁盘</strong>：虚拟机文件的储存空间</li>
+</ul>
+</li>
+<li><p>设置笔记本的运行时类型<br>   运行：-&gt;代码执行程序-&gt;更改运行时类型即可-&gt;更改为GPU<br>   断开：-&gt;代码执行程序-&gt;断开连接并删除运行时。</p>
+</li>
+<li><p>colab加载文件</p>
+<ul>
+<li>colab里加载自己的谷歌云盘   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> google.colab <span class="keyword">import</span> drive</span><br><span class="line">drive.mount(<span class="string">&#x27;/content/drive&#x27;</span>)</span><br></pre></td></tr></table></figure>
+   加载成功以后（可以点一下刷新按钮）就可以看到云盘在实例空间中出现<br>   谷歌云盘默认的加载路径是”&#x2F;content&#x2F;drive&#x2F;MyDrive”<br>   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305101227342.jpg" alt="加载谷歌云盘"></li>
+<li>数据集以压缩包形式上传到谷歌云盘，然后解压到Colab实例空间   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 创建datasets文件夹，用来加载训练数据集</span></span><br><span class="line">!mkdir /content/datasets </span><br><span class="line"><span class="comment"># 在当前目录下(&quot;/content&quot;)创建一个叫datasets的文件夹，并将&quot;zhihu_colab&quot;中的数据集解压到这个文件夹</span></span><br><span class="line">!tar -xvf <span class="string">&quot;/content/drive/MyDrive/zhihu_colab/ROD-synROD.tar&quot;</span> -C <span class="string">&quot;/content/datasets&quot;</span> </span><br></pre></td></tr></table></figure>
+   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305101250598.jpg" alt="加载数据集"></li>
+<li>查看分到的GPU是什么   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gpu_info = !nvidia-smi</span><br><span class="line">gpu_info = <span class="string">&#x27;\n&#x27;</span>.join(gpu_info)</span><br><span class="line"><span class="keyword">if</span> gpu_info.find(<span class="string">&#x27;failed&#x27;</span>) &gt;= <span class="number">0</span>:</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">&#x27;Not connected to a GPU&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">  <span class="built_in">print</span>(gpu_info)</span><br></pre></td></tr></table></figure>
+   如果是T4,可以一直反复地刷显卡,断开运行时后再连接，不断重复直到刷出P100为止。<br>   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305101250779.jpg" alt="查看GPU"></li>
+</ul>
+</li>
+<li><p>训练模型</p>
+   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">!python3 /content/drive/MyDrive/zhihu_colab/</span><br><span class="line">mldl_project/code/train_eval.py \</span><br><span class="line">          <span class="comment"># \ 是表示流式输入输出（前一个命令的输出作为后一个命令的输入）  </span></span><br><span class="line">          <span class="comment">#--data_root 用于指定数据集的根目录</span></span><br><span class="line">          --data_root /content/datasets/ROD-synROD \</span><br><span class="line">          <span class="comment">#--logdir 用于指定保持模型日志(checkpoint + tensorboard)的路径，注意一定要保存到云盘里</span></span><br><span class="line">          --logdir /content/drive/MyDrive/ \</span><br><span class="line">          <span class="comment">#--resume 表示如果有checkpoint就加载checkpoint</span></span><br><span class="line">          --resume \</span><br><span class="line">          <span class="comment">#tee 命令用于将输出保存到文件同时也打印到屏幕，-a表示add模式（如果文件已存在会添加而不是覆盖）</span></span><br><span class="line">          | tee /content/drive/MyDrive/synRODtoROD.txt -a</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305101305159.jpg"></p>
+</blockquote>
+</li>
+</ol>
+</blockquote>
+<h2 id="如何让代码有“断点续传”的能力？"><a href="#如何让代码有“断点续传”的能力？" class="headerlink" title="如何让代码有“断点续传”的能力？"></a>如何让代码有“断点续传”的能力？</h2><blockquote>
+<p>由于Colab随时有可能断开连接，在Colab上训练模型的代码必须要有可恢复性（能载入上一次训练的结果）。<br>以下是两个分别实现保存和加载checkpoint的函数（基于pytorch）。</p>
+<ul>
+<li>保存 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">save_checkpoint</span>(<span class="params">path: Text,</span></span><br><span class="line"><span class="params">      epoch: <span class="built_in">int</span>,</span></span><br><span class="line"><span class="params">      modules: <span class="type">Union</span>[nn.Module, <span class="type">Sequence</span>[nn.Module]],</span></span><br><span class="line"><span class="params">      optimizers: <span class="type">Union</span>[opt.Optimizer, <span class="type">Sequence</span>[opt.Optimizer]],</span></span><br><span class="line"><span class="params">      safe_replacement: <span class="built_in">bool</span> = <span class="literal">True</span></span>):</span><br><span class="line">   <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">   Save a checkpoint of the current state of the &gt;training, so it can &gt;be resumed.</span></span><br><span class="line"><span class="string">   This checkpointing function assumes that there are no &gt;learning &gt;rate schedulers or gradient scalers for &gt;automatic</span></span><br><span class="line"><span class="string">   mixed precision.</span></span><br><span class="line"><span class="string">   :param path:</span></span><br><span class="line"><span class="string">      Path for your checkpoint file</span></span><br><span class="line"><span class="string">   :param epoch:</span></span><br><span class="line"><span class="string">        Current (completed) epoch</span></span><br><span class="line"><span class="string">  :param modules:</span></span><br><span class="line"><span class="string">        nn.Module containing the model or a list of nn.&gt;Module objects</span></span><br><span class="line"><span class="string">    :param optimizers:</span></span><br><span class="line"><span class="string">        Optimizer or list of optimizers</span></span><br><span class="line"><span class="string">    :param safe_replacement:</span></span><br><span class="line"><span class="string">        Keep old checkpoint until the new one has been &gt;completed</span></span><br><span class="line"><span class="string">    :return:</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># This function can be called both as</span></span><br><span class="line">    <span class="comment"># save_checkpoint(&#x27;/my/checkpoint/path.pth&#x27;, my_epoch, &gt;my_module, &gt;my_opt)</span></span><br><span class="line">     <span class="comment"># or</span></span><br><span class="line">     <span class="comment"># save_checkpoint(&#x27;/my/checkpoint/path.pth&#x27;, my_epoch, &gt;&gt;[my_module1, my_module2], [my_opt1, my_opt2])</span></span><br><span class="line">     <span class="keyword">if</span> <span class="built_in">isinstance</span>(modules, nn.Module):</span><br><span class="line">         modules = [modules]</span><br><span class="line">     <span class="keyword">if</span> <span class="built_in">isinstance</span>(optimizers, opt.Optimizer):</span><br><span class="line">         optimizers = [optimizers]</span><br><span class="line">  </span><br><span class="line">     <span class="comment"># Data dictionary to be saved</span></span><br><span class="line">     data = &#123;</span><br><span class="line">         <span class="string">&#x27;epoch&#x27;</span>: epoch,</span><br><span class="line">         <span class="comment"># Current time (UNIX timestamp)</span></span><br><span class="line">         <span class="string">&#x27;time&#x27;</span>: time.time(),</span><br><span class="line">         <span class="comment"># State dict for all the modules</span></span><br><span class="line">         <span class="string">&#x27;modules&#x27;</span>: [m.state_dict() <span class="keyword">for</span> m <span class="keyword">in</span> modules],</span><br><span class="line">         <span class="comment"># State dict for all the optimizers</span></span><br><span class="line">         <span class="string">&#x27;optimizers&#x27;</span>: [o.state_dict() <span class="keyword">for</span> o <span class="keyword">in</span> optimizers]</span><br><span class="line">     &#125;</span><br><span class="line"> </span><br><span class="line">     <span class="comment"># Safe replacement of old checkpoint</span></span><br><span class="line">     temp_file = <span class="literal">None</span></span><br><span class="line">     <span class="keyword">if</span> os.path.exists(path) <span class="keyword">and</span> safe_replacement:</span><br><span class="line">         <span class="comment"># There&#x27;s an old checkpoint. Rename it!</span></span><br><span class="line">         temp_file = path + <span class="string">&#x27;.old&#x27;</span></span><br><span class="line">         os.rename(path, temp_file)</span><br><span class="line"> </span><br><span class="line">     <span class="comment"># Save the new checkpoint</span></span><br><span class="line">     <span class="keyword">with</span> <span class="built_in">open</span>(path, <span class="string">&#x27;wb&#x27;</span>) <span class="keyword">as</span> fp:</span><br><span class="line">         torch.save(data, fp)</span><br><span class="line">         <span class="comment"># Flush and sync the FS</span></span><br><span class="line">         fp.flush()</span><br><span class="line">         os.fsync(fp.fileno())</span><br><span class="line"> </span><br><span class="line">     <span class="comment"># Remove the old checkpoint</span></span><br><span class="line">     <span class="keyword">if</span> temp_file <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">         os.unlink(path + <span class="string">&#x27;.old&#x27;</span>)</span><br></pre></td></tr></table></figure></li>
+<li>加载<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">load_checkpoint</span>(<span class="params">path: Text,</span></span><br><span class="line"><span class="params">    default_epoch: <span class="built_in">int</span>,</span></span><br><span class="line"><span class="params">        modules: <span class="type">Union</span>[nn.Module, <span class="type">Sequence</span>[nn.Module]],</span></span><br><span class="line"><span class="params">        optimizers: <span class="type">Union</span>[opt.Optimizer, <span class="type">Sequence</span>[opt.Optimizer]],</span></span><br><span class="line"><span class="params">        verbose: <span class="built_in">bool</span> = <span class="literal">True</span></span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        Try to load a checkpoint to resume the training.</span></span><br><span class="line"><span class="string">        :param path:</span></span><br><span class="line"><span class="string">            Path for your checkpoint file</span></span><br><span class="line"><span class="string">        :param default_epoch:</span></span><br><span class="line"><span class="string">            Initial value for &quot;epoch&quot; (in case there are not &gt;snapshots)</span></span><br><span class="line"><span class="string">        :param modules:</span></span><br><span class="line"><span class="string">            nn.Module containing the model or a list of nn.&gt;Module objects. &gt;They are assumed to stay on the &gt;same device</span></span><br><span class="line"><span class="string">        :param optimizers:</span></span><br><span class="line"><span class="string">            Optimizer or list of optimizers</span></span><br><span class="line"><span class="string">        :param verbose:</span></span><br><span class="line"><span class="string">            Verbose mode</span></span><br><span class="line"><span class="string">        :return:</span></span><br><span class="line"><span class="string">            Next epoch</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">       <span class="keyword">if</span> <span class="built_in">isinstance</span>(modules, nn.Module):</span><br><span class="line">            modules = [modules]</span><br><span class="line">       <span class="keyword">if</span> <span class="built_in">isinstance</span>(optimizers, opt.Optimizer):</span><br><span class="line">            optimizers = [optimizers]</span><br><span class="line">    </span><br><span class="line">       <span class="comment"># If there&#x27;s a checkpoint</span></span><br><span class="line">       <span class="keyword">if</span> os.path.exists(path):</span><br><span class="line">            <span class="comment"># Load data</span></span><br><span class="line">            data = torch.load(path, map_location=<span class="built_in">next</span>(modules[<span class="number">0</span>].parameters()).device)</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Inform the user that we are loading the &gt;checkpoint</span></span><br><span class="line">            <span class="keyword">if</span> verbose:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">f&quot;Loaded checkpoint saved at <span class="subst">&#123;datetime.fromtimestamp(data[<span class="string">&#x27;time&#x27;</span>]).strftime(<span class="string">&#x27;%Y-%m-%d &gt;%H:%M:%S&#x27;</span>)&#125;</span>. &quot;</span></span><br><span class="line">                      <span class="string">f&quot;Resuming from epoch <span class="subst">&#123;data[<span class="string">&#x27;epoch&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Load state for all the modules</span></span><br><span class="line">            <span class="keyword">for</span> i, m <span class="keyword">in</span> <span class="built_in">enumerate</span>(modules):</span><br><span class="line">                modules[i].load_state_dict(data[<span class="string">&#x27;modules&#x27;</span>][i])</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Load state for all the optimizers</span></span><br><span class="line">            <span class="keyword">for</span> i, o <span class="keyword">in</span> <span class="built_in">enumerate</span>(optimizers):</span><br><span class="line">                optimizers[i].load_state_dict(data[<span class="string">&#x27;optimizers&#x27;</span>][i])</span><br><span class="line">    </span><br><span class="line">            <span class="comment"># Next epoch</span></span><br><span class="line">            <span class="keyword">return</span> data[<span class="string">&#x27;epoch&#x27;</span>] + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> default_epoch</span><br></pre></td></tr></table></figure></li>
+<li>在主程序train.py正式开始训练前，添加下面的语句：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># args.resume是命令行输入的参数，用于指示要不要加载上次训练的结果</span></span><br><span class="line"><span class="keyword">if</span> args.resume: </span><br><span class="line">    first_epoch = load_checkpoint(checkpoint_path, first_epoch, net_list, optims_list)</span><br></pre></td></tr></table></figure></li>
+<li>在每个epoch训练结束后，保存checkpoint：<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Save checkpoint</span></span><br><span class="line"><span class="comment"># net_list是需要保存的网络列表，optims_list是需要保存的优化器列表</span></span><br><span class="line"><span class="comment"># 如果代码里用到了scheduler，那也要保存scheduler的列表。</span></span><br><span class="line">save_checkpoint(checkpoint_path, epoch, net_list, optims_list)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</blockquote>
+<h1 id="VIVADO"><a href="#VIVADO" class="headerlink" title="VIVADO"></a>VIVADO</h1><h2 id="vivado-HLS"><a href="#vivado-HLS" class="headerlink" title="vivado HLS"></a>vivado HLS</h2><p><strong><strong>C to RTL</strong></strong><br><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305151625318.png" alt="整体功能"></p>
+<blockquote>
+<ol>
+<li>创建工程<br>  资料 <a target="_blank" rel="noopener" href="https://xilinx.eetrend.com/content/2018/100013822.html">Vivado HLS入门</a><br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305152025529.jpg" alt="新建工程"></li>
+</ol>
+<ul>
+<li>加载C&#x2F;C++文件<br>  空着不加载</li>
+<li>加载test bench文件<br>  空着不加载<br>  “test bench”（测试台）是一个用于模拟设计输入和观察输出的程序或文件,用于模拟输入信号并验证设计输出是否符合预期。测试台文件包含测试输入的生成、时钟信号的生成和其他必要的控制信号的生成；还包含对设计输出的监视和分析的代码。通过在测试台中模拟各种输入情况，设计工程师可以验证电路的行为，并进行调试和改进。</li>
+</ul>
+<ol start="2">
+<li>选择硬件芯片型号<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305152025557.jpg" alt="选择硬件"><br>创建完成：Source 包括我们的设计源文件，Test Bench是我们的仿真文件。</li>
+<li>Add Source File</li>
+</ol>
+<ul>
+<li>命名xxx.cpp<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171251532.jpg" alt="Add Source file"></li>
+<li>run C Synthesis<br>  验证C源代码：点击project&gt;run c simulation 点击ok<br>   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171251781.jpg"></li>
+</ul>
+<ol start="4">
+<li>Add TestBench File</li>
+</ol>
+<ul>
+<li>命名xxx_tb.cpp,save file<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252245.jpg" alt="Add TestBench File"></li>
+<li>run C Simulation**<br>  验证C源代码：点击project&gt;run c simulation 点击ok<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252245.jpg" alt="C Simulation"></li>
+<li>run C Synthesis<br>  验证C源代码：点击solution&gt;run c synthesis 点击ok<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171251781.jpg" alt="C Synthesis"></li>
+</ul>
+<ol start="5">
+<li>run C&#x2F;RTL co-simulation Dialog**</li>
+</ol>
+<ul>
+<li>RTL验证：点击solution&gt;run c&#x2F;rtl cosimulation&gt;ok<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252494.jpg" alt="C/RTL co-simulation"></li>
+</ul>
+<ol start="6">
+<li>run Export RTL</li>
+</ol>
+<ul>
+<li>输出RTL文件，创建IP</li>
+<li>choose verilog&#x2F;VHDL<br>  <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252893.jpg" alt="Export RTL"></li>
+</ul>
+<ol start="7">
+<li>Open Wave Viewer<br>   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252084.jpg" alt="Wave Viewer"><br>   <img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/202305171252799.jpg" alt="Wave Viewer"></li>
+</ol>
+</blockquote>
+<h2 id="vivado"><a href="#vivado" class="headerlink" title="vivado"></a>vivado</h2><h1 id="VITIS"><a href="#VITIS" class="headerlink" title="VITIS"></a>VITIS</h1><h2 id="vitis-HLS"><a href="#vitis-HLS" class="headerlink" title="vitis HLS"></a>vitis HLS</h2><p><strong>vitis HLS 与 vivado HLS 本质上相同，只是换了一个UI界面的感觉</strong><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36248682/article/details/105650809">Vivado-hls使用实例－详细教程</a></p>
+<blockquote>
+<p><strong>作用</strong></p>
+<ul>
+<li>输入：Tesbench，C&#x2F;C++源代码和Directives</li>
+<li>输出：IP Catalog，DSP和SysGe</li>
+</ul>
+<p><strong>注意</strong></p>
+<ul>
+<li>一个工程只能有一个顶层函数用于综和，这个顶层函数下面的子函数也是可以被综合的，会生成相应的VHDL和Verilog代码，所以，C综合后的RTL代码结构通常是跟原始C描述的结构是一致的，除非是子函数功能很简单，所需要的逻辑量很小。</li>
+<li>并不是所有的C&#x2F;C++都可以被综合，动态内存分配和涉及到操作系统层面的操作不可以被综合。</li>
+</ul>
+<p><strong>流程</strong></p>
+<ul>
+<li>用户创建一个设计 C、C++ 或 SystemC 源代码，以及一个C的测试平台。通过 Vivado HLS Synthesis 运行设计，生成 RTL 设计，代码可以是 Verilog，也可以是 VHDL。</li>
+<li>有了 RTL 后，随即可以执行设计的 Verilog 或 VHDL 仿真，或使用工具的C封装器技术创建 SystemC 版本。然后可以进行System C架构级仿真，进一步根据之前创建的 C 测试平台，验证设计的架构行为和功能。</li>
+<li>设计固化后，就可以通过 Vivado 设计套件的物理实现流程来运行设计，将设计编程到器件上，在硬件中运行和&#x2F;或使用IP封装器将设计转为可重用的IP。</li>
+</ul>
+</blockquote>
+<h2 id="vitis"><a href="#vitis" class="headerlink" title="vitis"></a>vitis</h2><h1 id="LINUX"><a href="#LINUX" class="headerlink" title="LINUX"></a>LINUX</h1><h2 id="ubantu"><a href="#ubantu" class="headerlink" title="ubantu"></a>ubantu</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/codeHonghu/article/details/111940656">ubantu系统安装到硬盘</a></p>
+</blockquote>
+<p><strong>vitis下载</strong> —-在这里很坑⚠️🥹</p>
+<blockquote>
+<ol>
+<li>首先是ubantu的安装，一开始是想安装在移动硬盘，但是后来安装的时候试了很多遍，死活识别不了移动硬盘，遂自能安装在自己的电脑硬盘中。</li>
+<li>vitis不支持ubantu最新版本，只支持2018.04.1~2018.04.4,于是在我三次尝试云下载，一次下载完整个安装包，花了总共600G流量，💰130人民币，总共四五次失败，且出现同一个报错之后。我终于上网，啊，看到了另一个老哥也是这个样子，just是因为ubantu版本不！支！持！（他的网站怎么就不能说明呢，会死吗？！没事的，我情绪很稳定🙂）</li>
+<li>接下来就是安装步骤<br>  在ubantu2018中不能像最新版本一样，右击就出现作为程序运行<br>  以下为安装步骤：<ul>
+<li>解压tar.gz压缩包</li>
+<li>点进去，右击空白处，”打开位于此处的终端”</li>
+<li>输入 “sudo .&#x2F;xsetup”</li>
+<li>接下来就是正常安装步骤</li>
+</ul>
+</li>
+<li>打开软件</li>
+</ol>
+<ul>
+<li>导航到settings64.sh文件处，空白处右击打开终端</li>
+<li>输入 “source settings64.sh”</li>
+<li>继续输入 “vitis&#x2F;vitis HLS&#x2F;vivado”</li>
+</ul>
+<ol start="5">
+<li>环境配置</li>
+</ol>
+<ul>
+<li>输入：”sudo gedit .bashrc”</li>
+<li>在文件的最后一行加入：<ul>
+<li>source &#x2F;安装目录&#x2F;Vivado&#x2F;2021.2&#x2F;settings64.sh</li>
+<li>source &#x2F;安装目录&#x2F;Vitis&#x2F;2021.2&#x2F;settings64.sh</li>
+<li>source &#x2F;安装目录&#x2F;Vitis_HLS&#x2F;2021.2&#x2F;settings64.sh</li>
+</ul>
+</li>
+<li>保存文件，然后输入”source .bashrc”</li>
+</ul>
+<ol start="6">
+<li>报错出现<br><em>“the configuration area at’&#x2F;home&#x2F;ls&#x2F;.xilinx&#x2F;vitis&#x2F;2023.1’could not be created.please choose a writable location using the ‘-configuration’ command line option.”</em></li>
+</ol>
+<ul>
+<li>xilinx论坛：<a target="_blank" rel="noopener" href="https://support.xilinx.com/s/question/0D52E00006hpJjSSAU/cannot-lauch-sdk-20183-on-ubuntu-1604?language=en_US">https://support.xilinx.com/s/question/0D52E00006hpJjSSAU/cannot-lauch-sdk-20183-on-ubuntu-1604?language=en_US</a><br>出现的警告是由于安装时采用的sudo去安装的，所以文件夹和文件权限有限制，这里解除权限限制即可，打开终端输入：<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;sudo chmod -R 777 Xilinx&quot;  //Xilinx 为安装路径</span><br></pre></td></tr></table></figure>
+7.打开软件</li>
+<li>终端输入vitis，打开vitis</li>
+<li>终端输入vitis_hls,打开vitis_hls</li>
+<li>终端输入vivado，打开vivado</li>
+</ul>
+</blockquote>
+<p><strong>路径</strong></p>
+<blockquote>
+<ul>
+<li><strong>绝对路径</strong>：路径的写法，由根目录 &#x2F; 写起，例如： &#x2F;usr&#x2F;share&#x2F;doc 这个目录。</li>
+<li><strong>相对路径</strong>：路径的写法，不是由 &#x2F; 写起，例如由 &#x2F;usr&#x2F;share&#x2F;doc 要到 &#x2F;usr&#x2F;share&#x2F;man 底下时，可以写成： cd ..&#x2F;man 这就是相对路径的写法。</li>
+</ul>
+</blockquote>
+<p><strong>文件与目录管理命令</strong></p>
+<blockquote>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">ls （英文全拼：list files）: 列出目录及文件名</span><br><span class="line">cd  英文全拼：change directory）：切换目录 -------------cd .. 退回上一级目录 </span><br><span class="line">pwd （英文全拼：print work directory）：显示目前的目录</span><br><span class="line">mkdir （英文全拼：make directory）：创建一个新的目录</span><br><span class="line">rmdir （英文全拼：remove directory）：删除一个空的目录</span><br><span class="line">cp （英文全拼：copy file）: 复制文件或目录</span><br><span class="line">rm （英文全拼：remove）: 删除文件或目录</span><br><span class="line">mv （英文全拼：move file）: 移动文件与目录，或修改文件与目录的名称</span><br></pre></td></tr></table></figure>
+</blockquote>
+
+
+  </article>
+  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
+    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
+    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+  </div>
+
+
+    
+        <style>
+        .vcard .vimg{left:0;}
+        </style>
+        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
+        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <script>
+            var GUEST_INFO = ['nick','mail','link'];
+            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
+                return GUEST_INFO.indexOf(item) > -1
+            });
+            var notify = 'false' == true;
+            var verify = 'false' == true;
+            var valine = new Valine();
+            valine.init({
+                el: '.vcomment',
+                notify: notify,
+                verify: verify,
+                appId: "",
+                appKey: "",
+                placeholder: "Just go go",
+                pageSize:'10',
+                avatar:'mm',
+                lang:'zh-cn'
+            })
+        </script>
+    
+
+
+
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        © liangshuang 1999-2025
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://example.com%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>
