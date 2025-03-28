@@ -106,44 +106,85 @@
 
 
   </article>
-  <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
   <div class="busuanzi center">
-    page PV:&nbsp;<span id="busuanzi_value_page_pv"></span>&nbsp;・&nbsp;
-    site PV:&nbsp;<span id="busuanzi_value_site_pv"></span>&nbsp;・&nbsp;
-    site UV:&nbsp;<span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_container_page_pv">
+      本文阅读量：<span id="busuanzi_value_page_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+    </span>
   </div>
 
-
+<!-- 
     
-        <style>
-        .vcard .vimg{left:0;}
-        </style>
-        <div id="vcomment" class="vcomment" style="padding:0 6% 0 7%;"></div>
-        <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-        <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+        <div id="disqus_thread"></div>
         <script>
-            var GUEST_INFO = ['nick','mail','link'];
-            var guest_info = 'nick,mail,link'.split(',').filter(function(item){
-                return GUEST_INFO.indexOf(item) > -1
-            });
-            var notify = 'false' == true;
-            var verify = 'false' == true;
-            var valine = new Valine();
-            valine.init({
-                el: '.vcomment',
-                notify: notify,
-                verify: verify,
-                appId: "",
-                appKey: "",
-                placeholder: "Just go go",
-                pageSize:'10',
-                avatar:'mm',
-                lang:'zh-cn'
-            })
+
+        var disqus_config = function () {
+        this.page.url = 'http://example.com/2022/07/06/supercool&#39;s%20friends/index.html';
+        this.page.identifier = ;
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//supercool-2.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
         </script>
     
+ -->
 
 
+ <!-- <div id="disqus_thread"></div>
+ <script>
+     /**
+     *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+     *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+     /*
+     var disqus_config = function () {
+     this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+     this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+     };
+     */
+     (function() { // DON'T EDIT BELOW THIS LINE
+     var d = document, s = d.createElement('script');
+     s.src = 'https://supercool-2.disqus.com/embed.js';
+     s.setAttribute('data-timestamp', +new Date());
+     (d.head || d.body).appendChild(s);
+     })();
+ </script>
+ <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript> -->
+
+ 
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES
+            *  使用 Hexo 模板变量动态注入值
+            */
+            var disqus_config = function () {
+                this.page.url = 'http://example.com/2022/07/06/supercool&#39;s%20friends/';       // 当前页面完整URL
+                this.page.identifier = '2022/07/06/supercool&#39;s friends/';     // 使用文章路径作为唯一标识
+                this.page.title = 'supercool';         // 动态获取文章标题
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document, s = d.createElement('script');
+                s.src = 'https://supercool-2.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', +new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>请启用JavaScript查看<a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">Disqus评论</a></noscript>
+    
 
 
 
@@ -158,7 +199,7 @@
             <path d="M10 30 L26 16 10 2 Z"></path>
         </svg>
         </a>
-        © liangshuang 1999-2025
+        liangshuang 1999-2025
     </div>
     <div class="secondrow">
         <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
@@ -172,6 +213,15 @@
   <script type="text/javascript">
 
 // disqus scripts
+
+var disqus_shortname = 'supercool-2';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
 
 
 // dropdown scripts
