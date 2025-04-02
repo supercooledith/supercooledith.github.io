@@ -1,0 +1,47 @@
+.toc { // 目录    
+  position: fixed; // 固定定位
+  top: 50%; // 顶部
+  left: calc(50% - 391px); // 左侧
+  text-align: right; // 文本对齐
+  transform: translate(-100%, -50%); // 变换
+  padding: 4em 0; // 内边距
+  padding-right: 2em; // 右侧内边距
+  overflow: auto; // 溢出
+  max-height: 100%; // 最大高度
+}
+
+.toc-text { // 目录文本
+  color: #ACACAB; // 颜色
+  transition: color .3s; // 过渡
+}
+
+.toc-level-1 .toc-text, // 目录级别1文本
+.toc-level-2 .toc-text { // 目录级别2文本
+  font-weight: 400; // 字体权重
+}
+
+.toc-level-3 .toc-text, // 目录级别3文本
+.toc-level-4 .toc-text, // 目录级别4文本
+.toc-level-5 .toc-text, // 目录级别5文本
+.toc-level-6 .toc-text { // 目录级别6文本
+  font-weight: 300; // 字体权重
+}
+
+.toc:hover .toc-text { // 目录悬停文本
+  color: #F3BA2F; // 颜色
+}
+
+.toc ol, ul { // 目录列表
+    padding-right: .5em; // 右侧内边距
+}
+
+.toc-item:before { // 目录项前缀
+    content: '' !important; // 内容
+}
+
+// 小屏幕
+@media screen and (max-width:1200px) { // 媒体查询
+  .toc {
+    display: none;
+  }
+}
