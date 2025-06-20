@@ -1,4 +1,4 @@
-// 本地搜索脚本 for Hexo
+// 本地搜索脚本 for Hexo，优化中文输入法体验
 (function() {
   var input = document.getElementById('local-search-input');
   if (!input) return;
@@ -15,6 +15,8 @@
   input.parentNode.appendChild(resultPanel);
 
   var searchData = null;
+  var isComposing = false; // 标记是否正在中文输入法拼音上屏
+
   function loadData(cb) {
     if (searchData) return cb();
     var xhr = new XMLHttpRequest();
@@ -47,8 +49,22 @@
     });
   }
 
+  // 监听中文输入法拼音上屏
+  input.addEventListener('compositionstart', function() {
+    isComposing = true;
+  });
+  input.addEventListener('compositionend', function() {
+    isComposing = false;
+    triggerSearch();
+  });
+
   input.addEventListener('input', function() {
-    var keyword = this.value;
+    if (isComposing) return; // 拼音未上屏时不触发搜索
+    triggerSearch();
+  });
+
+  function triggerSearch() {
+    var keyword = input.value;
     if (!keyword) {
       resultPanel.style.display = 'none';
       return;
@@ -64,11 +80,11 @@
       }
       resultPanel.style.display = 'block';
     });
-  });
+  }
 
   // 回车跳转第一个结果
   input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !isComposing) {
       var first = resultPanel.querySelector('a');
       if (first) {
         window.location = first.href;
