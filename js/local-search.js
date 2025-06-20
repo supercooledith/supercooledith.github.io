@@ -15,7 +15,7 @@
   input.parentNode.appendChild(resultPanel);
 
   var searchData = null;
-  var isComposing = false; // 标记是否正在中文输入法拼音上屏
+  var isComposing = true; // 标记是否正在中文输入法拼音上屏
 
   function loadData(cb) {
     if (searchData) return cb();
