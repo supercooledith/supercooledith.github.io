@@ -388,3 +388,75 @@ hr:last-child { // 最后一个水平线
 nav .navbar-brand {
     font-family: "Pacifico", Arial, sans-serif !important;
 }
+
+.categories-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.categories-dropdown .dropdown-content.categories-menu {
+  display: none !important;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.categories-dropdown:hover > .dropdown-content.categories-menu {
+  display: block !important;
+}
+
+.category-menu-item {
+  position: relative;
+}
+
+.category-menu-item > a {
+  display: block;
+  padding: 12px 20px;
+  color: #F3BA2F;
+  background: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.category-menu-item > a:hover {
+  background: #F3BA2F;
+  color: #fff;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 220px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  z-index: 30;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.category-menu-item:hover > .dropdown-submenu {
+  display: block;
+}
+
+.dropdown-submenu li > a {
+  padding: 12px 20px;
+  color: #F3BA2F;
+  background: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-submenu li > a:hover {
+  background: #F3BA2F;
+  color: #fff;
+}
