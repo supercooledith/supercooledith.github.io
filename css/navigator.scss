@@ -26,7 +26,8 @@ $bordr: #eee; // 边框颜色
 }
 
 .navbar-nav { // 导航栏导航
-    align-items: center; // 垂直居中
+    display: flex;
+    align-items: center;
 }
 
 .navbar-brand, // 导航栏品牌
@@ -200,4 +201,58 @@ $bordr: #eee; // 边框颜色
   white-space: nowrap;
   padding: 8px 16px;
   display: block;
+}
+
+/* 横向主导航和二级下拉菜单样式 */
+.main-category {
+  position: relative;
+  display: inline-block;
+}
+
+.main-category-link {
+  display: block;
+  padding: 0 20px;
+  font-size: 18px;
+  color: #F3BA2F;
+  font-weight: bold;
+  line-height: 52px;
+  text-decoration: none;
+  background: transparent;
+}
+
+.main-category-link:hover {
+  color: #fff;
+  background: #F3BA2F;
+}
+
+.main-category .dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 180px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.main-category:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown-content li > a {
+  white-space: nowrap;
+  padding: 12px 20px;
+  display: block;
+  color: #F3BA2F;
+  background: transparent;
+  text-decoration: none;
+}
+
+.dropdown-content li > a:hover {
+  background: #F3BA2F;
+  color: #fff;
 }
