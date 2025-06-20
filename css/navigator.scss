@@ -226,7 +226,7 @@ $bordr: #eee; // 边框颜色
 }
 
 .main-category .dropdown-content {
-  display: none;
+  display: none !important;
   position: absolute;
   left: 0;
   top: 100%;
@@ -240,7 +240,7 @@ $bordr: #eee; // 边框颜色
 }
 
 .main-category:hover .dropdown-content {
-  display: block;
+  display: block !important;
 }
 
 .dropdown-content li > a {
