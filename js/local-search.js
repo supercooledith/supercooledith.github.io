@@ -1,12 +1,17 @@
-// 本地搜索脚本 for Hexo，优化中文输入法体验
+// 本地搜索脚本 for Hexo，优化中文输入法体验和结果面板样式
 (function() {
   var input = document.getElementById('local-search-input');
   if (!input) return;
   var resultPanel = document.createElement('div');
   resultPanel.id = 'local-search-result';
+  // 让结果面板显示在输入框下方并美化
   resultPanel.style.position = 'absolute';
+  resultPanel.style.left = input.offsetLeft + 'px';
+  resultPanel.style.top = (input.offsetTop + input.offsetHeight + 6) + 'px'; // 下移6px
   resultPanel.style.background = '#fff';
   resultPanel.style.border = '1px solid #eee';
+  resultPanel.style.borderRadius = '8px';
+  resultPanel.style.boxShadow = '0 4px 16px rgba(0,0,0,0.08)';
   resultPanel.style.zIndex = 9999;
   resultPanel.style.width = input.offsetWidth + 'px';
   resultPanel.style.maxHeight = '300px';
@@ -15,7 +20,7 @@
   input.parentNode.appendChild(resultPanel);
 
   var searchData = null;
-  var isComposing = true; // 标记是否正在中文输入法拼音上屏
+  var isComposing = false; // 标记是否正在中文输入法拼音上屏
 
   function loadData(cb) {
     if (searchData) return cb();
@@ -72,7 +77,7 @@
     loadData(function() {
       var results = search(keyword);
       if (results.length === 0) {
-        resultPanel.innerHTML = '<div style="padding:8px;color:#888;">没有找到结果</div>';
+        resultPanel.innerHTML = '<div style="padding:32px 0;text-align:center;color:#bbb;font-size:15px;">没有找到结果</div>';
       } else {
         resultPanel.innerHTML = results.map(function(item) {
           return '<div style="padding:8px 12px;border-bottom:1px solid #f0f0f0;"><a href="' + item.url + '" style="color:#222;">' + item.title + '</a></div>';
