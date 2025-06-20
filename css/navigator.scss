@@ -268,7 +268,7 @@ $bordr: #eee; // 边框颜色
   position: absolute;
   left: 0;
   top: 100%;
-  min-width: 180px;
+  min-width: 200px;
   background: #fff;
   box-shadow: 0 0 8px rgba(209,205,199,.15);
   z-index: 20;
@@ -277,7 +277,7 @@ $bordr: #eee; // 边框颜色
   list-style: none;
 }
 
-.categories-dropdown:hover .dropdown-content.categories-menu {
+.categories-dropdown:hover > .dropdown-content.categories-menu {
   display: block !important;
 }
 
@@ -304,7 +304,7 @@ $bordr: #eee; // 边框颜色
   position: absolute;
   left: 100%;
   top: 0;
-  min-width: 180px;
+  min-width: 220px;
   background: #fff;
   box-shadow: 0 0 8px rgba(209,205,199,.15);
   z-index: 30;
