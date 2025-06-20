@@ -15,7 +15,7 @@ $big: 32px; // 大标题
 $mid: 26px; // 中标题
 $small: 18px; // 小标题
 ::selection { // 选中颜色
-    background: lighten($theme, 40%); 
+    background: lighten($theme, 40%);
 }
 
 ::-moz-selection { // 选中颜色
@@ -267,7 +267,7 @@ blockquote { // 引用
     padding-left: 3rem; // 左边距
     border: 0; // 边框
     p { // 段落
-        color: #1a1a1a; 
+        color: #1a1a1a;
         text-indent: 0;
         line-height: 1.6;
         font-size: $mid;
