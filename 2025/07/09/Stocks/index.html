@@ -129,57 +129,62 @@
   </table>
 </div>
 
-<!-- 新增：NVDA历史K线表格 -->
-<h3>NVDA 近30日历史K线</h3>
-<div id="nvda-kline-table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>日期</th>
-        <th>开盘价</th>
-        <th>收盘价</th>
-        <th>最高价</th>
-        <th>最低价</th>
-        <th>成交量</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+<!-- 新增：Bitcoin历史K线折线图 -->
+<h3>Bitcoin 近30日价格折线图</h3>
+<div id="btc-kline-chart-container">
+  <canvas id="btcKlineChart" width="800" height="400"></canvas>
 </div>
 
 <script>
 (async function() {
   const API_KEY = 'd1hq8spr01qsvr2bp4qgd1hq8spr01qsvr2bp4r0'; // 替换为你的 Finnhub API Key
-  const symbol = 'NVDA';
+  const symbol = 'BINANCE:BTCUSDT';
   const now = Math.floor(Date.now() / 1000);
-  const from = now - 60 * 60 * 24 * 30; // 30天前
-  const url = `https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${from}&to=${now}&token=${API_KEY}`;
+  const from = now - 60 * 60 * 24 * 7; // 30天前
+  const url = `https://finnhub.io/api/v1/crypto/candle?symbol=${symbol}&resolution=D&from=${from}&to=${now}&token=${API_KEY}`;
 
   const res = await fetch(url);
   const data = await res.json();
+  console.log('BINANCE:BTCUSDT K线API返回:', data); // 打印API返回内容
 
   if (data.s !== 'ok') {
-    document.querySelector('#nvda-kline-table-container tbody').innerHTML =
-      '<tr><td colspan="6">未能获取数据</td></tr>';
+    const container = document.getElementById('btc-kline-chart-container');
+    if (container) container.innerHTML = '<div style="text-align:center;color:#888;padding:2em;">未能获取数据</div>';
     return;
   }
 
-  // Finnhub返回的数据是数组，需组装成表格
-  const rows = [];
-  for (let i = data.t.length - 1; i >= 0; i--) { // 倒序显示，最新在上
-    const date = new Date(data.t[i] * 1000).toISOString().slice(0, 10);
-    rows.push(
-      `<tr>
-        <td>${date}</td>
-        <td>${data.o[i]}</td>
-        <td>${data.c[i]}</td>
-        <td>${data.h[i]}</td>
-        <td>${data.l[i]}</td>
-        <td>${data.v[i]}</td>
-      </tr>`
-    );
-  }
-  document.querySelector('#nvda-kline-table-container tbody').innerHTML = rows.join('');
+  // 组装日期和收盘价数组
+  const dates = data.t.map(ts => new Date(ts * 1000).toISOString().slice(0, 10));
+  const closes = data.c;
+
+  // 渲染Chart.js折线图
+  const ctx = document.getElementById('btcKlineChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels: dates,
+      datasets: [{
+        label: '收盘价',
+        data: closes,
+        borderColor: '#f7931a',
+        backgroundColor: 'rgba(247,147,26,0.1)',
+        fill: true,
+        tension: 0.3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        x: { type: 'category', title: { display: true, text: '日期' } },
+        y: { title: { display: true, text: '收盘价 (USD)' } }
+      },
+      plugins: {
+        legend: { display: true },
+        tooltip: { enabled: true }
+      }
+    }
+  });
 })();
 </script>
 
@@ -340,13 +345,13 @@ th {
 // 投资组合数据 - 请在这里修改你的持仓信息
 const portfolioData = [
   { ticker: 'NVDA', name: 'NVIDIA Corporation', shares: 8, avgPrice: 118.665 },
-  // { ticker: 'TSLA', name: 'Tesla Inc.', shares: 2, avgPrice: 300.67 },
-  // { ticker: 'META', name: 'Meta Platforms Inc.', shares: 2, avgPrice: 722.00 },
-  // { ticker: 'COIN', name: 'Coinbase Global, Inc.', shares: 10, avgPrice: 363.10 },
-  // { ticker: 'ASML', name: 'ASML Holding NV-NY REG SHS.', shares: 4, avgPrice: 668.75 },
-  // { ticker: 'CRWV', name: 'Corewave Inc.', shares: 20, avgPrice: 61.45 },
-  // { ticker: 'CRCL', name: 'Circle Internet Group Inc.', shares: 30, avgPrice: 131.33 },
-  // { ticker: 'HOOD', name: 'Robinhood Inc.', shares: 20, avgPrice: 95.45 }
+  { ticker: 'TSLA', name: 'Tesla Inc.', shares: 2, avgPrice: 300.67 },
+  { ticker: 'META', name: 'Meta Platforms Inc.', shares: 2, avgPrice: 722.00 },
+  { ticker: 'COIN', name: 'Coinbase Global, Inc.', shares: 10, avgPrice: 363.10 },
+  { ticker: 'ASML', name: 'ASML Holding NV-NY REG SHS.', shares: 4, avgPrice: 668.75 },
+  { ticker: 'CRWV', name: 'Corewave Inc.', shares: 20, avgPrice: 61.45 },
+  { ticker: 'CRCL', name: 'Circle Internet Group Inc.', shares: 30, avgPrice: 131.33 },
+  { ticker: 'HOOD', name: 'Robinhood Inc.', shares: 20, avgPrice: 95.45 }
 ];
 
 // 获取单只股票历史收盘价（直接请求 Finnhub API）
