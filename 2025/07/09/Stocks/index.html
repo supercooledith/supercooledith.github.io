@@ -210,7 +210,7 @@
 
 <style>
 .portfolio-summary {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #fefcee 0%, #f6dd50 100%);
   color: white;
   padding: 20px;
   border-radius: 10px;
@@ -417,15 +417,15 @@ async function getPortfolioDailyValues() {
   return { dateLabels, dailyValues, dailyChange };
 }
 
-async function getStockPrice(ticker) {
+async function getStockQuote(ticker) {
   const apiKey = 'd1hq8spr01qsvr2bp4qgd1hq8spr01qsvr2bp4r0';
   try {
     const response = await fetch(`https://finnhub.io/api/v1/quote?symbol=${ticker}&token=${apiKey}`);
     const data = await response.json();
-    return data.c || 0;
+    return { c: data.c || 0, pc: data.pc || 0 };
   } catch (e) {
-    console.error('获取股票价格失败', ticker, e);
-    return 0;
+    console.error('获取股票报价失败', ticker, e);
+    return { c: 0, pc: 0 };
   }
 }
 
@@ -433,21 +433,25 @@ async function updatePortfolioTable() {
   const tableBody = document.querySelector('#portfolio-table-container tbody');
   if (!tableBody) return;
 
-  const prices = await Promise.all(portfolioData.map(stock => getStockPrice(stock.ticker)));
-  let totalValue = 0, totalPnL = 0;
+  // 批量获取所有股票的当前价和昨日收盘价
+  const quotes = await Promise.all(portfolioData.map(stock => getStockQuote(stock.ticker)));
+  let totalValue = 0, totalPnL = 0, totalDailyPnL = 0;
 
   for (let i = 0; i < portfolioData.length; i++) {
-    totalValue += portfolioData[i].shares * prices[i];
+    totalValue += portfolioData[i].shares * quotes[i].c;
   }
 
   const rows = portfolioData.map((stock, i) => {
-    const currentPrice = prices[i];
+    const prevClose = quotes[i].pc;
+    const currentPrice = quotes[i].c;
     const currentValue = stock.shares * currentPrice;
     const totalCost = stock.shares * stock.avgPrice;
     const stockPnL = currentValue - totalCost;
     const weight = totalValue > 0 ? (currentValue / totalValue * 100).toFixed(2) : 0;
-    const dailyChange = (currentPrice - stock.avgPrice) * stock.shares;
+    const dailyChange = (currentPrice - prevClose) * stock.shares;
+    const dailyPnL = dailyChange;
     totalPnL += stockPnL;
+    totalDailyPnL += dailyPnL;
 
     return `
       <tr>
@@ -465,11 +469,13 @@ async function updatePortfolioTable() {
 
   tableBody.innerHTML = rows.join('');
 
-  // 更新统计信息（如有需要可补充）
+  // 更新统计信息
   if(document.getElementById('totalValue'))
     document.getElementById('totalValue').textContent = `$${totalValue.toFixed(2)}`;
   if(document.getElementById('totalPnL'))
     document.getElementById('totalPnL').textContent = `$${totalPnL.toFixed(2)}`;
+  if(document.getElementById('dailyPnL'))
+    document.getElementById('dailyPnL').textContent = `$${totalDailyPnL.toFixed(2)}`;
 }
 
 // 生成盈亏日历
