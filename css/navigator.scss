@@ -1,0 +1,174 @@
+$bg: #fff; // 背景颜色
+$bordr: #eee; // 边框颜色
+
+.navbar {
+    position: fixed; // 固定
+    z-index: 2; // 层级
+    top: 0; // 顶部
+    left: 0; // 左侧
+    width: 100%; // 宽度
+    background-color: $bg; // 背景颜色
+    flex-direction: column; // 弹性布局
+    border: 0 !important; // 边框
+    box-shadow: 0 0 8px rgba(209, 205, 199, .5); // 阴影
+}
+
+.navbar-right .dropdown-content { // 右下角下拉内容
+    margin-left: -175px; // 左侧外边距
+}
+
+.navbar, // 导航栏
+.navbar-header, // 导航栏头部
+.navbar-nav, // 导航栏导航
+.local-search-result, // 本地搜索结果
+.nav-container { // 导航栏容器
+    display: flex; // 弹性布局
+}
+
+.navbar-nav { // 导航栏导航
+    align-items: center; // 垂直居中
+}
+
+.navbar-brand, // 导航栏品牌
+.dropdown-toggle, // 下拉菜单
+.archives > a { // 归档链接
+    display: block; // 块级
+    color: #777; // 颜色
+    padding: 15px; // 内边距
+}
+
+.archives > a > svg { // 归档链接svg
+    display: block; // 块级
+}
+
+.nav-container { // 导航栏容器
+    justify-content: space-between; // 间距
+    flex-direction: row; // 弹性布局
+    width: 100%; // 宽度
+    padding: 0 5%; // 内边距
+    height: 52px; // 高度
+}
+
+.navbar-left, // 导航栏左侧
+.navbar-right { // 导航栏右侧
+    flex-grow: 0; // 弹性增长
+}
+
+.dropdown-toggle { // 下拉菜单
+    height: 52px; // 高度
+    svg { // svg
+        height: 22px; // 高度
+        width: 22px; // 宽度
+    }
+}
+
+.dropdown-content { // 下拉内容
+    position: absolute; // 绝对定位
+    top: calc(100% + 0px); // 顶部
+    max-height: calc(100vh - 50px); // 最大高度
+    overflow-y: auto; // 溢出
+    display: block; // 显示
+    visibility: hidden; // 可见性
+    width: 220px; // 宽度
+    margin: 0; // 外边距
+    padding: 0; // 内边距
+    background-color: $bg; // 背景颜色
+    box-shadow: 0 0 8px rgba(209, 205, 199, .5); // 阴影
+    clip-path: polygon(-100% .5px, 200% .5px, 200% 200%, -100% 200%); // 裁剪路径
+    border-bottom: 1px solid $bordr; // 边框
+    a { // a
+        display: block; // 块级
+        width: 100%; // 宽度
+        height: 100%; // 高度
+        padding: 18px 25px; // 内边距
+    }
+    a:hover { // a:hover
+        background: #F3BA2F; // 背景颜色
+        color: #ffffff; // 颜色
+    }
+}
+
+.dropdown-content ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 180px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  display: none;
+  z-index: 10;
+}
+
+.dropdown-content li {
+  position: relative;
+}
+
+.dropdown-content li:hover > ul {
+  display: block;
+}
+
+.dropdown-content li > a {
+  white-space: nowrap;
+  padding: 8px 16px;
+  display: block;
+}
+
+.dropdown-content ul ul {
+  left: 100%;
+  top: 0;
+}
+
+.dropdown-content ul li ul li a {
+  font-size: 90%;
+  color: #888;
+}
+
+@media screen and (max-width:782px) { // 媒体查询
+    .navbar-left { // 导航栏左侧
+        order: 0; // 顺序
+        flex-grow: 2; // 弹性增长
+        justify-content: space-around; // 间距
+        float: left; // 浮动
+    }
+    .navbar-right { // 导航栏右侧
+        order: 2; // 顺序
+        flex-grow: 1; // 弹性增长
+        justify-content: space-around; // 间距
+        float: right; // 浮动
+        .dropdown-content {
+            margin-left: 0; // 左侧外边距
+        }
+    }
+    .navbar-header { // 导航栏头部
+        order: 1; // 顺序
+    }
+    .nav-container { // 导航栏容器
+        padding: 0; // 内边距
+        display: flex; // 弹性布局
+        justify-content: space-around; // 间距
+    }
+    .navbar-nav .open .dropdown-menu > a { // 导航栏导航下拉菜单a
+        line-height: 40px; // 行高
+    }
+    .dropdown-content { // 下拉内容
+        position: absolute; // 绝对定位
+        top: 0; // 顶部
+        left: 0; // 左侧
+        display: flex; // 弹性布局
+        flex-direction: column; // 弹性布局
+        max-height: 100vh; // 最大高度
+        height: 100vh; // 高度
+        width: 100%; // 宽度
+        text-align: center; // 文本对齐
+        justify-content: center; // 间距
+    }
+    .archives { // 归档
+        display: none; // 显示
+    }
+}
+
+@media (min-width: 768px) { // 媒体查询     
+    .navbar-right { // 导航栏右侧
+        margin-right: 0; // 右侧外边距
+    }
+}

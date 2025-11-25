@@ -1,0 +1,29 @@
+#site_search { // 搜索
+    display: flex; // 弹性布局
+    margin: 9px 15px 7px; // 外边距
+    flex-grow: 1; // 弹性增长
+}
+
+#local-search-input { // 搜索输入
+    display: block; // 块级
+    width: 100%; // 宽度
+    padding: 6px 12px; // 内边距
+    line-height: 1.43; // 行高
+    color: #555; // 颜色
+    font-size: 14px; // 字体大小
+    border: 0; // 边框
+    border-radius: 0; // 圆角
+    background: #fbfbfa; // 背景颜色
+    transition: all .2s; // 过渡
+    box-shadow: inset 3px 3px 8px rgba(209, 205, 199, .25); // 阴影
+    font-family: "Open Sans",-apple-system,BlinkMacSystemFont,"PingFang SC",STHeiti,"Helvetica Neue","Microsoft Yahei",Tahoma,Simsun,sans-serif; // 字体
+    &:focus { // 聚焦
+        outline: 0; // 轮廓
+    }
+}
+
+@media screen and (max-width:782px) { // 媒体查询
+    #site_search { // 搜索
+        display: none; // 显示
+    }
+}

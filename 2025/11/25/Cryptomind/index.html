@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="[object Object]" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>基于Gemini的多Agent自主crypto交易系统</title>
+  <meta name="author" content="Shuang Liang">
+  <meta name="description" content="travel, life, code">
+  
+  
+  <meta property="og:title" content="基于Gemini的多Agent自主crypto交易系统"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="liangshuang&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="liangshuang&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<!-- hexo injector head_end start -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S0J2DBYMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S0J2DBYMW');
+</script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;supercool
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        基于Gemini的多Agent自主crypto交易系统
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2025-11-25T14:13:15.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2025-11-25
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/人工智能杂谈/">人工智能杂谈</a>
+
+
+
+
+
+    </div>
+    <hr>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="Gemini3引爆网络"><a href="#Gemini3引爆网络" class="headerlink" title="Gemini3引爆网络"></a>Gemini3引爆网络</h1><p>最近大家有没有被Gemini3爆炸好的性能刷屏？比如我就刷到有用gemini 0代码24小时内开发了一个十分惊艳的粒子效果语音交互日记APP：🔗：25小时没睡，一句代码不会写，我做了个语音交互应用 <a target="_blank" rel="noopener" href="http://xhslink.com/o/262wmkVh2Wj">http://xhslink.com/o/262wmkVh2Wj</a> </p>
+<p>这样的产品，简直就是视听的双重享受！紧随这位博主的步伐，我也准备开发类似的APP，请期待我的后续文章！！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/%E6%88%AA%E5%B1%8F2025-11-25%2012.07.18.png"></p>
+<h1 id="基于Gemini的多Agent自主crypto交易系统"><a href="#基于Gemini的多Agent自主crypto交易系统" class="headerlink" title="基于Gemini的多Agent自主crypto交易系统"></a>基于Gemini的多Agent自主crypto交易系统</h1><p>话归题目，说到本文标题里写到的基于Gemini的多Agent自主crypto交易系统。这个项目其实我从今年5月就开始接触了，那是一次参加北大举办的ETH 黑客松线下活动，当时我报名参与的小组就是想做一个<strong>基于大模型的crypto自动分析交易AI agent</strong>。</p>
+<p>当时参赛队伍里有几位正在加密交易所工作的前后端程序员，还有一位线上未到现场的负责串联agent部分的个人开发者，还有浙大和香港理工大学的在读硕士生，还有我这个新手小白。当时我们一起开了很多次会议，从agent协议到模型选型，从web3交易链条到trading bot选型，当时我负责trading bot，也就是得到策略后执行交易步骤机器人这个部分的工作。</p>
+<p>比赛时间比较短，当时我们只做了原形demo出来没有完成全部功能的实现，后续大家也四散东西，回归工作和生活，直到…昨晚我刷到了<a target="_blank" rel="noopener" href="https://github.com/164149043/cryptomind">cryptomind</a><br>这个项目！惊为天人，这不就是当时我们想做的吗！！然后这样还在5月份需要多环节多人合作的项目，竟然在11月就完全可以通过大模型0代码的方式来实现了！我再一次被大模型进化的速度震惊。</p>
+<p>接下来让我们一起看看这个项目吧！</p>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/%E6%88%AA%E5%B1%8F2025-11-25%2011.36.04.png"></p>
+<h2 id="核心功能"><a href="#核心功能" class="headerlink" title="核心功能"></a>核心功能</h2><ul>
+<li><strong>多智能体分层架构</strong> : <ul>
+<li><strong>第1层 (分析师)</strong> : 短线、趋势、量化、链上、宏观分析师并行工作，从不同维度解析市场。</li>
+<li><strong>第2层 (经理)</strong> : 技术经理和基本面经理汇总下属报告，解决观点冲突。</li>
+<li><strong>第3层 (风控)</strong> : 风控经理计算盈亏比 (R:R)，拥有“一票否决权”，确保交易安全。</li>
+<li><strong>第4层 (CEO)</strong> : 综合所有信息，输出最终的 JSON 交易指令（开多&#x2F;开空&#x2F;观望）。</li>
+</ul>
+</li>
+<li><strong>实时数据集成</strong>: <ul>
+<li>集成 <strong>Binance API</strong> 获取实时 K 线、订单簿深度（Order Book）和资金费率。</li>
+<li>集成 <strong>Etherscan API</strong> 获取实时 ETH Gas 价格，辅助判断链上热度。</li>
+</ul>
+</li>
+<li><strong>双模型切换</strong>: 用户可以在界面上一键切换使用 Google Gemini 或 DeepSeek 模型。</li>
+<li><strong>交互式 UI</strong>: <ul>
+<li>包含技术指标（SMA, Bollinger Bands）的实时 K 线图表。</li>
+<li>可视化的智能体思维链（Chain of Thought）展示。</li>
+<li>持仓管理模拟: 输入你的持仓成本，AI 会给出针对性的建议。</li>
+</ul>
+</li>
+</ul>
+<h2 id="技术栈"><a href="#技术栈" class="headerlink" title="技术栈"></a>技术栈</h2><ul>
+<li><strong>前端框架</strong> : React 19, TypeScript</li>
+<li><strong>样式库</strong> : Tailwind CSS</li>
+<li><strong>图表库</strong> : Recharts</li>
+<li><strong>AI SDK</strong> : Google GenAI SDK (<code>@google/genai</code>), Fetch API (DeepSeek)</li>
+<li><strong>数据源</strong> : Binance API (Market Data), Etherscan API (On-Chain Data)</li>
+</ul>
+<h2 id="部署与运行"><a href="#部署与运行" class="headerlink" title="部署与运行"></a>部署与运行</h2><h3 id="1-环境准备"><a href="#1-环境准备" class="headerlink" title="1. 环境准备"></a>1. 环境准备</h3><p>确保你的本地环境已安装: </p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://nodejs.org/">Node.js</a> (推荐 v16 或更高版本)</li>
+<li>npm 或 yarn</li>
+</ul>
+<h3 id="2-获取代码"><a href="#2-获取代码" class="headerlink" title="2. 获取代码"></a>2. 获取代码</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> &lt;repository-url&gt;</span><br><span class="line"><span class="built_in">cd</span> cryptomind-ai</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-安装依赖"><a href="#3-安装依赖" class="headerlink" title="3. 安装依赖"></a>3. 安装依赖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-配置-API-Key"><a href="#4-配置-API-Key" class="headerlink" title="4. 配置 API Key"></a>4. 配置 API Key</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm run dev</span><br><span class="line"><span class="comment"># 本地启动命令</span></span><br></pre></td></tr></table></figure>
+
+<p>启动成功后，打开浏览器访问 <code>http://localhost:3000</code>（具体端口请查看控制台输出）。</p>
+<h2 id="使用指南"><a href="#使用指南" class="headerlink" title="使用指南"></a>使用指南</h2><ol>
+<li><strong>选择语言与模型</strong>：点击右上角的语言按钮切换中&#x2F;英，点击“Gemini”或“DeepSeek”切换底层模型。</li>
+<li><strong>输入标的</strong>：在顶部输入框输入交易对（如 <code>BTCUSDT</code>, <code>ETHUSDT</code>, <code>SOLUSDT</code>）。</li>
+<li><strong>设置持仓（可选）</strong>：点击控制面板中的“设置持仓”，输入你当前的开仓价格和方向。AI 会在分析时考虑到你的持仓风险。</li>
+<li><strong>开始运行</strong>：点击右侧的 <strong>“开始市场分析”</strong> 按钮。</li>
+<li><strong>查看结果</strong>：<ul>
+<li>观察右侧的智能体节点依次亮起，它们会实时打字输出分析逻辑。</li>
+<li>等待 CEO 输出最终决策弹窗。</li>
+<li>点击右上角的设置图标，可以填入 <strong>Etherscan Key</strong> 以启用链上数据分析，或调整每个智能体的“随机性”（Temperature）。</li>
+</ul>
+</li>
+</ol>
+<h2 id="目录结构说明"><a href="#目录结构说明" class="headerlink" title="目录结构说明"></a>目录结构说明</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/</span><br><span class="line">├── components/      # UI 组件 (Header, Chart, AgentNode, Modals 等)</span><br><span class="line">├── hooks/           # 核心业务逻辑 Hooks (useAgentWorkflow)</span><br><span class="line">├── services/        # API 服务层</span><br><span class="line">│   ├── binanceService.ts  # 币安行情数据</span><br><span class="line">│   ├── etherscanService.ts # 链上 Gas 数据</span><br><span class="line">│   ├── geminiService.ts    # Google Gemini 调用封装</span><br><span class="line">│   ├── deepseekService.ts  # DeepSeek 调用封装</span><br><span class="line">│   └── prompts.ts          # AI 提示词工程与技术指标计算</span><br><span class="line">├── types.ts         # TypeScript 类型定义</span><br><span class="line">├── locales.ts       # 多语言翻译文件</span><br><span class="line">├── constants.ts     # 智能体角色定义与默认配置</span><br><span class="line">├── App.tsx          # 主应用入口组件</span><br><span class="line">└── index.tsx        # React 挂载点</span><br></pre></td></tr></table></figure>
+<h2 id="使用效果"><a href="#使用效果" class="headerlink" title="使用效果"></a>使用效果</h2><p>输入当前交易持仓</p>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/%E6%88%AA%E5%B1%8F2025-11-25%2011.35.39.png"></p>
+<p>接下来就是等待专业团队为你生成买入&#x2F;观望&#x2F;卖出的交易策略建议</p>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/%E6%88%AA%E5%B1%8F2025-11-25%2011.44.06.png"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/supercooledith/website_picture@main/3631764056228_.pic_hd.jpg"></p>
+<h2 id="执行交易机器人"><a href="#执行交易机器人" class="headerlink" title="执行交易机器人"></a>执行交易机器人</h2><p>当时我在黑客松队伍里负责的就是执行交易机器人这个部分，我们做了几个横向交易机器人调研，如Freqtrade, Jesse, Hummingbot，VectorBT, Backtrader，Trading Strategy等等。</p>
+<p>hummingbot完全免费开源，代码透明，完全可控；本地运行，API 更安全，还具有深度定制可能，并且专门为交易所设计<br>Hummingbot 对 Binance 的支持最完善，与 Binance API 深度集成，连接稳定，特别适合在 Binance 这种高流动性交易所运行做市策略，如跨市套利 (Cross-exchange Market Making)、纯做市 (Pure Market Making) 、现货-期货套利 (Spot-Futures Arbitrage)等等。</p>
+<p>总结来说，Hummingbot 的优势：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cost = <span class="string">&quot;免费&quot;</span></span><br><span class="line">transparency = <span class="string">&quot;完全开源&quot;</span></span><br><span class="line">security = <span class="string">&quot;本地运行&quot;</span></span><br><span class="line">customization = <span class="string">&quot;无限可能&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>hummingbot：<a target="_blank" rel="noopener" href="https://hummingbot.org/">https://hummingbot.org</a><br><a target="_blank" rel="noopener" href="https://hummingbot.org/docs/#strategies">https://hummingbot.org/docs/#strategies</a></p>
+<h3 id="生成BINANCE-API-密钥"><a href="#生成BINANCE-API-密钥" class="headerlink" title="生成BINANCE API 密钥"></a>生成BINANCE API 密钥</h3><p><a target="_blank" rel="noopener" href="https://hummingbot.org/exchanges/binance/#generate-api-keys">https://hummingbot.org/exchanges/binance/#generate-api-keys</a></p>
+<p>SHIFT + RMB（鼠标右键）</p>
+<h3 id="将-API-密钥连接到-Hummingbot"><a href="#将-API-密钥连接到-Hummingbot" class="headerlink" title="将 API 密钥连接到 Hummingbot"></a>将 API 密钥连接到 Hummingbot</h3><p>在 Hummingbot 中，运行我们要连接的交易所的 connect 命令。在这种情况下，对于 Binance，请使用以下命令 -</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">connect binance</span><br></pre></td></tr></table></figure>
+
+<p>进一步会输入密钥：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; connect binance</span><br><span class="line"></span><br><span class="line">Enter your binance API key &gt;&gt;&gt;</span><br><span class="line">Enter your binance secret key &gt;&gt;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>如果连接成功会显示：You are now connected to binance</p>
+<h3 id="创建交易策略脚本配置"><a href="#创建交易策略脚本配置" class="headerlink" title="创建交易策略脚本配置"></a>创建交易策略脚本配置</h3><p>首先，我们创建一个定义关键策略参数的脚本配置文件。</p>
+<p>启动 Hummingbot 并执行以下命令以生成您的脚本配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">create --script-config v2_directional_rsi</span><br></pre></td></tr></table></figure>
+<p>此命令使用本地 &#x2F;scripts 目录中的可配置脚本子集自动完成。</p>
+<p>系统将提示您指定策略参数，然后将其保存在 conf&#x2F;scripts 目录下的 YAML 文件中：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">Exchange <span class="built_in">where</span> the bot will trade &gt;&gt; hyperliquid_perpetual</span><br><span class="line">Trading pair <span class="built_in">where</span> the bot will trade &gt;&gt; ETH-USD</span><br><span class="line">Candles exchange used to calculate RSI &gt;&gt; binance_perpetual</span><br><span class="line">Candles trading pair used to calculate RSI &gt;&gt; ETH-USDT</span><br><span class="line">Candle interval (e.g. 1m <span class="keyword">for</span> 1 minute) &gt;&gt; 1m</span><br><span class="line">Number of candles used to calculate RSI (e.g. 60) &gt;&gt; 60</span><br><span class="line">RSI lower bound to enter long position (e.g. 30) &gt;&gt; 30</span><br><span class="line">RSI upper bound to enter short position (e.g. 70) &gt;&gt; 70</span><br><span class="line">Order amount <span class="keyword">in</span> quote asset &gt;&gt; 30</span><br><span class="line">Leverage (e.g. 10 <span class="keyword">for</span> 10x) &gt;&gt; 10</span><br><span class="line">Position mode (HEDGE/ONEWAY) &gt;&gt; ONEWAY</span><br><span class="line">Enter a new file name <span class="keyword">for</span> your configuration &gt;&gt; conf_v2_directional_rsi_1.yml</span><br></pre></td></tr></table></figure>
+<h4 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Enter the total amount <span class="keyword">in</span> quote asset to use <span class="keyword">for</span> trading (e.g., 1000): &gt;&gt;&gt; 100</span><br><span class="line">Enter the connector name (e.g..binance perpetual): &gt;&gt;&gt; binance perpetual</span><br><span class="line">Enter the trading pair to trade on(e.g., WLD-USDT): &gt;&gt;&gt; ETH-USDT </span><br><span class="line">Enter a comma-separated list of buy spreads (e.g., <span class="string">&#x27;0.01, 0.02&#x27;</span>): &gt;&gt;&gt; 0.01,0.02</span><br><span class="line">Enter a comma-separated list of sell spreads (e.g., <span class="string">&#x27;0.01, 0.02&#x27;</span>): &gt;&gt;&gt; 0.01,0.02</span><br><span class="line">Enter a comma-separated list of buy amounts as percentages (e.g., <span class="string">&#x27;58, 50&#x27;</span>), or leave blank to distribute equally: &gt;&gt;&gt; 20,80</span><br><span class="line">Enter a comma-separated list of sell amounts as percentages (e.g., <span class="string">&#x27;50, 50&#x27;</span>), or leave blank to distribute equally: &gt;&gt;&gt; 30,7</span><br><span class="line">Enter the refresh <span class="keyword">time</span> <span class="keyword">in</span> seconds <span class="keyword">for</span> executors (e.g., 300 <span class="keyword">for</span> 5 minutes): &gt;&gt;&gt; 60</span><br><span class="line">Enter the cooldown <span class="keyword">time</span> <span class="keyword">in</span> seconds between replacing an executor that traded (e.g., 15): &gt;&gt;&gt; 15</span><br><span class="line">Enter the leverage to use <span class="keyword">for</span> trading (e.g., 20 <span class="keyword">for</span> 20x leverage). Set it to 1 <span class="keyword">for</span> spot trading: &gt;&gt;&gt; 20</span><br><span class="line">Enter the stop loss （as a decimal ,e.g.,0.03 <span class="keyword">for</span> 3%): &gt;&gt;&gt; 0.03</span><br><span class="line">Enter the take profit （as a decimal ,e.g.,0.02 <span class="keyword">for</span> 2%): &gt;&gt;&gt; 0.02</span><br><span class="line">Enter the <span class="built_in">limit</span> <span class="keyword">in</span> seconds (e.g., 2700 <span class="keyword">for</span> 45 minutes): &gt;&gt;&gt; 2700</span><br><span class="line">Enter the order <span class="built_in">type</span> <span class="keyword">for</span> take profit (LIMIT/MARKET): &gt;&gt;&gt; OrderType.LIMIT</span><br><span class="line">Enter the trailing stop as activation_price,trailing_delta (e.g., 0.015,0.003): &gt;&gt;&gt; 0.013, 0.003</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li><p>总报价资产金额</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter the total amount <span class="keyword">in</span> quote asset to use <span class="keyword">for</span> trading (e.g., 1000): &gt;&gt;&gt; 100</span><br></pre></td></tr></table></figure>
+<p>含义：用于交易的报价资产总量（如USDT）。此处输入100表示使用100 USDT作为交易本金。<br>用途：控制整体交易规模。</p>
+</li>
+<li><p>交易所名称</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter the connector name (e.g., binance perpetual): &gt;&gt;&gt; binance perpetual</span><br></pre></td></tr></table></figure>
+<p>含义：交易平台名称（如币安永续合约）。<br>用途：指定策略运行的交易所类型（如现货、永续合约等）。</p>
+</li>
+<li><p>交易对</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter the trading pair to trade on (e.g., WLD-USDT): &gt;&gt;&gt; ETH-USDT</span><br></pre></td></tr></table></figure>
+<p>含义：交易标的的货币对。此处输入ETH-USDT表示交易以太坊对USDT。<br>用途：确定策略操作的资产组合。</p>
+</li>
+<li><p>买入价差列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter buy spreads (e.g., <span class="string">&#x27;0.01, 0.02&#x27;</span>): &gt;&gt;&gt; 0.01,0.02</span><br></pre></td></tr></table></figure>
+<p>含义：相对于当前市场价的挂单买入价差（如0.01表示低于市价1%挂单）。<br>用途：设置多档买入订单的价差，实现分批建仓。</p>
+</li>
+<li><p>卖出价差列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter sell spreads (e.g., <span class="string">&#x27;0.01, 0.02&#x27;</span>): &gt;&gt;&gt; 0.01,0.02</span><br></pre></td></tr></table></figure>
+<p>含义：相对于当前市场价的挂单卖出价差（如0.01表示高于市价1%挂单）。<br>用途：设置多档卖出订单的价差，实现分批止盈。</p>
+</li>
+<li><p>买入资金分配比例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter buy amounts as percentages (e.g.Enter sell spreads (e.g., <span class="string">&#x27;0.01, 0.02&#x27;</span>): &gt;&gt;&gt; 0.01,0.02</span><br></pre></td></tr></table></figure>
+<p>含义：分配给每档买入订单的资金比例。输入20,80表示第一档分配20%资金，第二档分配80%。<br>注意：若留空则等分资金。</p>
+</li>
+<li><p>卖出资金分配比例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter sell amounts as percentages (e.g., <span class="string">&#x27;50,50&#x27;</span>): &gt;&gt;&gt; 30,70</span><br></pre></td></tr></table></figure>
+<p>含义：分配给每档卖出订单的持仓比例。输入30,7表示第一档卖出30%持仓，第二档卖出70%。<br>注意：若总和超过100%可能导致多次卖出同一仓位。</p>
+</li>
+<li><p>策略刷新时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter refresh <span class="keyword">time</span> <span class="keyword">in</span> seconds (e.g., 300): &gt;&gt;&gt; 60</span><br></pre></td></tr></table></figure>
+<p>含义：策略检查市场状态和订单的间隔时间（秒）。此处60秒刷新一次。<br>用途：控制策略的响应频率。</p>
+</li>
+<li><p>交易冷却时间</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter cooldown <span class="keyword">time</span> <span class="keyword">in</span> seconds (e.g., 15): &gt;&gt;&gt; 15</span><br></pre></td></tr></table></figure>
+<p>含义：同一执行器（如订单组）完成交易后的冷却时间（秒）。<br>用途：防止因频繁撤单&#x2F;下单触发交易所风控。</p>
+</li>
+<li><p>杠杆倍数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter leverage (e.g., 20): &gt;&gt;&gt; 20</span><br></pre></td></tr></table></figure>
+<p>含义：交易使用的杠杆倍数。输入20表示20倍杠杆。<br>注意：设置为1时为现货交易（无杠杆）。</p>
+</li>
+<li><p>止损比例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter stop loss (e.g., 0.03 <span class="keyword">for</span> 3%): &gt;&gt;&gt; 0.03</span><br></pre></td></tr></table></figure>
+<p>含义：触发止损的亏损比例（如0.03表示亏损3%时止损）。<br>用途：控制单笔交易的最大亏损。</p>
+</li>
+<li><p>止盈比例</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter take profit (e.g., 0.02 <span class="keyword">for</span> 2%): &gt;&gt;&gt; 0.02</span><br></pre></td></tr></table></figure>
+<p>含义：触发止盈的盈利比例（如0.02表示盈利2%时止盈）。<br>用途：锁定单笔交易的预期利润。</p>
+</li>
+<li><p>时间限制</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter <span class="built_in">limit</span> <span class="keyword">in</span> seconds (e.g., 2700): &gt;&gt;&gt; 2700</span><br></pre></td></tr></table></figure>
+<p>含义：订单或策略的有效时间（秒）。此处2700秒（45分钟）后自动取消未成交订单。<br>用途：防止挂单长期未成交占用资金。</p>
+</li>
+<li><p>止盈订单类型</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter order <span class="built_in">type</span> <span class="keyword">for</span> take profit (LIMIT/MARKET): &gt;&gt;&gt; OrderType.LIMIT</span><br></pre></td></tr></table></figure>
+<p>含义：止盈订单类型。LIMIT为限价单（按设定价格成交），MARKET为市价单（即时成交）。<br>区别：限价单可能不成交，但价格确定；市价单保证成交，但价格不确定。</p>
+</li>
+<li><p>追踪止损参数</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Enter trailing stop (e.g., 0.015,0.003): &gt;&gt;&gt; 0.013, 0.003</span><br></pre></td></tr></table></figure>
+<p>含义：追踪止损的激活价格和追踪步长。输入格式为activation_price,trailing_delta。<br>0.013：当价格从最高点回撤1.3%时激活追踪止损。<br>0.003：激活后，止损线会跟随价格最高点保持0.3%的距离。<br>用途：在趋势行情中保护利润。</p>
+</li>
+</ol>
+<h3 id="运行脚本"><a href="#运行脚本" class="headerlink" title="运行脚本"></a>运行脚本</h3><p>执行以下命令以启动脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">start --script v2_directional_rsi.py --conf conf_v2_directional_rsi_1.yml</span><br></pre></td></tr></table></figure>
+
+<p>该策略进行一系列市场检查并初始化市场数据提供商。之后，它应该开始为两对下订单。</p>
+<h3 id="检查状态和性能"><a href="#检查状态和性能" class="headerlink" title="检查状态和性能"></a>检查状态和性能</h3><p>运行 Status 命令来查看正在运行的策略的状态 （资产余额、活动订单和持仓）：<br>有交易后，您可以使用 History 来查看您的机器人的表现。</p>
+<h3 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a>下一步</h3><p>我们鼓励您查看 Dashboard，这是 Hummingbot 用户的新入口点，将在 Hummingbot 2.0 发布会上正式推出。<br>dashboard：<a target="_blank" rel="noopener" href="https://hummingbot.org/blog/hummingbot-dashboard-quickstart-guide/#configuring-strategies">https://hummingbot.org/blog/hummingbot-dashboard-quickstart-guide/#configuring-strategies</a></p>
+
+
+  </article>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    <span id="busuanzi_container_page_pv">
+      本文阅读量：<span id="busuanzi_value_page_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+    </span>
+  </div>
+
+<!-- 
+    
+        <div id="disqus_thread"></div>
+        <script>
+
+        var disqus_config = function () {
+        this.page.url = 'http://example.com/2025/11/25/Cryptomind/index.html';
+        this.page.identifier = ;
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//supercool-2.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+    
+ -->
+
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://supercool-2.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+ <!-- 
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'http://example.com/2025/11/25/Cryptomind/';
+            this.page.identifier = '2025/11/25/Cryptomind/';
+            this.page.title = '基于Gemini的多Agent自主crypto交易系统';
+        };
+        
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://supercool-2.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>请启用JavaScript查看<a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">Disqus评论</a></noscript>
+ -->
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        liangshuang 1999-2025
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+var disqus_shortname = 'supercool-2';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://example.com%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

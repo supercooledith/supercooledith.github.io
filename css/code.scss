@@ -1,0 +1,126 @@
+$bg: #F1F3F5;
+$theme: #555;
+$c1: #F3BA2F;
+$c2: #F3BA2F;
+$c3: #F3BA2F;
+$c4: #F3BA2F;
+$c5: #F3BA2F;
+$c6: #F3BA2F;
+$c7: #5a5050;
+
+figure { // 代码块
+    overflow-x: auto; // 代码块超出宽度时出现滚动条
+}
+
+td.gutter { // 代码块左侧行号
+    width: 50px; // 代码块左侧行号宽度
+}
+
+code, // 代码
+pre { // 代码块
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; // 代码字体
+}
+
+pre { // 代码块
+    font-size: 14px; // 代码块字体大小
+    line-height: 2em; // 代码块行高
+    margin-bottom: 0; // 代码块底部外边距
+    padding: 15px; // 代码块内边距
+    border: 0; // 代码块边框
+    border-radius: 0px; // 代码块圆角
+    tab-size: 4; // 代码块缩进
+    color: $theme; // 代码块颜色
+    background: transparent; // 代码块背景
+    background-size: auto 4em; // 代码块背景大小
+    background-origin: content-box; // 代码块背景原点
+    background-image: linear-gradient($bg 50%, transparent 0); // 代码块背景图片
+    .comment { // 代码块注释
+        color: lighten($theme, 30%); // 代码块注释颜色
+    }
+    .line { // 代码块行
+        height: 30px; // 代码块行高
+    }
+}
+
+code { // 代码
+    word-wrap: break-word; // 代码换行
+    line-height: 2em; // 代码行高
+    font-size: .97em; // 代码字体大小
+    color: $theme; // 代码颜色
+    background: $bg; // 代码背景
+}
+
+pre .variable, // 代码变量
+pre .attribute, // 代码属性
+pre .tag, // 代码标签
+pre .regexp, // 代码正则表达式
+pre .ruby .constant, // 代码常量
+pre .xml .tag .title, // 代码标签标题
+pre .xml .pi, // 代码pi
+pre .xml .doctype, // 代码doctype
+pre .html .doctype, // 代码html doctype
+pre .css .id, // 代码id
+pre .css .class, // 代码class
+pre .css .pseudo { // 代码伪类
+    color: $c1; // 代码颜色
+}
+
+pre .keyword, // 代码关键词
+pre .javascript .function { // 代码javascript函数
+    color: $c2; // 代码颜色
+}
+
+pre .number, // 代码数字
+pre .preprocessor, // 代码预处理器
+pre .built_in, // 代码内置
+pre .literal, // 代码字面量
+pre .params, // 代码参数
+pre .constant { // 代码常量
+    color: $c3; // 代码颜色
+}
+
+pre .ruby .class .title, // 代码ruby类标题
+pre .css .rules .attribute { // 代码css规则属性
+    color: $c4; // 代码颜色
+}
+
+pre .title, // 代码标题
+pre .css .hexcolor { // 代码css十六进制颜色
+    color: $c5; // 代码颜色
+}
+
+pre .string, // 代码字符串
+pre .value, // 代码值
+pre .inheritance, // 代码继承
+pre .header, // 代码头
+pre .ruby .symbol, // 代码ruby符号
+pre .xml .cdata { // 代码xml cdata
+    color: $c6; // 代码颜色
+}
+
+pre .function, // 代码函数
+pre .python .decorator, // 代码python装饰器
+pre .python .title, // 代码python标题
+pre .ruby .function .title, // 代码ruby函数标题
+pre .ruby .title .keyword, // 代码ruby标题关键词
+pre .perl .sub, // 代码perl子
+pre .javascript .title, // 代码javascript标题
+pre .coffeescript .title { // 代码coffeescript标题
+    color: $c7; // 代码颜色
+}
+
+@media screen and (max-width:782px) { // 媒体查询
+    figure { // 代码块
+        width: 110%; // 代码块宽度
+        margin-left: -5%; // 代码块左侧外边距
+    }
+    pre { // 代码块
+        font-size: 1.2rem; // 代码块字体大小
+        line-height: 18px; // 代码块行高
+        padding: 10px; // 代码块内边距
+        background-size: auto 36px; // 代码块背景大小
+    }
+    code { // 代码
+        line-height: 1.9em; // 代码行高
+    }
+}

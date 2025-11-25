@@ -1,0 +1,468 @@
+@import "navigator";
+@import "search";
+@import "posts";
+@import "pager";
+@import "footer";
+@import "code";
+@import "animation";
+@import "toc";
+$background: #fdfefe;
+$theme: #F3BA2F;
+$para: #333; // 正文颜色
+$lighter: #666; // 次要颜色
+$lightest: #999; // 最次要颜色
+$big: 32px; // 大标题
+$mid: 26px; // 中标题
+$small: 18px; // 小标题
+::selection { // 选中颜色
+    background: lighten($theme, 40%);
+}
+
+::-moz-selection { // 选中颜色
+    background: lighten($theme, 40%);
+}
+
+::-webkit-selection { // 选中颜色
+    background: lighten($theme, 40%);
+}
+
+* {
+    -webkit-box-sizing: border-box; // 盒子模型
+    -moz-box-sizing: border-box; // 盒子模型
+    box-sizing: border-box // 盒子模型
+}
+
+html {
+    font-family: sans-serif; // 字体                
+    -webkit-text-size-adjust: 100%; // 字体大小
+    -ms-text-size-adjust: 100% // 字体大小
+}
+
+h1, // 标题
+h2, // 标题
+h3, // 标题
+h4, // 标题
+h5, // 标题
+h6 {
+    font-weight: bold; // 字体加粗
+    margin: 2.36em 0 1em; // 标题间距
+    font-size: $mid; // 标题大小
+    color: #F3BA2F; //#1a1a1a; // 标题颜色
+}
+
+h1 {
+    font-size: $big; // 标题大小
+}
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans|Open+Sans+Condensed:300,700|Pacifico); // 字体    
+
+.index-title, // 标题
+.navbar-brand, // 标题
+.section-year, // 标题
+.archive-title, // 标题
+.dropdown-content, // 标题
+.pager, // 标题
+.page-title, // 标题
+h1, // 标题
+h2, // 标题
+h3, // 标题
+h4, // 标题
+h5, // 标题
+h6, // 标题
+.toc, // 标题
+.index-meta, // 标题
+.meta, // 标题
+.description, // 标题
+.busuanzi, // 标题
+.archive-num { // 标题
+    font-family: 'Pacifico', Futura, AvenirNext, Avenir, sans-serif ; //  字体
+}
+
+article,figure,footer,nav,section { // 显示
+    display: block ; //block用于需要独占一行的结构（如页眉、页脚、卡片容器）, inline用于文本内修饰（如加粗、链接）或小图标。, inline-block用于水平菜单、按钮组、栅格布局等。
+}
+
+body {
+    overflow-x: hidden; // 隐藏水平滚动条
+    font-size: $small; // 字体大小
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC",STHeiti,"Helvetica Neue","Microsoft Yahei",Tahoma,Simsun,sans-serif; // 字体
+    background-color: $background; // 背景颜色
+    margin: 0; // 外边距
+    padding: 0; // 内边距
+    vertical-align: baseline; // 垂直对齐
+    text-rendering: optimizeLegibility; // 文本渲染
+    -webkit-font-smoothing: antialiased; // 字体平滑
+    text-size-adjust: 100%; // 文本大小调整
+    -moz-osx-font-smoothing: grayscale; // 字体平滑
+    -webkit-tap-highlight-color: transparent; // 点击高亮颜色
+    word-wrap: break-word; // 单词换行
+}
+
+.archive-time { // 归档时间
+    background-color: $background; // 背景颜色
+}
+
+.index-title, // 标题
+.archive-link, // 标题
+.dropdown-content, // 标题
+.index-meta, // 标题
+.current { // 标题
+    font-weight: 700 !important; // 字体加粗
+}
+
+p, // 段落
+.excerpt, // 段落
+.meta, // 段落
+.post li { // 段落
+    font-weight: 400; // 字体加粗
+}
+
+.navbar-brand, // 标题
+.right-foot, // 标题
+.pager { // 标题
+    font-size: $mid // $small; // 字体大小 small、mid、big
+}
+
+.busuanzi, // 标题
+.behind, // 标题
+.dropdown-content, // 标题
+.meta { // 标题
+    font-weight: 300; // 字体加粗
+}
+
+a { // 链接
+    background-color: transparent; // 背景颜色
+    text-decoration: none // 文本装饰
+}
+
+a, // 链接
+a:hover, // 链接
+a:focus { // 链接
+    color: $theme; // 颜色
+}
+
+p { // 段落
+    margin: .7em 0; // 外边距
+    color: $para; // 颜色
+    padding: 0; // 内边距
+    border: 0; // 边框
+    outline: 0; // 轮廓
+    background: transparent; // 背景颜色
+    text-justify: auto; // 文本对齐
+}
+
+.post ul li { // 列表
+    position: relative; // 位置
+    line-height: 2em; // 行高
+    color: lighten($para, 10%); // 颜色
+}
+
+.post ul li:before { // 列表
+    position: absolute; // 位置
+    top: 0; // 顶部
+    left: -1em; // 左边
+    content: '·'; // 内容
+}
+
+ul li, // 列表
+.toc li { // 列表
+    list-style-type: none; // 列表样式类型
+    list-style: none; // 列表样式
+}
+
+ol, ul { // 列表
+    margin-top: 0; // 上边距
+    margin-bottom: 10px; // 下边距
+}
+
+ul { // 列表
+    padding-inline-start: 40px; // 内边距
+}
+
+ul.posts { // 列表
+    padding: 52px 52px 0; // 内边距
+}
+
+.behind { // 列表
+    padding: 28px 0 0; // 内边距
+    word-spacing: 2px; // 单词间距
+    color: $lighter; // 颜色
+    line-height: 1; // 行高
+    .description { // 列表
+        font-size: $mid; // 字体大小
+        color: $lightest; // 颜色
+        font-weight: 300; // 字体加粗
+    }
+}
+
+.back { // 返回
+    position: fixed; // 位置
+    top: 28px; // 顶部
+    left: 5%; // 左边
+    height: 22px; // 高度
+    width: 22px; // 宽度
+}
+
+.center, // 中心
+.behind, // 列表
+.archive-title, // 标题
+.archive-num, // 标题
+.picture-container { // 列表
+    text-align: center; // 文本对齐
+}
+
+.meta { // 列表
+    font-size: $small; // 字体大小
+    color: $lighter; // 颜色
+    padding-top: 13px; // 上边距
+    a { // 链接
+        color: lighten($theme, 10%); // 颜色
+    }
+}
+
+.black-color { // 黑色
+    color: black; // 颜色
+}
+
+.archive-num { // 归档数量
+    padding: 10px 0; // 内边距
+    color: $lighter; // 颜色
+}
+
+.archive-list { // 归档列表
+    padding: 10px 0; // 内边距
+}
+
+.archive-item { // 归档项目
+    display: flex; // 显示
+    flex-direction: row; // 方向
+    align-items: center; // 对齐
+    justify-content: center; // 对齐
+}
+
+.archive-time { // 归档时间
+    font-size: $small; // 字体大小
+    width: 40%; // 宽度
+    margin-right: 20px; // 右边距
+    text-align: right; // 文本对齐
+    color: lighten($lighter, 10%); // 颜色
+}
+
+.archive-detail { // 归档详情
+    font-size: $small; // 字体大小
+    width: 90%; // 宽度
+    padding: 0 20px; // 内边距
+    word-wrap: break-word; // 单词换行
+    border-left: 1px solid lighten($lighter, 10%); // 左边框
+}
+
+article { // 文章
+    padding: 40px 0; // 内边距
+}
+
+blockquote { // 引用
+    margin: 30px 0; // 外边距
+    font-style: italic; // 字体样式
+    padding: 0; // 内边距
+    padding-left: 3rem; // 左边距
+    border: 0; // 边框
+    p { // 段落
+        color: #1a1a1a;
+        text-indent: 0;
+        line-height: 1.6;
+        font-size: $mid;
+    }
+}
+
+table { // 表格
+    width: 100%; // 宽度
+}
+
+img, // 图片
+object, // 对象
+article.post iframe, // 视频
+video { // 视频
+    position: relative; // 位置
+    left: 50%; // 左边
+    transform: translateX(-50%); // 转换
+    max-width: 100vh; // 最大宽度
+    max-height: 62vh; // 最大高度
+}
+
+img { // 图片
+    display: block; // 显示
+    height: auto; // 高度
+    position: relative; // 位置
+    left: 50%; // 左边
+    max-width: 100%; // 最大宽度
+    -webkit-transform: translateX(-50%); // 转换
+    -ms-transform: translateX(-50%); // 转换
+    transform: translateX(-50%); // 转换
+}
+
+.busuanzi { // 统计
+    font-size: $small; // 字体大小
+    line-height: $small; // 行高
+    margin: 30px 0; // 外边距
+    color: $lighter; // 颜色
+    span {
+        margin: 0 10px; // 添加间距
+        &:first-child {
+            margin-left: 0; // 第一个元素不需要左边距
+        }
+    }
+}
+
+.index-meta { // 索引元数据
+    vertical-align: middle; // 垂直对齐
+    line-height: 1.2; // 行高
+}
+
+.main-ctnr { // 主容器
+    max-width: 750px; // 最大宽度
+    position: relative; // 位置
+    left: calc(50% - 375px) // 左边
+}
+
+.standard, // 标准
+.archive, // 归档
+.archive-title, // 标题
+#disqus_thread { // 评论
+    padding: 0 6% 0 7%; // 内边距
+}
+
+.archive-title { // 归档标题
+    padding-top: 52px; // 上边距
+}
+
+p, // 段落
+.post li { // 段落
+    font-size: $small; // 字体大小
+    line-height: 1.9em; // 行高
+}
+
+hr { // 水平线
+    height: 0; // 高度
+    -webkit-box-sizing: content-box; // 盒子模型
+    -moz-box-sizing: content-box; // 盒子模型
+    box-sizing: content-box; // 盒子模型
+    margin-top: 20px; // 上边距
+    margin-bottom: 20px; // 下边距
+    border: 0; // 边框
+    border-top: 1px solid #eee; // 上边框
+}
+
+hr:last-child { // 最后一个水平线
+    border-color: transparent ; // 边框颜色
+}
+
+@media screen and (max-width:782px) { // 媒体查询
+    .main-ctnr { // 主容器
+        left: 0; // 左边
+    }
+    .back, // 返回
+    li.archives, // 列表
+    .busuanzi { // 统计
+        display: block；//none; // 隐藏 none； 显示 block 
+    }
+    .behind { // 列表
+        padding: 12px 0; // 内边距
+        opacity: 0; // 透明度
+    }
+    .archive-title { // 归档标题
+        font-size: $big; // 字体大小
+    }
+    ul.posts { // 列表
+        padding: 52px 26px 0; // 内边距
+    }
+    .post ul { // 列表
+        margin-left: -10px; // 左边距   
+    }
+}
+
+.navbar .navbar-brand,
+.navbar-brand {
+    font-family: "Pacifico", Arial, sans-serif !important;
+}
+
+nav .navbar-brand {
+    font-family: "Pacifico", Arial, sans-serif !important;
+}
+
+.categories-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.categories-dropdown .dropdown-content.categories-menu {
+  display: none !important;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  min-width: 200px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  z-index: 20;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.categories-dropdown:hover > .dropdown-content.categories-menu {
+  display: block !important;
+}
+
+.category-menu-item {
+  position: relative;
+}
+
+.category-menu-item > a {
+  display: block;
+  padding: 12px 20px;
+  color: #F3BA2F;
+  background: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.category-menu-item > a:hover {
+  background: #F3BA2F;
+  color: #fff;
+}
+
+.dropdown-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: 0;
+  min-width: 220px;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(209,205,199,.15);
+  z-index: 30;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.category-menu-item:hover > .dropdown-submenu {
+  display: block;
+}
+
+.dropdown-submenu li > a {
+  padding: 12px 20px;
+  color: #F3BA2F;
+  background: transparent;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.dropdown-submenu li > a:hover {
+  background: #F3BA2F;
+  color: #fff;
+}
+
+.read-info {
+  color: #888;
+  font-size: 0.95em;
+  margin-bottom: 1em;
+}
