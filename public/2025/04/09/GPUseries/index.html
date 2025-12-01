@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="[object Object]" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>GPU性能比较</title>
+  <meta name="author" content="Shuang Liang">
+  <meta name="description" content="travel, life, code">
+  
+  
+  <meta property="og:title" content="GPU性能比较"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="liangshuang&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="liangshuang&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<!-- hexo injector head_end start -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S0J2DBYMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S0J2DBYMW');
+</script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;supercool
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        GPU性能比较
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2025-04-09T04:13:15.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2025-04-09
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/人工智能杂谈/">人工智能杂谈</a>
+
+
+
+
+
+    </div>
+    <hr>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="GPU-性能比较"><a href="#GPU-性能比较" class="headerlink" title="GPU 性能比较"></a>GPU 性能比较</h1><p>A100&#x2F;A800&#x2F;H100&#x2F;H800&#x2F;910B&#x2F;H200&#x2F;H20&#x2F;L20&#x2F;4090比较</p>
+<div style="font-size: 14px;width:100%;overflow-x:auto;">
+
+<table style="width:1800px;">
+  <tr>
+    <td>
+
+<table>
+<thead>
+<tr>
+<th align="center"></th>
+<th align="center">A800 (PCIe&#x2F;SXM）</th>
+<th align="center">A100 (PCIe&#x2F;SXM)</th>
+<th align="center">H800 (PCIe&#x2F;SXM)</th>
+<th align="center">H100 (PCIe&#x2F;SXM)</th>
+<th align="center">H200 (PCIe&#x2F;SXM)</th>
+<th align="center">H20</th>
+<th align="center">L20 (PCIe)</th>
+<th align="center">4090D</th>
+<th align="center">5090D</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Year</td>
+<td align="center">2022</td>
+<td align="center">2022</td>
+<td align="center">2023</td>
+<td align="center">2024</td>
+<td align="center">2024</td>
+<td align="center">2023</td>
+<td align="center">2023</td>
+<td align="center">2022</td>
+<td align="center">2024</td>
+</tr>
+<tr>
+<td align="center">Manufacturing</td>
+<td align="center">7nm</td>
+<td align="center">5nm</td>
+<td align="center">7nm</td>
+<td align="center">5nm</td>
+<td align="center">5nm</td>
+<td align="center">5nm</td>
+<td align="center">5nm</td>
+<td align="center">5nm</td>
+<td align="center">5nm</td>
+</tr>
+<tr>
+<td align="center">Architecture</td>
+<td align="center">Ampere</td>
+<td align="center">Ampere</td>
+<td align="center">Hopper <br>(阉割)</td>
+<td align="center">Hopper</td>
+<td align="center">Hopper</td>
+<td align="center">Hopper</td>
+<td align="center">Ada Lovelace</td>
+<td align="center">Ada Lovelace</td>
+<td align="center">40MB</td>
+</tr>
+<tr>
+<td align="center">Max Power</td>
+<td align="center">300&#x2F;400 W</td>
+<td align="center">300&#x2F;400 W</td>
+<td align="center">300-350&#x2F;700W</td>
+<td align="center">350-400&#x2F;700 W</td>
+<td align="center">600&#x2F;700W</td>
+<td align="center">400W</td>
+<td align="center">350W</td>
+<td align="center">425W</td>
+<td align="center">575W</td>
+</tr>
+<tr>
+<td align="center">CUDA</td>
+<td align="center">8.0</td>
+<td align="center">8.0</td>
+<td align="center">9.0</td>
+<td align="center">9.0</td>
+<td align="center">9.0</td>
+<td align="center">-</td>
+<td align="center">8.9</td>
+<td align="center">9.0</td>
+<td align="center">12.0</td>
+</tr>
+<tr>
+<td align="center">GPU Mem</td>
+<td align="center">80G HBM2e</td>
+<td align="center">80G HBM2e</td>
+<td align="center">80G HBM3</td>
+<td align="center">64G&#x2F;94G&#x2F;80G HBM3</td>
+<td align="center">141GB HBM3e</td>
+<td align="center">96G HBM3</td>
+<td align="center">48G GDDR6</td>
+<td align="center">24GB GDDR6X</td>
+<td align="center">32 GB GDDR7</td>
+</tr>
+<tr>
+<td align="center">GPU Mem BW</td>
+<td align="center">2TB&#x2F;s</td>
+<td align="center">1.9&#x2F;2TB&#x2F;s</td>
+<td align="center">2TB&#x2F;s</td>
+<td align="center">3.9&#x2F;3.35 TB&#x2F;s</td>
+<td align="center">4.8 TB&#x2F;s</td>
+<td align="center">4TB&#x2F;s</td>
+<td align="center">864GB&#x2F;s</td>
+<td align="center">1008 GB&#x2F;s</td>
+<td align="center">1792 GB&#x2F;s</td>
+</tr>
+<tr>
+<td align="center">GPU Interconnect <br> (one-to-one max bw)</td>
+<td align="center">PCIe 4.0：64GB&#x2F;s <br> NVLink：400GB&#x2F;s</td>
+<td align="center">PCIe Gen4 64GB&#x2F;s <br> NVLINK 600GB&#x2F;s</td>
+<td align="center">NVLink: 400GB&#x2F;s <br> PCIe 5.0: 128GB&#x2F;s</td>
+<td align="center">PCIe Gen5 128GB&#x2F;s<br>NVLINK 600&#x2F;900GB&#x2F;s</td>
+<td align="center">PCIe Gen5 128GB&#x2F;s<br>NVLINK 900 GB&#x2F;s</td>
+<td align="center">PCIe Gen5 128GB&#x2F;s<br>NVLINK 900GB&#x2F;s</td>
+<td align="center">PCIe Gen4 64GB&#x2F;s</td>
+<td align="center">PCIe 4.0 x16 (单向32 GB&#x2F;s, 双向64 GB&#x2F;s)</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">GPU Interconnect <br> (one-to-many total bw)</td>
+<td align="center">2TB&#x2F;s</td>
+<td align="center">1.9&#x2F;2TB&#x2F;s</td>
+<td align="center">2TB&#x2F;s</td>
+<td align="center">3.9&#x2F;3.35 TB&#x2F;s</td>
+<td align="center">4.8 TB&#x2F;s</td>
+<td align="center">4TB&#x2F;s</td>
+<td align="center">864GB&#x2F;s</td>
+<td align="center">1TB&#x2F;s</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">FP32  TFLOPS</td>
+<td align="center">19.5</td>
+<td align="center">19.5</td>
+<td align="center">51 &#124; 67</td>
+<td align="center">60 &#124; 67</td>
+<td align="center">60 &#124; 67</td>
+<td align="center">44</td>
+<td align="center">59.8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">TF32  TFLOPS</td>
+<td align="center">156 &#124; 312</td>
+<td align="center">156 &#124; 312</td>
+<td align="center">756  &#124; 989</td>
+<td align="center">989 &#124; 853</td>
+<td align="center">989 &#124; 853</td>
+<td align="center">74</td>
+<td align="center">59.8</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">BF16  TFLOPS</td>
+<td align="center">156 &#124; 312</td>
+<td align="center">312 &#124; 624</td>
+<td align="center">1513  &#124; 1979</td>
+<td align="center">1671  &#124; 1979</td>
+<td align="center">1671  &#124; 1979</td>
+<td align="center">148  &#124; 148</td>
+<td align="center">119  &#124; 119</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">FP16  TFLOPS</td>
+<td align="center">156 &#124; 312</td>
+<td align="center">312 &#124; 624</td>
+<td align="center">1513  &#124; 1979</td>
+<td align="center">1671  &#124; 1979</td>
+<td align="center">1671  &#124; 1979</td>
+<td align="center">148  &#124; 14</td>
+<td align="center">119  &#124; 119</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">FP8   TFLOPS</td>
+<td align="center">NOT support</td>
+<td align="center">NOT support</td>
+<td align="center">3026  &#124; 3958</td>
+<td align="center">3341  &#124; 3958</td>
+<td align="center">3341  &#124; 3958</td>
+<td align="center">296  &#124; 296</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">INT8  TOPS</td>
+<td align="center">NOT support</td>
+<td align="center">624 &#124; 1248</td>
+<td align="center">3026  &#124; 3958</td>
+<td align="center">3341  &#124; 3958</td>
+<td align="center">3341  &#124; 3958</td>
+<td align="center">296  &#124; 296</td>
+<td align="center">-</td>
+<td align="center">-</td>
+<td align="center">-</td>
+</tr>
+<tr>
+<td align="center">L1 Cache</td>
+<td align="center">192 KB</td>
+<td align="center">192 KB</td>
+<td align="center">256 KB</td>
+<td align="center">256 KB</td>
+<td align="center">256 KB</td>
+<td align="center">-</td>
+<td align="center">128 KB</td>
+<td align="center">128 KB</td>
+<td align="center">128 KB</td>
+</tr>
+<tr>
+<td align="center">L2 Cache</td>
+<td align="center">40MB</td>
+<td align="center">80MB</td>
+<td align="center">50MB</td>
+<td align="center">50MB</td>
+<td align="center">50MB</td>
+<td align="center">60MB</td>
+<td align="center">96MB</td>
+<td align="center">72MB</td>
+<td align="center">96MB</td>
+</tr>
+</tbody></table>
+  </tr>
+</table>
+
+</div>
+
+
+  </article>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    <span id="busuanzi_container_page_pv">
+      本文阅读量：<span id="busuanzi_value_page_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+    </span>
+  </div>
+
+<!-- 
+    
+        <div id="disqus_thread"></div>
+        <script>
+
+        var disqus_config = function () {
+        this.page.url = 'http://example.com/2025/04/09/GPUseries/index.html';
+        this.page.identifier = ;
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//supercool-2.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+    
+ -->
+
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://supercool-2.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+ <!-- 
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'http://example.com/2025/04/09/GPUseries/';
+            this.page.identifier = '2025/04/09/GPUseries/';
+            this.page.title = 'GPU性能比较';
+        };
+        
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://supercool-2.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>请启用JavaScript查看<a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">Disqus评论</a></noscript>
+ -->
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        liangshuang 1999-2025
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+var disqus_shortname = 'supercool-2';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://example.com%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

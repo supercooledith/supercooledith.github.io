@@ -1,0 +1,67 @@
+$bg: #fff; // 背景颜色
+$a: #333; // 颜色
+$bordr: #e7e7e7; // 边框颜色
+$hoverbg: #F3BA2F; // 悬停背景颜色
+$hovera: #e7e7e7; // 悬停颜色
+
+.pager, // 分页器
+.prev, // 上一页
+.page-number, // 当前页
+.next, // 下一页
+.space { // 空格
+    display: flex; // 弹性布局
+}
+
+.prev, // 上一页
+.page-number, // 当前页
+.next { // 下一页
+    padding: 10px 25px; // 内边距
+}
+
+a.page-number:hover, // 当前页悬停
+a.next:hover, // 下一页悬停
+a.prev:hover { // 上一页悬停
+    transition: background-color .2s, color .2s; // 过渡
+    background-color: $hoverbg; // 悬停背景颜色
+    color: $hovera; // 悬停颜色
+}
+
+.pager { // 分页器
+    margin: 0 52px 32px; // 外边距
+    z-index: 1; // 层级
+    flex-direction: row; // 弹性布局
+    justify-content: space-between; // 间距
+    background-color: $bg; // 背景颜色
+    box-shadow: 0 0 8px rgba(209, 205, 199, .35); // 阴影
+    a { // a
+        color: $a; // 颜色
+    }
+}
+
+.space { // 空格
+    padding: 10px 0; // 内边距
+}
+
+@media screen and (max-width:782px) { // 媒体查询
+    .pager { // 分页器
+        font-size: 26px; // 字体大小
+        line-height: 35px; // 行高
+        position: relative; // 相对定位
+        bottom: 0; // 底部
+        left: 0; // 左侧
+        margin: 0 4px 20px; // 外边距
+        -webkit-transform: rotate(0deg); // 旋转
+        -moz-transform: rotate(0deg); // 旋转
+        -o-transform: rotate(0deg); // 旋转
+        text-align: center; // 文本对齐
+        letter-spacing: 1px; // 字间距
+    }
+    .prev, // 上一页
+    .page-number, // 当前页
+    .next { // 下一页
+        padding: 10px; // 内边距
+    }
+    .space { // 空格
+        padding: 10px 0; // 内边距  
+    }
+}

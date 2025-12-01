@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="google-site-verification" content="[object Object]" />
+  <meta name="referrer" content="unsafe-url">
+  
+  <title>布莱克-舒尔斯模型</title>
+  <meta name="author" content="Shuang Liang">
+  <meta name="description" content="travel, life, code">
+  
+  
+  <meta property="og:title" content="布莱克-舒尔斯模型"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:site_name" content="liangshuang&#39;s blog"/>
+  <link href="/apple-touch-icon-precomposed.png" sizes="180x180" rel="apple-touch-icon-precomposed">
+  <link rel="alternate" href="/atom.xml" title="liangshuang&#39;s blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/m.min.css">
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+<!-- hexo injector head_end start -->
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4S0J2DBYMW"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-4S0J2DBYMW');
+</script>
+  <!-- hexo injector head_end end --><meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <a id="top"></a>
+  <div id="main">
+    <div class="main-ctnr">
+      <div class="behind">
+  <a href="/" class="back black-color">
+    <svg class="i-close" viewBox="0 0 32 32" width="22" height="22" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+        <path d="M2 30 L30 2 M30 30 L2 2"></path>
+    </svg>
+  </a>
+  
+    <div class="description">
+      &nbsp;supercool
+    </div>
+    
+</div>
+
+
+  <article class="standard post">
+    <div class="title">
+      
+  
+    <h1 class="page-title center">
+        布莱克-舒尔斯模型
+    </h1>
+  
+
+
+    </div>
+    <div class="meta center">
+      <time datetime="2025-11-11T14:13:15.000Z" itemprop="datePublished">
+  <svg class="i-calendar" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+    <path d="M2 6 L2 30 30 30 30 6 Z M2 15 L30 15 M7 3 L7 9 M13 3 L13 9 M19 3 L19 9 M25 3 L25 9"></path>
+  </svg>
+  &nbsp;
+  2025-11-11
+</time>
+
+
+    
+    &nbsp;
+    <svg class="i-tag" viewBox="0 0 32 32" width="16" height="16" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+      <circle cx="24" cy="8" r="2"></circle>
+      <path d="M2 18 L18 2 30 2 30 14 14 30 Z"></path>
+    </svg>
+    &nbsp;
+    <a href="/categories/人工智能杂谈/">人工智能杂谈</a>
+
+
+
+
+
+    </div>
+    <hr>
+    
+    <div class="picture-container">
+      
+    </div>
+    <h1 id="布莱克-舒尔斯模型（英语：Black-Scholes-Model）"><a href="#布莱克-舒尔斯模型（英语：Black-Scholes-Model）" class="headerlink" title="布莱克-舒尔斯模型（英语：Black-Scholes Model）"></a>布莱克-舒尔斯模型（英语：Black-Scholes Model）</h1><p>布莱克-舒尔斯模型（英语：Black-Scholes Model），简称BS模型，是一种数学模型，用来为金融衍生工具中的期权定价，由美国经济学家迈伦·舒尔斯与费希尔·布莱克首先提出。此模型适用于没有派发股息的欧式期权。罗伯特·C·墨顿其后修改了数学模型，使其于有派发股息时亦可使用，新模型被称为布莱克-舒尔斯-墨顿模型（英语：Black–Scholes–Merton model）。</p>
+<p>此模型的应用是透过买卖价格过高或是过低的期权，并同时与持有的资产对冲，来消除可能潜在的风险，并因此而套利。此方法也被称为“动态 Delta中性”。此公式问世后带来了期权市场的繁荣，并且也是在投资银行与对冲基金中被广为使用的基础模型。</p>
+<p>虽然在很多情况下被使用者进行一定的改动和修正。很多经验测试表明这个公式足够贴近市场价格，然而也有会出现差异的时候，如著名的“波动率的微笑”。然而它假设价格的变动，会符合正态分配（即俗称的钟形曲线），但在金融市场上经常出现符合统计学厚尾现象的事件，这影响此公式的有效性。</p>
+<p>1997年，迈伦·舒尔斯和罗伯特·C·墨顿借该模型获得诺贝尔经济学奖。费希尔·布莱克不幸在1995年离世，因此未能获奖。</p>
+<h1 id="重要假设"><a href="#重要假设" class="headerlink" title="重要假设"></a>重要假设</h1><p>BS模型假设金融市场存在最少一种风险资产（如股票）及一种无风险资产（现金或债券）。</p>
+<p>假设金融资产是：</p>
+<ul>
+<li>无风险资产的投资回报是不变的，此回报率称作无风险利率</li>
+<li>股票价格遵从几何布朗运动（随机游走）</li>
+<li>股票在期权有效期内不分派红利</li>
+<li>股票价格服从对数正态分配，即金融资产的对数收益率服从正态分配</li>
+</ul>
+<p>假设金融市场是：</p>
+<ul>
+<li>不存在套利机会</li>
+<li>能以无风险利率借出或借入任意数量的金钱</li>
+<li>能买入及卖出（沽空）任意数量的股票</li>
+<li>市场无摩擦，即不存在交易税收和交易成本</li>
+</ul>
+<p>此外，假设期权是欧式期权，即只可在特定日期行权。</p>
+<h1 id="数学模型"><a href="#数学模型" class="headerlink" title="数学模型"></a>数学模型</h1><h2 id="符号"><a href="#符号" class="headerlink" title="符号"></a>符号</h2><p>V(S,t)：欧式期权的理论价格</p>
+<p>C(S,t)：认购期权的价格</p>
+<p>P(S,t)：认沽期权的价格</p>
+<p>ln()：自然对数</p>
+<p>K：交割价格</p>
+<p>S：即期价格（Spot）</p>
+<p>τ：有效期</p>
+<p>T：到期日</p>
+<p>t：时间，以年为单位，例如0.5代表6个月</p>
+<p>$${\displaystyle \tau &#x3D;T-t}$$</p>
+<p>r：连续复利计无风险利率</p>
+<p>$${\displaystyle \sigma ^{2}}：年度化方差$$</p>
+<p>$$N()：正态分布变量的累积分布函数$$</p>
+<p>$${\displaystyle N(x)&#x3D;{\frac {1}{\sqrt {2\pi }}}\int _{-\infty }^{x}e^{-z^{2}&#x2F;2},dz}$$</p>
+<h2 id="布莱克-舒尔斯方程"><a href="#布莱克-舒尔斯方程" class="headerlink" title="布莱克-舒尔斯方程"></a>布莱克-舒尔斯方程</h2><p>对于有效期内不派发红利的欧式期权，其价格遵从以下偏微分方程：</p>
+<p>$${\displaystyle {\frac {\partial V}{\partial t}}+{\frac {1}{2}}\sigma ^{2}S^{2}{\frac {\partial ^{2}V}{\partial S^{2}}}+rS{\frac {\partial V}{\partial S}}-rV&#x3D;0}$$</p>
+<p>把方程重写成左右两边：</p>
+<p>$${\displaystyle {\frac {\partial V}{\partial t}}+{\frac {1}{2}}\sigma ^{2}S^{2}{\frac {\partial ^{2}V}{\partial S^{2}}}&#x3D;rV-rS{\frac {\partial V}{\partial S}}}$$</p>
+<p>左方代表期权的时间值及与即期价格的凸性。右方代表期权长仓的无风险回报及<br>$${\displaystyle {\frac {\partial V}{\partial S}}}$$<br>股标的物短仓。</p>
+<p>求解过程会变换成为一个热传导方程式。</p>
+<h2 id="公式"><a href="#公式" class="headerlink" title="公式"></a>公式</h2><p>利用以下约束条件，可解认购期权（Call Option）的理论值。<br>$${\displaystyle {\begin{aligned}C(0,t)&amp;&#x3D;0{\text{ for all }}t\C(S,t)&amp;\rightarrow S{\text{ as }}S\rightarrow \infty \C(S,T)&amp;&#x3D;\max{S-K,0}\end{aligned}}}$$<br>认购期权的理论价格是：</p>
+<p>$${\displaystyle \displaystyle C(S,t)&#x3D;N(d_{1})S-N(d_{2})Ke^{-r\tau }}$$<br>其中：</p>
+<p>$${\displaystyle d_{1}&#x3D;{\begin{smallmatrix}\displaystyle {\frac {\ln \displaystyle {\frac {S}{K}}+\left(r+{\frac {\sigma ^{2}}{2}}\right){\tau }}{\sigma {\sqrt {\tau }}}}\end{smallmatrix}}}$$</p>
+<p>$${\displaystyle d_{2}&#x3D;{\begin{smallmatrix}\displaystyle d_{1}-\sigma {\sqrt {\tau }}\end{smallmatrix}}}$$<br>利用相同的方法，也可解认沽期权的理论价格：</p>
+<p>$${\displaystyle \displaystyle P(S,t)&#x3D;N(-d_{2})Ke^{-r\tau }-N(-d_{1})S}$$<br>认购期权及认沽期权的理论价格都包含 </p>
+<p>$${\displaystyle e^{-r\tau }}$$</p>
+<p>，把交割价格K以连续复利折算为现值。</p>
+<p>$${\displaystyle \displaystyle PV(K,t)&#x3D;Ke^{-r\tau }}$$</p>
+<h2 id="派发股息的期权定价模型"><a href="#派发股息的期权定价模型" class="headerlink" title="派发股息的期权定价模型"></a>派发股息的期权定价模型</h2><p>布莱克-舒尔斯模型假定在期权有效期内标的股票不派发股息。若派发股息需改用布莱克-舒尔斯-墨顿模型，其公式如下：</p>
+<p>$${\displaystyle \displaystyle C&#x3D;S\times e^{-k\times t}\times N(d_{1})-e^{-r\times T}\times L\times N(d_{2})}$$</p>
+<p>其中：</p>
+<p>$${\displaystyle d_{1}&#x3D;{\begin{smallmatrix}\displaystyle {\frac {\ln \displaystyle {\frac {S}{L}}+\left(r-k+0.5\times \sigma ^{2}\right)\times {T}}{\sigma \times {\sqrt {T}}}}\end{smallmatrix}}}$$</p>
+<p>$${\displaystyle d_{2}&#x3D;{\begin{smallmatrix}\displaystyle d_{1}-\sigma \times {\sqrt {T}}\end{smallmatrix}}}$$</p>
+<p>k：表示标的股票的年股息收益率（假设股息连续支付，而不是离散分期支付）</p>
+<p>Ln：自然对数；</p>
+<p>C：期权初始合理价格；</p>
+<p>L：期权交割价格；</p>
+<p>S：交易所金融资产现价；</p>
+<p>T：期权有效期；</p>
+<p>r：连续复利计无风险利率Ｈ；</p>
+<p>$${\displaystyle \sigma ^{2}}：年度化方差；$$</p>
+<p>$$N()：正态分布变量的累积分布函数。$$</p>
+<p>遵循 <a target="_blank" rel="noopener" href="https://www.cambridge.org/us/universitypress/subjects/mathematics/mathematical-finance/algorithmic-and-high-frequency-trading?format=HB&isbn=9781107091146">《算法和高频交易》(Algorithmic and High-Frequency Trading) </a>一书中的算法和高频交易模拟方法，并使用来自 <a target="_blank" rel="noopener" href="https://gist.github.com/sebjai/c6ff3850dea37d28d3fa7d3aef59722b">Market Making at the Touch with Short-Term Alpha</a> 的代码样本，可以选择一组随机过程并为用户提高及时性，如定时图表中报告的那样。 <a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1137/130911196">Buy Low, Sell High: A High Frequency Trading Perspective</a> 是一个从量化角度来看，高频交易视角对于这些高频市场已解决的整体问题而言，是一个非常易于理解的替代方案。 </p>
+<p>对于过去的中价流程，高频限价订单和市价订单流程的新最佳实践模拟遵循《金融随机微积分 II》(Stochastic Calculus for Finance II) 一书中所述的方法。在检查订单记录时，流程的数量要多得多，并且与高频交易对手参与者的复杂程度有关。如需了解正态分布和对数收益对蒙特卡罗模拟市场实际价格行为的建模效果，请参阅《使用 R 进行金融分析》(Financial Analytics with R) 一书。<br>算法和高频交易 提供的深入分析详细说明了动态编程优化目标。将这种更复杂的模拟以亚秒级粒度扩展到交易日，即使在多核 CPU 上也难以计算，根据本文中提供的结果，最好使用 GPU 提供的加速来完成。</p>
+<p><a target="_blank" rel="noopener" href="https://www.berkshirehathaway.com/news/nov1025.pdf">https://www.berkshirehathaway.com/news/nov1025.pdf</a></p>
+
+
+  </article>
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  <div class="busuanzi center">
+    <span id="busuanzi_container_page_pv">
+      本文阅读量：<span id="busuanzi_value_page_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_pv">
+      本站总访问量：<span id="busuanzi_value_site_pv"></span> 次
+    </span>
+    <span id="busuanzi_container_site_uv">
+      本站访客数：<span id="busuanzi_value_site_uv"></span> 人
+    </span>
+  </div>
+
+<!-- 
+    
+        <div id="disqus_thread"></div>
+        <script>
+
+        var disqus_config = function () {
+        this.page.url = 'http://example.com/2025/11/11/Finance1/index.html';
+        this.page.identifier = ;
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+
+        s.src = '//supercool-2.disqus.com/embed.js';
+
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+    
+ -->
+
+
+    <div id="disqus_thread"></div>
+    <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+        /*
+        var disqus_config = function () {
+        this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        */
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://supercool-2.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+ <!-- 
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = 'http://example.com/2025/11/11/Finance1/';
+            this.page.identifier = '2025/11/11/Finance1/';
+            this.page.title = '布莱克-舒尔斯模型';
+        };
+        
+        (function() {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://supercool-2.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>请启用JavaScript查看<a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">Disqus评论</a></noscript>
+ -->
+
+
+    </div>
+  </div>
+  <footer class="page-footer"><div class="clearfix">
+</div>
+<div class="right-foot">
+    <div class="firstrow">
+        <a href="#top" target="_self">
+        <svg class="i-caret-right" viewBox="0 0 32 32" width="24" height="24" fill="none" stroke="currentcolor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3">
+            <path d="M10 30 L26 16 10 2 Z"></path>
+        </svg>
+        </a>
+        liangshuang 1999-2025
+    </div>
+    <div class="secondrow">
+        <a target="_blank" rel="noopener" href="https://github.com/supercooledith">
+        supercool
+        </a>
+    </div>
+</div>
+<div class="clearfix">
+</div>
+</footer>
+  <script type="text/javascript">
+
+// disqus scripts
+
+var disqus_shortname = 'supercool-2';
+(function(){
+  var dsq = document.createElement('script');
+  dsq.type = 'text/javascript';
+  dsq.async = true;
+  dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+  (document.getElementsByTagName('body')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+}());
+
+
+// dropdown scripts
+function $(s) {
+    return document.querySelector(s)
+  }
+
+  function $$(s) {
+    return document.querySelectorAll(s)
+  }
+  var dropDownElArr = $$('.dropdown')
+  for (var i = 0; i < dropDownElArr.length; i += 1) {
+    dropDownElArr[i].addEventListener('click', function(event) {
+      var content = this.querySelector('.dropdown-content')
+      event.stopPropagation()
+      if (content.className.indexOf('open') < 0) {
+        content.classList.add('open')
+      } else {
+        content.classList.remove('open')
+      }
+    })
+  }
+  document.body.addEventListener('click', function() {
+    var dropDownContentElArr = $$('.dropdown-content')
+    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+      dropDownContentElArr[i].classList.remove('open')
+    }
+  })
+
+  // smooth scroll
+  $$('a[href^="#"]').forEach(e=>{
+    e.addEventListener("click", function(e) {
+      e.preventDefault();
+      var t = this.getAttribute("href").substr(1);
+      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+        behavior: "smooth"
+      }),
+      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+    })
+  })
+
+// search
+var searchEl = document.querySelector("#local-search-input")
+if (searchEl) searchEl.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    var s = e.target.value
+    window.open('//www.google.com/search?q=site:http://example.com%20' + s, '_blank').focus()
+  }
+})
+
+</script>
+
+</body>
+</html>

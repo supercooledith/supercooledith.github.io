@@ -1,0 +1,132 @@
+# Hexo Configuration
+## Docs: https://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+# Site
+title: liangshuang's blog # 博客标题
+subtitle: 'supercool' # 副标题
+description: 'travel, life, code' # 描述
+keywords: travel, life, code # 关键词
+author: Shuang Liang # 作者
+language: en # 语言
+timezone: '' # 时区
+
+#comment
+disqus_shortname: supercool-2 # disqus评论
+
+valine: # Valine
+  enable: true
+  appId: "你的LeanCloud AppID"
+  appKey: "你的LeanCloud AppKey"
+  placeholder: "理性发言，共建和谐社区"
+  avatar: "retro"
+  pageSize: 10
+  guest_info: "nick,mail,link"
+  verify: false
+  notify: false
+  lang: "zh-CN"
+  highlight: true
+  recordIP: true
+
+# URL
+## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
+url: http://example.com # 网站地址
+permalink: :year/:month/:day/:title/ # 永久链接格式
+permalink_defaults: # 永久链接默认值
+pretty_urls: 
+  trailing_index: true # Set to false to remove trailing 'index.html' from permalinks
+  trailing_html: true # Set to false to remove trailing '.html' from permalinks
+
+# Directory
+source_dir: source # 源文件目录
+public_dir: public # 公共文件目录
+tag_dir: tags # 标签目录
+archive_dir: archives # 归档目录
+category_dir: categories # 分类目录
+code_dir: downloads/code # 代码目录
+i18n_dir: :lang # 国际化目录
+skip_render:
+  - images/**/*.html
+
+# Writing
+new_post_name: :title.md # 新文章文件名
+default_layout: post # 默认布局
+titlecase: false # 标题转换为标题大小写
+external_link:
+  enable: true # 打开外部链接在新标签页中
+  field: site # 应用到整个站点
+  exclude: '' # 排除的链接
+filename_case: 0 # 文件名大小写
+render_drafts: false # 渲染草稿
+post_asset_folder: false # 文章附件
+relative_link: false # 相对链接
+future: true # 未来日期
+syntax_highlighter: highlight.js # 语法高亮
+highlight: # 高亮配置
+  line_number: true # 行号
+  auto_detect: false # 自动检测
+  tab_replace: '' # 替换tab
+  wrap: true # 换行
+  hljs: false # 使用hljs
+prismjs: # 代码高亮配置
+  preprocess: true # 预处理
+  line_number: true # 行号
+  tab_replace: '' # 替换tab
+
+# Home page setting
+# path: Root path for your blogs index page. (default = '')
+# per_page: Posts displayed per page. (0 = disable pagination)
+# order_by: Posts order. (Order by date descending by default)
+index_generator: # 首页设置
+  path: '' # 首页路径
+  per_page: 100 # 每页显示的文章数
+  order_by: -date # 按日期降序排列
+
+# Category & Tag
+default_category: uncategorized # 默认分类
+category_map: # 分类映射
+tag_map: # 标签映射
+
+# Metadata elements
+## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
+meta_generator: true # 元生成器
+
+# Date / Time format
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD # 日期格式
+time_format: HH:mm:ss # 时间格式
+## updated_option supports 'mtime', 'date', 'empty'
+updated_option: 'mtime' # 更新选项
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 100 # 每页显示的文章数
+pagination_dir: page # 分页目录
+
+# Include / Exclude file(s)
+## include:/exclude: options only apply to the 'source/' folder
+include: # 包含的文件
+exclude: # 排除的文件
+ignore: # 忽略的文件
+
+# Extensions
+## Plugins: https://hexo.io/plugins/
+## Themes: https://hexo.io/themes/
+theme: hexo-theme-pln # 主题
+
+# Deployment
+## Docs: https://hexo.io/docs/one-command-deployment
+deploy:
+  type: git
+  repo: git@github.com:supercooledith/supercooledith.github.io.git
+  branch: main
+
+# Google Analytics
+google_analytics:
+  tracking_id: G-4S0J2DBYMW  # 替换为你的 GA 测量 ID
+
+search:
+  path: search.xml
+  field: post
