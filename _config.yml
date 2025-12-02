@@ -116,19 +116,19 @@ ignore: # 忽略的文件
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-pln # 主题
 
-# # Deployment
-# ## Docs: https://hexo.io/docs/one-command-deployment
-# deploy:
-#   type: git
-#   repo: git@github.com:supercooledith/supercooledith.github.io.git
-#   branch: main
-
-# Deployment 251202
+# Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
   repo: git@github.com:supercooledith/supercooledith.github.io.git
-  branch: gh-pages
+  branch: main
+
+# # Deployment 251202 test
+# ## Docs: https://hexo.io/docs/one-command-deployment
+# deploy:
+#   type: git
+#   repo: git@github.com:supercooledith/supercooledith.github.io.git
+#   branch: gh-pages
 
 # Google Analytics
 google_analytics:

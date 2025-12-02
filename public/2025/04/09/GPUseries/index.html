@@ -1201,7 +1201,7 @@
 <p>Petaflops：代表“每秒一千万亿次浮点运算”。<br>“Peta-” 这个前缀代表 10¹⁵，即 1,000,000,000,000,000（一千万亿）。<br>所以;<br>$$1 Petaflops &#x3D; 10¹⁵ Flops$$</p>
 <h1 id="深度学习中的精度格式一览"><a href="#深度学习中的精度格式一览" class="headerlink" title="深度学习中的精度格式一览"></a>深度学习中的精度格式一览</h1><p>不同的精度格式在位宽、内存占用、计算速度和数值精度方面各有特点。选择合适的格式是优化模型性能和效率的关键。<br>浮点数格式 (Floating Point)：</p>
 <div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
+<table style="width:1000px;">
   <tr>
     <td>
 
@@ -1277,7 +1277,7 @@
 
 <p>整数格式 (Integer)：</p>
 <div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
+<table style="width:1000px;">
   <tr>
     <td>
 
@@ -1318,7 +1318,7 @@
 
 <p>总结</p>
 <div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
+<table style="width:1000px;">
   <tr>
     <td>
 
@@ -1367,28 +1367,29 @@
 
 <h2 id="结构-符号-指数-尾数-是什么意思？"><a href="#结构-符号-指数-尾数-是什么意思？" class="headerlink" title="结构 (符号&#x2F;指数&#x2F;尾数) 是什么意思？"></a>结构 (符号&#x2F;指数&#x2F;尾数) 是什么意思？</h2><p>一个浮点数 $$V$$ 可以通过以下公式计算出来：</p>
 <p>$$V &#x3D; (-1)^S \times (1 + M) \times 2^{(E - \text{Bias})}$$</p>
-<p>$S$ : 符号位 (0 或 1)</p>
-<p>$M$ : 尾数域的值</p>
-<p>$E$ : 指数域的编码值</p>
-<p>$\text{Bias}$ : 固定的偏移量（如 FP32 为 127，FP16 为 15）</p>
+<p>$$S$$ : 符号位 (0 或 1)</p>
+<p>$$M$$ : 尾数域的值</p>
+<p>$$E$$ : 指数域的编码值</p>
+<p>$$\text{Bias}$$ : 固定的偏移量（如 FP32 为 127，FP16 为 15）</p>
 <p>这种结构决定了浮点数的两个关键特性：</p>
 <ol>
-<li>动态范围（Exponent 决定）： 指数位越多，能表示的数值范围越大（从极小数到极大数），不易溢出。</li>
-<li>精度（Mantissa 决定）： 尾数位越多，能表示的有效数字越精确，舍入误差越小。</li>
+<li><strong>动态范围（Exponent 决定）</strong>： 指数位越多，能表示的数值范围越大（从极小数到极大数），不易溢出。</li>
+<li><strong>精度（Mantissa 决定）</strong>： 尾数位越多，能表示的有效数字越精确，舍入误差越小。</li>
 </ol>
 <p>在 LLM 量化中，我们就是通过减少这些位宽（特别是指数和尾数）来达到压缩内存的目的，但必须使用像 AWQ 这样的算法来最小化随之而来的精度损失。</p>
-<p>📝 以 FP16 为例（半精度浮点数）<br>FP16 共有 16 位，结构划分如下：<br>暂时无法在飞书文档外展示此内容</p>
+<p>📝 以 FP16 为例（半精度浮点数）<br>FP16 共有 16 位，结构划分如下：</p>
 <ul>
-<li>优点： 相比 FP32 占用一半内存，在深度学习中能显著加速运算。</li>
-<li>权衡： 只有 5 位指数（动态范围较小）和 10 位尾数（精度较低），容易出现溢出（Overflow）或舍入误差。</li>
+<li><strong>优点</strong>： 相比 FP32 占用一半内存，在深度学习中能显著加速运算。</li>
+<li><strong>权衡</strong>： 只有 5 位指数（动态范围较小）和 10 位尾数（精度较低），容易出现溢出（Overflow）或舍入误差。</li>
 </ul>
-<p>📝 以 FP32 为例（单精度浮点数）<br>FP32 共有 32 位，结构划分如下：<br>暂时无法在飞书文档外展示此内容</p>
+<p>📝 以 FP32 为例（单精度浮点数）<br>FP32 共有 32 位，结构划分如下：</p>
 <ul>
-<li>优点： 动态范围大（8 位指数），精度高（23 位尾数）。</li>
-<li>权衡： 内存占用较大（4 字节）。</li>
+<li><strong>优点</strong>： 动态范围大（8 位指数），精度高（23 位尾数）。</li>
+<li><strong>权衡</strong>： 内存占用较大（4 字节）。</li>
 </ul>
-<h3 id="低精度数据格式"><a href="#低精度数据格式" class="headerlink" title="低精度数据格式"></a>低精度数据格式</h3><p>好的，我们来详细解析一下您提到的这几种重要的低精度数据格式，它们是当前加速大型语言模型 (LLM) 推理的核心技术。<br>这些格式主要体现了在浮点数和整数这两大类中，如何在位宽上进行精妙的取舍。</p>
-<p>浮点数：FP8 (E4M3 和 E5M2)<br>FP8（8 位浮点数）格式仅使用 8 位来存储一个数值，它的关键在于这 8 位如何在指数 (E) 和尾数 (M) 之间进行分配，从而产生不同的权衡。<br>A. FP8 格式结构解析</p>
+<h3 id="低精度数据格式"><a href="#低精度数据格式" class="headerlink" title="低精度数据格式"></a>低精度数据格式</h3><p>好的，我们来详细解析一下您提到的这几种重要的低精度数据格式，它们是当前加速大型语言模型 (LLM) 推理的核心技术。这些格式主要体现了在浮点数和整数这两大类中，如何在位宽上进行精妙的取舍。</p>
+<h4 id="浮点数：FP8-E4M3-和-E5M2"><a href="#浮点数：FP8-E4M3-和-E5M2" class="headerlink" title="浮点数：FP8 (E4M3 和 E5M2)"></a>浮点数：FP8 (E4M3 和 E5M2)</h4><p>FP8（8 位浮点数）格式仅使用 8 位来存储一个数值，它的关键在于这 8 位如何在指数 (E) 和尾数 (M) 之间进行分配，从而产生不同的权衡。</p>
+<p>A. FP8 格式结构解析</p>
 <div style="font-size: 14px;width:100%;overflow-x:auto;">
 <table style="width:1800px;">
   <tr>
@@ -1438,9 +1439,12 @@
 </li>
 <li>适用场景：<ul>
 <li>适用于模型权重。权重相对静态，对精度要求略低，但需要一定的动态范围。</li>
-<li>主要用于Transformer 模型的激活值，尤其是需要更大动态范围来处理激活值张量中可能出现的极端值（Outliers）时。<br>C. E5M2 (5 指数位, 2 尾数位)</li>
+<li>主要用于Transformer 模型的激活值，尤其是需要更大动态范围来处理激活值张量中可能出现的极端值（Outliers）时。</li>
 </ul>
 </li>
+</ul>
+<p>C. E5M2 (5 指数位, 2 尾数位)</p>
+<ul>
 <li>特性： 超高动态范围优先。<ul>
 <li>指数 (E&#x3D;5): 5 位指数，与 FP16 相同。这意味着它拥有与 FP16 一样的动态范围，能表示的数值范围极大（不易溢出）。</li>
 <li>尾数 (M&#x3D;2): 只有 2 位尾数，精度极低，是所有常用浮点格式中精度最低的之一。</li>
@@ -1448,9 +1452,14 @@
 </li>
 <li>适用场景：<ul>
 <li>适用于模型权重。由于其超大的动态范围，它可以更好地适应权重分布中可能出现的极端值，从而减少量化误差。</li>
-<li>常用于激活值，因为激活值在计算过程中波动较大，需要高动态范围来防止数值溢出。<br>总结： 在深度学习中，E4M3 和 E5M2 通常配合使用，一个用于权重，一个用于激活值，以在 8 位的限制下平衡动态范围 (E) 和精度 (M)。<br>整数量化：INT8 和 INT4<br>整数格式（INT8&#x2F;INT4）通过量化 (Quantization) 将浮点数（如 FP16&#x2F;FP32）线性映射到整数值，实现极高的内存压缩和计算效率。<br>A. INT8 (W8A8) 精度</li>
+<li>常用于激活值，因为激活值在计算过程中波动较大，需要高动态范围来防止数值溢出。</li>
 </ul>
 </li>
+</ul>
+<p>总结： 在深度学习中，E4M3 和 E5M2 通常配合使用，一个用于权重，一个用于激活值，以在 8 位的限制下平衡动态范围 (E) 和精度 (M)。</p>
+<h4 id="整数量化：INT8-和-INT4"><a href="#整数量化：INT8-和-INT4" class="headerlink" title="整数量化：INT8 和 INT4"></a>整数量化：INT8 和 INT4</h4><p>整数格式（INT8&#x2F;INT4）通过量化 (Quantization) 将浮点数（如 FP16&#x2F;FP32）线性映射到整数值，实现极高的内存压缩和计算效率。</p>
+<p>A. INT8 (W8A8) 精度</p>
+<ul>
 <li>含义： 8 位整数 (INT8)，是业界标准的量化格式。</li>
 <li>W8A8 结构：<ul>
 <li>W8 (Weight 8-bit): 模型权重被量化为 INT8。</li>
@@ -1467,9 +1476,12 @@
 </ul>
 </li>
 <li>挑战：<ul>
-<li>精度损失： INT8 只有 256 个可能的离散值，量化误差比浮点格式更大，因此需要复杂的量化算法来保持模型精度。<br>B. INT4 (W4A16) 精度</li>
+<li>精度损失： INT8 只有 256 个可能的离散值，量化误差比浮点格式更大，因此需要复杂的量化算法来保持模型精度。</li>
 </ul>
 </li>
+</ul>
+<p>B. INT4 (W4A16) 精度</p>
+<ul>
 <li>含义： 4 位整数 (INT4)，专用于大型 LLM 的极限内存压缩。</li>
 <li>W4A16 结构：<ul>
 <li>W4 (Weight 4-bit): 模型权重被量化为 INT4。</li>
@@ -1482,13 +1494,16 @@
 </ul>
 </li>
 <li>挑战：<ul>
-<li>精度保持难度高： 4 位只有 16 个可能的离散值，量化精度损失风险最大。因此，必须使用像 AWQ (Activation-aware Weight Quantization) 这样的先进算法来精心挑选需要量化的权重，以保持模型性能。<br>📊 总结对比表<div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
-<tr>
-<td></li>
+<li>精度保持难度高： 4 位只有 16 个可能的离散值，量化精度损失风险最大。因此，必须使用像 AWQ (Activation-aware Weight Quantization) 这样的先进算法来精心挑选需要量化的权重，以保持模型性能。</li>
 </ul>
 </li>
 </ul>
+<p>📊 总结对比表</p>
+<div style="font-size: 14px;width:100%;overflow-x:auto;">
+<table style="width:1000px;">
+  <tr>
+    <td>
+
 <table>
 <thead>
 <tr>
@@ -1537,39 +1552,66 @@
 </div>
 
 <p>这些低精度格式的选择和配置，是 LLM 部署工程师们在硬件特性、内存预算和模型精度之间进行复杂权衡的结果。</p>
-<h1 id="量化算法"><a href="#量化算法" class="headerlink" title="量化算法"></a>量化算法</h1><h2 id="AWQ-算法-Activation-aware-Weight-Quantization"><a href="#AWQ-算法-Activation-aware-Weight-Quantization" class="headerlink" title="AWQ 算法 (Activation-aware Weight Quantization)"></a>AWQ 算法 (Activation-aware Weight Quantization)</h2><p>AWQ (Activation-aware Weight Quantization) 算法是专门针对 W4A16（权重 INT4，激活值 FP16） 这种超低精度量化配置设计的，其核心目标是在极度压缩模型权重的同时，最大限度地保护模型的精度。AWQ 提升性能的关键不在于计算速度本身（计算速度主要由 INT4 格式和硬件决定），而在于它能让模型在 INT4 下保持足够高的精度，从而使得这种高效的低精度部署在实际应用中可行。</p>
+<h1 id="量化算法"><a href="#量化算法" class="headerlink" title="量化算法"></a>量化算法</h1><h2 id="AWQ-算法-Activation-aware-Weight-Quantization"><a href="#AWQ-算法-Activation-aware-Weight-Quantization" class="headerlink" title="AWQ 算法 (Activation-aware Weight Quantization)"></a>AWQ 算法 (Activation-aware Weight Quantization)</h2><p>AWQ (Activation-aware Weight Quantization) 算法是专门针对 W4A16（权重 INT4，激活值 FP16） 这种超低精度量化配置设计的，其核心目标是在极度压缩模型权重的同时，最大限度地保护模型的精度。</p>
+<p>AWQ 提升性能的关键不在于计算速度本身（计算速度主要由 INT4 格式和硬件决定），而在于它能让模型在 INT4 下保持足够高的精度，从而使得这种高效的低精度部署在实际应用中可行。</p>
 <ul>
 <li>含义： 是一种感知激活值的权重（量化）算法。</li>
 <li>作用： 在将权重从高精度（如 FP16）量化到超低精度（如 INT4）时，AWQ 算法会考虑激活值的重要性。</li>
 <li>原理： 它不是平均地量化所有权重，而是跳过那些对最终输出影响最重要的权重（即与较大的激活值相乘的权重），确保它们能保持较高的精度。这最小化了量化对模型推理精度的负面影响，使得模型在 INT4 下仍能保持接近 FP16 的性能。</li>
 </ul>
-<p>核心洞察：激活值的重要性<br>传统的量化方法（如 PTQ，Post-Training Quantization）通常只关注权重本身的分布，试图将它们均匀地映射到 INT4 范围。<br>AWQ 的核心洞察是：量化误差的影响并非均匀分布，而是取决于它与激活值的乘积。<br>在一个矩阵乘法 Y&#x3D;W⋅X 中：</p>
+<p>核心洞察：激活值的重要性</p>
+<p>传统的量化方法（如 PTQ，Post-Training Quantization）通常只关注权重本身的分布，试图将它们均匀地映射到 INT4 范围。</p>
+<div style="
+  border: 1px solid #ddd;        /* 边框样式 */
+  padding: 10px;                 /* 内边距 */
+  background-color: #f3ba2f;     /* 背景颜色 - 可修改 */
+  color: #4e4e4e;                /* 文字颜色 - 可修改 */
+  border-radius: 5px;            /* 圆角半径 */
+  margin: 10px 0;                /* 外边距 */
+">
+AWQ 的核心洞察是：量化误差的影响并非均匀分布，而是取决于它与激活值的乘积。
+</div>
+
+<p>在一个矩阵乘法 Y&#x3D;W⋅X 中：</p>
 <ul>
 <li>W 是权重矩阵 (Weight)。</li>
 <li>X 是激活值矩阵 (Activation)。</li>
 </ul>
-<p>如果一个权重 $w_i$ 虽然很大，但与之相乘的激活值 $x_i$ 很小，那么 $w_i$ 的量化误差对最终结果 $Y$ 的影响很小。<br>相反，如果一个权重 $w_j$ 无论大小，但与之相乘的激活值 $x_j$ 很大（即 $x_j$ 是一个“重要”的激活通道），那么 $w_j$ 的微小量化误差经过放大后，会对最终结果造成巨大的精度损失。</p>
-<p>AWQ 的机制：保护重要的权重<br>基于上述洞察，AWQ 算法执行了一个“敏感性分析”步骤，来决定哪些权重在量化过程中需要被“保护”起来。</p>
-<p>步骤一：敏感性评分 (Salience Score)<br>AWQ 首先计算每个输出通道的权重敏感性评分。这个评分基于激活值的统计信息（例如，激活值的最大绝对值）。</p>
+<p>如果一个权重 $w_i$ 虽然很大，但与之相乘的激活值 $x_i$ 很小，那么 $w_i$ 的量化误差对最终结果 $Y$ 的影响很小。</p>
+<p>相反，如果一个权重 $w_j$ 无论大小，但与之相乘的激活值 $x_j$ 很大（即 $x_j$ 是一个“重要”的激活通道），那么 $w_j$ 的微小量化误差经过放大后，会对最终结果造成巨大的精度损失。</p>
+<h3 id="AWQ-的机制：保护重要的权重"><a href="#AWQ-的机制：保护重要的权重" class="headerlink" title="AWQ 的机制：保护重要的权重"></a>AWQ 的机制：保护重要的权重</h3><p>基于上述洞察，AWQ 算法执行了一个“敏感性分析”步骤，来决定哪些权重在量化过程中需要被“保护”起来。</p>
+<p><strong>步骤一：敏感性评分 (Salience Score)</strong></p>
+<p>AWQ 首先计算每个输出通道的权重敏感性评分。这个评分基于激活值的统计信息（例如，激活值的最大绝对值）。</p>
 <p>$$Score_i&#x3D;max(∣X_{channel,i}∣)$$</p>
-<p>$Score_i$ 代表了第 $i$ 个通道的激活值的重要性。</p>
-<p>步骤二：权重缩放（保护高敏感通道）<br>在将权重 W 量化到 INT4 之前，AWQ 会对权重应用一个通道级的缩放因子 (Scaling Factor s)。<br>AWQ 的目标是给那些具有高敏感性评分（即与大激活值相乘）的权重施加更大的缩放因子 s。<br>新的权重&#x3D;W&#x2F;s<br>施加缩放因子后，这些权重在量化到 INT4 范围时：</p>
+<p>$$Score_i$$ 代表了第 $$i$$ 个通道的激活值的重要性。</p>
+<p><strong>步骤二：权重缩放（保护高敏感通道）</strong></p>
+<p>在将权重 W 量化到 INT4 之前，AWQ 会对权重应用一个通道级的缩放因子 (Scaling Factor s)。<br>AWQ 的目标是给那些具有高敏感性评分（即与大激活值相乘）的权重施加更大的缩放因子 s。<br>新的权重&#x3D;W&#x2F;s</p>
+<p>施加缩放因子后，这些权重在量化到 INT4 范围时：</p>
 <ol>
 <li>它们在量化后的 相对误差会更小。</li>
 <li>它们有效地被“隔离”了量化对激活值的影响，使得它们能够更精确地表示。</li>
 </ol>
-<p>步骤三：四舍五入到 INT4<br>最终，缩放后的权重被量化到 INT4。在推理时，这些 INT4 权重会通过反量化和 FP16 激活值进行计算。</p>
-<p>AWQ 如何专门提升 INT4 (W4A16) 的性能？<br>AWQ 的设计与 W4A16 配置完美契合，体现在两个方面：<br>A. 专门解决 INT4 的极限精度问题<br>INT4 (4 位) 只有 16 个离散值，量化是极其粗糙的。任何微小的量化误差都可能被放大，导致模型性能崩溃。AWQ 通过有针对性地保护最重要的 1% 权重，成功地避免了这种精度崩溃，使得 LLM 在 4 位下依然能保持接近 FP16 的表现。<br>B. 充分利用 W4A16 的计算结构<br>在 W4A16 中，激活值保持在 FP16，这为 AWQ 提供了便利。AWQ 可以利用高精度的 FP16 激活值来精确计算敏感性评分，指导权重缩放，从而得到一个对精度最友好的 INT4 权重集。如果激活值也是低精度（如 W8A8），这种精确的敏感性分析将难以进行。</p>
-<p>总结<br>AWQ 算法通过引入激活值感知的量化策略，确保了最关键的权重能够保持最高的相对精度。这使得极度节省内存的 INT4 (W4A16) 量化配置在 LLM 上具有实用性，从而间接实现了“在可接受精度损失下，最高效的推理性能”。</p>
-<h2 id="GPTQ-GPT-Quantization"><a href="#GPTQ-GPT-Quantization" class="headerlink" title="GPTQ (GPT Quantization)"></a>GPTQ (GPT Quantization)</h2><p>GPTQ 是一种离线（Post-Training）量化方法，它通过对模型权重进行逐层优化，以最小化量化带来的精度损失。<br>核心思想：逐层最小化误差<br>GPTQ 的核心是利用一种称为 Optimal Brain Damage (OBD) 或 二阶信息 的概念来决定如何量化权重。</p>
+<p><strong>步骤三：四舍五入到 INT4</strong></p>
+<p>最终，缩放后的权重被量化到 INT4。在推理时，这些 INT4 权重会通过反量化和 FP16 激活值进行计算。</p>
+<h3 id="AWQ-如何专门提升-INT4-W4A16-的性能？"><a href="#AWQ-如何专门提升-INT4-W4A16-的性能？" class="headerlink" title="AWQ 如何专门提升 INT4 (W4A16) 的性能？"></a>AWQ 如何专门提升 INT4 (W4A16) 的性能？</h3><p>AWQ 的设计与 W4A16 配置完美契合，体现在两个方面：</p>
+<p><strong>A. 专门解决 INT4 的极限精度问题</strong></p>
+<p>INT4 (4 位) 只有 16 个离散值，量化是极其粗糙的。任何微小的量化误差都可能被放大，导致模型性能崩溃。AWQ 通过有针对性地保护最重要的 1% 权重，成功地避免了这种精度崩溃，使得 LLM 在 4 位下依然能保持接近 FP16 的表现。</p>
+<p><strong>B. 充分利用 W4A16 的计算结构</strong></p>
+<p>在 W4A16 中，激活值保持在 FP16，这为 AWQ 提供了便利。AWQ 可以利用高精度的 FP16 激活值来精确计算敏感性评分，指导权重缩放，从而得到一个对精度最友好的 INT4 权重集。如果激活值也是低精度（如 W8A8），这种精确的敏感性分析将难以进行。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>AWQ 算法通过引入激活值感知的量化策略，确保了最关键的权重能够保持最高的相对精度。这使得极度节省内存的 INT4 (W4A16) 量化配置在 LLM 上具有实用性，从而间接实现了“在可接受精度损失下，最高效的推理性能”。</p>
+<h2 id="GPTQ-GPT-Quantization"><a href="#GPTQ-GPT-Quantization" class="headerlink" title="GPTQ (GPT Quantization)"></a>GPTQ (GPT Quantization)</h2><p>GPTQ 是一种离线（Post-Training）量化方法，它通过对模型权重进行逐层优化，以最小化量化带来的精度损失。<br>核心思想：逐层最小化误差</p>
+<p>GPTQ 的核心是利用一种称为 Optimal Brain Damage (OBD) 或 二阶信息 的概念来决定如何量化权重。</p>
 <ul>
 <li>目标： 对于模型中的每一层，找到最佳的 INT4 权重，使得量化后的输出尽可能接近原始 FP16 模型的输出。</li>
 <li>方法： 它不是简单地四舍五入，而是使用一种最小二乘法（Least Squares）的优化过程。在量化每一层时，它会使用一小部分校准数据（calibration data，通常几百个样本）通过最小化均方误差 (MSE) 来确定最优的量化值。</li>
-<li>操作： 逐列、逐层进行优化，并使用 Hessian 矩阵的逆（或近似）来计算量化误差对其他未量化权重的影响，并进行补偿。<br>优势与劣势<div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
-<tr>
-  <td></li>
+<li>操作： 逐列、逐层进行优化，并使用 Hessian 矩阵的逆（或近似）来计算量化误差对其他未量化权重的影响，并进行补偿。</li>
 </ul>
+<p>优势与劣势</p>
+<div style="font-size: 14px;width:100%;overflow-x:auto;">
+<table style="width:1400px;">
+  <tr>
+    <td>
+
 <table>
 <thead>
 <tr>
@@ -1592,7 +1634,20 @@
 </table>
 </div>
 
-<h2 id="SmoothQuant"><a href="#SmoothQuant" class="headerlink" title="SmoothQuant"></a>SmoothQuant</h2><p>SmoothQuant 是一种混合量化策略，它通过平滑激活值的分布，使激活值和权重都更容易被量化到低位宽（通常是 W8A8 或 W4A8）。<br>核心思想：平衡权重和激活值的难度<br>在大型 LLM 中，激活值的分布往往比权重的分布更难处理，因为激活值中经常出现“离群值”（Outliers，少数几个极大的值），这使得 INT8&#x2F;INT4 量化难以准确覆盖整个动态范围。<br>SmoothQuant 的策略是：将激活值中的量化难度“转移”到权重上。</p>
+<h2 id="SmoothQuant"><a href="#SmoothQuant" class="headerlink" title="SmoothQuant"></a>SmoothQuant</h2><p>SmoothQuant 是一种混合量化策略，它通过平滑激活值的分布，使激活值和权重都更容易被量化到低位宽（通常是 W8A8 或 W4A8）。</p>
+<p>核心思想：平衡权重和激活值的难度</p>
+<p>在大型 LLM 中，激活值的分布往往比权重的分布更难处理，因为激活值中经常出现“离群值”（Outliers，少数几个极大的值），这使得 INT8&#x2F;INT4 量化难以准确覆盖整个动态范围。</p>
+<div style="
+  border: 1px solid #ddd;        /* 边框样式 */
+  padding: 10px;                 /* 内边距 */
+  background-color: #f3ba2f;     /* 背景颜色 - 可修改 */
+  color: #4e4e4e;                /* 文字颜色 - 可修改 */
+  border-radius: 5px;            /* 圆角半径 */
+  margin: 10px 0;                /* 外边距 */
+">
+SmoothQuant 的策略是：将激活值中的量化难度“转移”到权重上。
+</div>
+
 <ul>
 <li>平滑操作： 通过引入一个 平滑因子 s，将激活值 X 的量化难度转移给权重 W：</li>
 <li>W′&#x3D;W⋅s和X′&#x3D;X&#x2F;s</li>
@@ -1601,11 +1656,13 @@
 <li>新的权重 W′ 的分布变得更加极端（包含更大的数值）。</li>
 </ol>
 </li>
-<li>量化： 由于权重通常是在离线量化中处理一次，可以容忍更高的量化难度。因此，平滑后的激活值 X′使用 INT8&#x2F;INT4 量化，平滑后的权重 W′ 也使用 INT8&#x2F;INT4 量化。<div style="font-size: 14px;width:100%;overflow-x:auto;">
-<table style="width:1800px;">
-<tr>
-  <td></li>
+<li>量化： 由于权重通常是在离线量化中处理一次，可以容忍更高的量化难度。因此，平滑后的激活值 X′使用 INT8&#x2F;INT4 量化，平滑后的权重 W′ 也使用 INT8&#x2F;INT4 量化。</li>
 </ul>
+<div style="font-size: 14px;width:100%;overflow-x:auto;">
+<table style="width:1800px;">
+  <tr>
+    <td>
+
 <table>
 <thead>
 <tr>
