@@ -1,0 +1,12 @@
+node_modules/
+public/
+.deploy_git/
+db.json
+db 2.json
+db 3.json
+db 4.json
+db 5.json
+db 6.json
+.DS_Store
+
+
