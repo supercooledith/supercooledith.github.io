@@ -25,6 +25,7 @@
   <link rel="alternate" href="/atom.xml" title="liangshuang&#39;s blog" type="application/atom+xml">
   <link rel="stylesheet" href="/css/m.min.css">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js" onload="window.mermaidLoaded = true"></script>
 
 <!-- hexo injector head_end start -->
 <!-- Google tag (gtag.js) -->
@@ -372,47 +373,336 @@ function $(s) {
   function $$(s) {
     return document.querySelectorAll(s)
   }
-  var dropDownElArr = $$('.dropdown')
-  for (var i = 0; i < dropDownElArr.length; i += 1) {
-    dropDownElArr[i].addEventListener('click', function(event) {
-      var content = this.querySelector('.dropdown-content')
-      event.stopPropagation()
-      if (content.className.indexOf('open') < 0) {
-        content.classList.add('open')
-      } else {
-        content.classList.remove('open')
+  
+  function initDropdown() {
+    var dropDownElArr = $$('.dropdown')
+    for (var i = 0; i < dropDownElArr.length; i += 1) {
+      dropDownElArr[i].addEventListener('click', function(event) {
+        var content = this.querySelector('.dropdown-content')
+        if (content) {
+          event.stopPropagation()
+          if (content.className.indexOf('open') < 0) {
+            content.classList.add('open')
+          } else {
+            content.classList.remove('open')
+          }
+        }
+      })
+    }
+    document.body.addEventListener('click', function() {
+      var dropDownContentElArr = $$('.dropdown-content')
+      for (var i = 0; i < dropDownContentElArr.length; i += 1) {
+        dropDownContentElArr[i].classList.remove('open')
       }
     })
   }
-  document.body.addEventListener('click', function() {
-    var dropDownContentElArr = $$('.dropdown-content')
-    for (var i = 0; i < dropDownContentElArr.length; i += 1) {
-      dropDownContentElArr[i].classList.remove('open')
-    }
-  })
-
+  
   // smooth scroll
-  $$('a[href^="#"]').forEach(e=>{
-    e.addEventListener("click", function(e) {
-      e.preventDefault();
-      var t = this.getAttribute("href").substr(1);
-      $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
-        behavior: "smooth"
-      }),
-      t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+  function initSmoothScroll() {
+    $$('a[href^="#"]').forEach(e=>{
+      e.addEventListener("click", function(e) {
+        e.preventDefault();
+        var t = this.getAttribute("href").substr(1);
+        $(`[id='${decodeURIComponent(t)}']`).scrollIntoView({
+          behavior: "smooth"
+        }),
+        t === "top" ? history.replaceState(null, null, " ") : history.pushState(null, null, `#${t}`)
+      })
     })
-  })
-
-// search
-var searchEl = document.querySelector("#local-search-input")
-if (searchEl) searchEl.addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') {
-    var s = e.target.value
-    window.open('//www.google.com/search?q=site:https://www.liangshuangsupercool.com%20' + s, '_blank').focus()
   }
-})
+
+  // search
+  function initSearch() {
+    var searchEl = document.querySelector("#local-search-input")
+    if (searchEl) searchEl.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        var s = e.target.value
+        window.open('//www.google.com/search?q=site:https://www.liangshuangsupercool.com%20' + s, '_blank').focus()
+      }
+    })
+  }
+  
+  // 确保在 DOM 加载完成后初始化所有功能
+  function initAll() {
+    initDropdown();
+    initSmoothScroll();
+    initSearch();
+  }
+  
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+// mermaid initialization
+(function() {
+  function convertMermaidCodeBlocks() {
+    var converted = false;
+    
+    // 方法1: 查找所有可能的 mermaid 代码块格式（通过 class）
+    var selectors = [
+      'code.language-mermaid',
+      'code.lang-mermaid',
+      'pre code.language-mermaid',
+      'pre code.lang-mermaid',
+      'figure code.language-mermaid',
+      'figure code.lang-mermaid'
+    ];
+    
+    var mermaidCodeBlocks = [];
+    selectors.forEach(function(selector) {
+      try {
+        var elements = document.querySelectorAll(selector);
+        elements.forEach(function(el) {
+          if (mermaidCodeBlocks.indexOf(el) === -1) {
+            mermaidCodeBlocks.push(el);
+          }
+        });
+      } catch(e) {}
+    });
+    
+    // 方法2: 查找所有可能的代码容器，检查内容
+    if (mermaidCodeBlocks.length === 0) {
+      // 优先查找 pre 标签（Hexo 通常把代码块渲染成 pre）
+      var allPre = document.querySelectorAll('pre');
+      allPre.forEach(function(pre) {
+        var text = (pre.textContent || pre.innerText || '').trim();
+        // 检查是否包含 mermaid 语法关键词
+        if (text && (
+            text.indexOf('graph TD') >= 0 || 
+            text.indexOf('graph LR') >= 0 ||
+            text.indexOf('graph TB') >= 0 ||
+            text.indexOf('graph BT') >= 0 ||
+            text.indexOf('flowchart TD') >= 0 ||
+            text.indexOf('flowchart LR') >= 0 ||
+            text.indexOf('sequenceDiagram') >= 0 ||
+            text.indexOf('classDiagram') >= 0 ||
+            text.indexOf('stateDiagram') >= 0 ||
+            text.indexOf('erDiagram') >= 0 ||
+            text.indexOf('gantt') >= 0 ||
+            text.indexOf('pie') >= 0 ||
+            text.indexOf('gitgraph') >= 0
+          )) {
+          if (!pre.classList.contains('mermaid')) {
+            mermaidCodeBlocks.push(pre);
+          }
+        }
+      });
+      
+      // 如果还没找到，查找其他容器
+      if (mermaidCodeBlocks.length === 0) {
+        var containers = document.querySelectorAll('code, figure, table, div, p, article, section, td, th');
+        containers.forEach(function(container) {
+        var text = (container.textContent || container.innerText || '').trim();
+        // 检查是否包含 mermaid 语法关键词（包含即可，不要求开头）
+        if (text && (
+            text.indexOf('graph TD') >= 0 || 
+            text.indexOf('graph LR') >= 0 ||
+            text.indexOf('graph TB') >= 0 ||
+            text.indexOf('graph BT') >= 0 ||
+            text.indexOf('flowchart TD') >= 0 ||
+            text.indexOf('flowchart LR') >= 0 ||
+            text.indexOf('sequenceDiagram') >= 0 ||
+            text.indexOf('classDiagram') >= 0 ||
+            text.indexOf('stateDiagram') >= 0 ||
+            text.indexOf('erDiagram') >= 0 ||
+            text.indexOf('gantt') >= 0 ||
+            text.indexOf('pie') >= 0 ||
+            text.indexOf('gitgraph') >= 0
+          )) {
+          // 检查是否已经包含 mermaid 类
+          if (!container.classList.contains('mermaid')) {
+            mermaidCodeBlocks.push(container);
+          }
+        }
+      });
+    }
+    
+    // 过滤：只保留最内层的元素
+    var innermostBlocks = [];
+    mermaidCodeBlocks.forEach(function(block) {
+      var isInnermost = true;
+      for (var i = 0; i < mermaidCodeBlocks.length; i++) {
+        if (mermaidCodeBlocks[i] !== block && block.contains(mermaidCodeBlocks[i])) {
+          isInnermost = false;
+          break;
+        }
+      }
+      if (isInnermost) {
+        innermostBlocks.push(block);
+      }
+    });
+    
+    innermostBlocks.forEach(function(block) {
+      // 获取代码内容
+      var code = '';
+      
+      // 如果是 pre 标签，需要特殊处理（可能包含 span.line）
+      if (block.tagName === 'PRE') {
+        // 方法1: 尝试从 span.line 中提取代码
+        var lines = block.querySelectorAll('span.line');
+        if (lines.length > 0) {
+          var codeLines = [];
+          lines.forEach(function(line) {
+            var lineText = (line.textContent || line.innerText || '').trim();
+            // 跳过行号（纯数字）和空行
+            if (lineText && !/^\d+$/.test(lineText) && lineText.length > 0) {
+              codeLines.push(lineText);
+            }
+          });
+          if (codeLines.length > 0) {
+            code = codeLines.join('\n');
+          }
+        }
+        
+        // 方法2: 如果方法1失败，尝试从 code 标签中提取
+        if (!code) {
+          var codeEl = block.querySelector('code');
+          if (codeEl) {
+            code = (codeEl.textContent || codeEl.innerText || '').trim();
+          }
+        }
+        
+        // 方法3: 如果都失败，直接获取整个 pre 的文本
+        if (!code) {
+          code = (block.textContent || block.innerText || '').trim();
+          // 移除行号（每行开头的数字）
+          code = code.replace(/^\d+\s+/gm, '');
+        }
+      } else {
+        code = (block.textContent || block.innerText || '').trim();
+      }
+      
+      // 提取 mermaid 代码部分（从 graph 或 flowchart 开始）
+      var mermaidStart = -1;
+      var mermaidKeywords = ['graph TD', 'graph LR', 'graph TB', 'graph BT', 'flowchart TD', 'flowchart LR', 
+                            'sequenceDiagram', 'classDiagram', 'stateDiagram', 'erDiagram', 'gantt', 'pie', 'gitgraph'];
+      
+      for (var i = 0; i < mermaidKeywords.length; i++) {
+        mermaidStart = code.indexOf(mermaidKeywords[i]);
+        if (mermaidStart >= 0) {
+          code = code.substring(mermaidStart);
+          code = code.trim();
+          break;
+        }
+      }
+      
+      // 如果找到了 mermaid 代码
+      if (code && (
+          code.indexOf('graph') === 0 || 
+          code.indexOf('flowchart') === 0 ||
+          code.indexOf('sequenceDiagram') === 0 ||
+          code.indexOf('classDiagram') === 0 ||
+          code.indexOf('stateDiagram') === 0 ||
+          code.indexOf('erDiagram') === 0 ||
+          code.indexOf('gantt') === 0 ||
+          code.indexOf('pie') === 0 ||
+          code.indexOf('gitgraph') === 0
+        )) {
+        
+        // 创建新的 div 元素
+        var mermaidDiv = document.createElement('div');
+        mermaidDiv.className = 'mermaid';
+        mermaidDiv.textContent = code;
+        mermaidDiv.style.margin = '20px 0';
+        mermaidDiv.style.textAlign = 'center';
+        
+        // 替换原来的元素（如果是 pre，可能需要替换父元素 figure）
+        var elementToReplace = block;
+        if (block.tagName === 'PRE' && block.parentElement && block.parentElement.tagName === 'FIGURE') {
+          elementToReplace = block.parentElement;
+        }
+        
+        if (elementToReplace.parentNode) {
+          elementToReplace.parentNode.replaceChild(mermaidDiv, elementToReplace);
+          converted = true;
+        }
+      }
+    });
+    
+    return converted;
+  }
+  
+  function initMermaid() {
+    // 检查 mermaid 是否已加载
+    if (typeof mermaid === 'undefined') {
+      // 如果还没加载，等待一段时间后重试（最多等待5秒）
+      if (!window.mermaidRetryCount) window.mermaidRetryCount = 0;
+      if (window.mermaidRetryCount < 100) {
+        window.mermaidRetryCount++;
+        setTimeout(initMermaid, 50);
+      }
+      return;
+    }
+    
+    // 初始化 mermaid（只初始化一次）
+    if (!window.mermaidInitialized) {
+      mermaid.initialize({ 
+        startOnLoad: false, // 手动控制渲染时机
+        theme: 'default',
+        securityLevel: 'loose',
+        flowchart: {
+          useMaxWidth: true,
+          htmlLabels: true,
+          curve: 'basis'
+        },
+        sequence: {
+          diagramMarginX: 50,
+          diagramMarginY: 10
+        }
+      });
+      window.mermaidInitialized = true;
+    }
+    
+    // 转换代码块为 mermaid div
+    var hasConverted = convertMermaidCodeBlocks();
+    
+    // 如果有转换的图表，手动渲染
+    if (hasConverted) {
+      var mermaidDivs = document.querySelectorAll('.mermaid');
+      if (mermaidDivs.length > 0) {
+        // 使用正确的 API 渲染
+        mermaid.run();
+      }
+    }
+  }
+  
+  // 等待 DOM 和 mermaid.js 都加载完成
+  function waitAndInit() {
+    try {
+      // 最多等待10秒
+      if (!window.mermaidWaitCount) window.mermaidWaitCount = 0;
+      if (window.mermaidWaitCount > 200) {
+        console.warn('Mermaid initialization timeout');
+        return;
+      }
+      window.mermaidWaitCount++;
+      
+      if (document.readyState === 'complete' && (typeof mermaid !== 'undefined' || window.mermaidLoaded)) {
+        initMermaid();
+      } else {
+        setTimeout(waitAndInit, 50);
+      }
+    } catch (e) {
+      console.error('Mermaid initialization error:', e);
+    }
+  }
+  
+  // 启动初始化流程（延迟执行，确保不影响其他功能）
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function() {
+      // 延迟执行，确保 dropdown 等代码先执行
+      setTimeout(waitAndInit, 100);
+    });
+  } else {
+    // 延迟执行，确保 dropdown 等代码先执行
+    setTimeout(waitAndInit, 100);
+  }
+})();
 
 </script>
+
 
 </body>
 </html>
