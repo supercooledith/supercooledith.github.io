@@ -262,27 +262,64 @@ function $(s) {
     return document.querySelectorAll(s)
   }
   
+  // dropdown 初始化函数
   function initDropdown() {
-    var dropDownElArr = $$('.dropdown')
-    for (var i = 0; i < dropDownElArr.length; i += 1) {
-      dropDownElArr[i].addEventListener('click', function(event) {
-        var content = this.querySelector('.dropdown-content')
-        if (content) {
-          event.stopPropagation()
-          if (content.className.indexOf('open') < 0) {
-            content.classList.add('open')
-          } else {
-            content.classList.remove('open')
-          }
-        }
-      })
+    if (window.dropdownInitialized) {
+      return;
     }
-    document.body.addEventListener('click', function() {
-      var dropDownContentElArr = $$('.dropdown-content')
-      for (var i = 0; i < dropDownContentElArr.length; i += 1) {
-        dropDownContentElArr[i].classList.remove('open')
+    window.dropdownInitialized = true;
+    
+    function closeAllDropdowns(exceptContent) {
+      var allContents = $$('.dropdown-content.open');
+      for (var j = 0; j < allContents.length; j++) {
+        if (allContents[j] !== exceptContent) {
+          allContents[j].classList.remove('open');
+        }
       }
-    })
+    }
+    
+    function findDropdown(element) {
+      var parent = element.parentElement;
+      while (parent && parent !== document.body) {
+        if (parent.classList && parent.classList.contains('dropdown')) {
+          return parent;
+        }
+        parent = parent.parentElement;
+      }
+      return null;
+    }
+    
+    var dropDownElArr = $$('.dropdown');
+    
+    for (var i = 0; i < dropDownElArr.length; i++) {
+      var dropdown = dropDownElArr[i];
+      var toggle = dropdown.querySelector('.dropdown-toggle');
+      var content = dropdown.querySelector('.dropdown-content');
+      
+      if (!content || !toggle) {
+        continue;
+      }
+      
+      // 使用立即执行函数保存 content 引用
+      (function(ct) {
+        toggle.onclick = function(evt) {
+          evt.preventDefault();
+          evt.stopPropagation();
+          closeAllDropdowns(ct);
+          ct.classList.toggle('open');
+          return false;
+        };
+      })(content);
+    }
+    
+    // 点击页面其他地方时关闭所有 dropdown
+    document.addEventListener('click', function(event) {
+      var target = event.target;
+      var clickedDropdown = findDropdown(target);
+      if (!clickedDropdown) {
+        closeAllDropdowns(null);
+      }
+    });
   }
   
   // smooth scroll
@@ -301,26 +338,45 @@ function $(s) {
 
   // search
   function initSearch() {
-    var searchEl = document.querySelector("#local-search-input")
-    if (searchEl) searchEl.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter') {
-        var s = e.target.value
-        window.open('//www.google.com/search?q=site:https://www.liangshuangsupercool.com%20' + s, '_blank').focus()
-      }
-    })
+    var searchEl = document.querySelector("#local-search-input");
+    if (searchEl) {
+      searchEl.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+          var s = e.target.value;
+          var siteUrl = 'https://www.liangshuangsupercool.com';
+          window.open('//www.google.com/search?q=site:' + siteUrl + '%20' + s, '_blank').focus();
+        }
+      });
+    }
   }
   
   // 确保在 DOM 加载完成后初始化所有功能
   function initAll() {
-    initDropdown();
-    initSmoothScroll();
-    initSearch();
+    try {
+      initDropdown();
+      initSmoothScroll();
+      initSearch();
+    } catch (e) {
+      console.error('Error initializing page features:', e);
+    }
   }
   
+  // 立即尝试初始化
+  function tryInit() {
+    var dropDownElArr = $$('.dropdown');
+    if (dropDownElArr.length > 0) {
+      initAll();
+    } else {
+      // 如果元素还没加载，等待后重试
+      setTimeout(tryInit, 50);
+    }
+  }
+  
+  // 开始尝试初始化
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initAll);
+    document.addEventListener('DOMContentLoaded', tryInit);
   } else {
-    initAll();
+    tryInit();
   }
 
 // mermaid initialization
@@ -382,29 +438,30 @@ function $(s) {
       if (mermaidCodeBlocks.length === 0) {
         var containers = document.querySelectorAll('code, figure, table, div, p, article, section, td, th');
         containers.forEach(function(container) {
-        var text = (container.textContent || container.innerText || '').trim();
-        // 检查是否包含 mermaid 语法关键词（包含即可，不要求开头）
-        if (text && (
-            text.indexOf('graph TD') >= 0 || 
-            text.indexOf('graph LR') >= 0 ||
-            text.indexOf('graph TB') >= 0 ||
-            text.indexOf('graph BT') >= 0 ||
-            text.indexOf('flowchart TD') >= 0 ||
-            text.indexOf('flowchart LR') >= 0 ||
-            text.indexOf('sequenceDiagram') >= 0 ||
-            text.indexOf('classDiagram') >= 0 ||
-            text.indexOf('stateDiagram') >= 0 ||
-            text.indexOf('erDiagram') >= 0 ||
-            text.indexOf('gantt') >= 0 ||
-            text.indexOf('pie') >= 0 ||
-            text.indexOf('gitgraph') >= 0
-          )) {
-          // 检查是否已经包含 mermaid 类
-          if (!container.classList.contains('mermaid')) {
-            mermaidCodeBlocks.push(container);
+          var text = (container.textContent || container.innerText || '').trim();
+          // 检查是否包含 mermaid 语法关键词（包含即可，不要求开头）
+          if (text && (
+              text.indexOf('graph TD') >= 0 || 
+              text.indexOf('graph LR') >= 0 ||
+              text.indexOf('graph TB') >= 0 ||
+              text.indexOf('graph BT') >= 0 ||
+              text.indexOf('flowchart TD') >= 0 ||
+              text.indexOf('flowchart LR') >= 0 ||
+              text.indexOf('sequenceDiagram') >= 0 ||
+              text.indexOf('classDiagram') >= 0 ||
+              text.indexOf('stateDiagram') >= 0 ||
+              text.indexOf('erDiagram') >= 0 ||
+              text.indexOf('gantt') >= 0 ||
+              text.indexOf('pie') >= 0 ||
+              text.indexOf('gitgraph') >= 0
+            )) {
+            // 检查是否已经包含 mermaid 类
+            if (!container.classList.contains('mermaid')) {
+              mermaidCodeBlocks.push(container);
+            }
           }
-        }
-      });
+        });
+      }
     }
     
     // 过滤：只保留最内层的元素
