@@ -517,14 +517,142 @@ function $(s) {
   function convertMermaidCodeBlocks() {
     var converted = false;
     
-    // 方法1: 查找所有可能的 mermaid 代码块格式（通过 class）
+    // 方法1: 优先查找 Hexo 渲染的 figure.highlight 结构（这是最常见的格式）
+    var figures = document.querySelectorAll('figure.highlight, figure[class*="highlight"]');
+    figures.forEach(function(figure) {
+      // 检查是否已经转换过
+      if (figure.classList.contains('mermaid-processed')) {
+        return;
+      }
+      
+      // 从 figure 中提取代码
+      var code = '';
+      
+      // 优先从 td.code pre 中提取（Hexo 标准格式）
+      var codeCell = figure.querySelector('td.code');
+      if (codeCell) {
+        var codePre = codeCell.querySelector('pre');
+        if (codePre) {
+          // 方法1: 从 span.line 中提取（Hexo 标准格式）
+          var lines = codePre.querySelectorAll('span.line');
+          if (lines.length > 0) {
+            var codeLines = [];
+            lines.forEach(function(line) {
+              // 使用 textContent 自动解码 HTML 实体（&quot; -> ", &lt; -> <, &gt; -> >）
+              var lineText = (line.textContent || line.innerText || '');
+              // 保留所有行，包括空行（mermaid 可能需要空行）
+              codeLines.push(lineText);
+            });
+            if (codeLines.length > 0) {
+              code = codeLines.join('\n');
+            }
+          }
+          
+          // 方法2: 如果方法1失败，直接获取整个 pre 的文本
+          if (!code || code.trim().length === 0) {
+            // 使用 textContent 会自动解码 HTML 实体
+            var fullText = codePre.textContent || codePre.innerText || '';
+            code = fullText.trim();
+          }
+        }
+      }
+      
+      // 如果还没找到，尝试其他方法
+      if (!code || code.trim().length === 0) {
+        var codePre = figure.querySelector('pre code, pre');
+        if (codePre) {
+          code = (codePre.textContent || codePre.innerText || '').trim();
+        }
+      }
+      
+      // 清理代码：移除可能的行号前缀（每行开头的数字和空格）
+      if (code) {
+        // 移除行号（每行开头的数字）
+        code = code.replace(/^\d+\s*/gm, '');
+        code = code.trim();
+      }
+      
+      // 检查是否包含 mermaid 语法
+      if (code && code.length > 0 && (
+          code.indexOf('graph TD') >= 0 || 
+          code.indexOf('graph LR') >= 0 ||
+          code.indexOf('graph TB') >= 0 ||
+          code.indexOf('graph BT') >= 0 ||
+          code.indexOf('flowchart TD') >= 0 ||
+          code.indexOf('flowchart LR') >= 0 ||
+          code.indexOf('sequenceDiagram') >= 0 ||
+          code.indexOf('classDiagram') >= 0 ||
+          code.indexOf('stateDiagram') >= 0 ||
+          code.indexOf('erDiagram') >= 0 ||
+          code.indexOf('gantt') >= 0 ||
+          code.indexOf('pie') >= 0 ||
+          code.indexOf('gitgraph') >= 0
+        )) {
+        
+        // 提取 mermaid 代码部分（从 graph 或 flowchart 开始）
+        var mermaidStart = -1;
+        var mermaidKeywords = ['graph TD', 'graph LR', 'graph TB', 'graph BT', 'flowchart TD', 'flowchart LR', 
+                              'sequenceDiagram', 'classDiagram', 'stateDiagram', 'erDiagram', 'gantt', 'pie', 'gitgraph'];
+        
+        for (var i = 0; i < mermaidKeywords.length; i++) {
+          mermaidStart = code.indexOf(mermaidKeywords[i]);
+          if (mermaidStart >= 0) {
+            code = code.substring(mermaidStart);
+            code = code.trim();
+            break;
+          }
+        }
+        
+        // 验证是否是有效的 mermaid 代码
+        if (code && code.length > 0 && (
+            code.indexOf('graph') === 0 || 
+            code.indexOf('flowchart') === 0 ||
+            code.indexOf('sequenceDiagram') === 0 ||
+            code.indexOf('classDiagram') === 0 ||
+            code.indexOf('stateDiagram') === 0 ||
+            code.indexOf('erDiagram') === 0 ||
+            code.indexOf('gantt') === 0 ||
+            code.indexOf('pie') === 0 ||
+            code.indexOf('gitgraph') === 0
+          )) {
+          
+          // 创建新的 div 元素
+          var mermaidDiv = document.createElement('div');
+          mermaidDiv.className = 'mermaid';
+          // 使用 textContent 设置代码，确保 HTML 实体被正确解码
+          mermaidDiv.textContent = code;
+          mermaidDiv.style.margin = '20px 0';
+          mermaidDiv.style.textAlign = 'center';
+          mermaidDiv.style.overflowX = 'auto';
+          mermaidDiv.style.width = '100%';
+          
+          // 替换整个 figure 元素
+          if (figure.parentNode) {
+            figure.parentNode.replaceChild(mermaidDiv, figure);
+            converted = true;
+            
+            // 标记为需要渲染（会在最后统一渲染）
+            mermaidDiv.setAttribute('data-needs-render', 'true');
+            
+            // 调试信息（可在浏览器控制台查看）
+            if (window.console && console.log) {
+              console.log('Mermaid code converted:', code.substring(0, 100) + '...');
+            }
+          }
+        }
+      }
+      
+      // 标记为已处理，避免重复处理
+      figure.classList.add('mermaid-processed');
+    });
+    
+    // 方法2: 查找其他格式的代码块（通过 class）
+    if (!converted) {
     var selectors = [
       'code.language-mermaid',
       'code.lang-mermaid',
       'pre code.language-mermaid',
-      'pre code.lang-mermaid',
-      'figure code.language-mermaid',
-      'figure code.lang-mermaid'
+        'pre code.lang-mermaid'
     ];
     
     var mermaidCodeBlocks = [];
@@ -539,40 +667,17 @@ function $(s) {
       } catch(e) {}
     });
     
-    // 方法2: 查找所有可能的代码容器，检查内容
+      // 方法3: 查找所有 pre 标签，检查内容
     if (mermaidCodeBlocks.length === 0) {
-      // 优先查找 pre 标签（Hexo 通常把代码块渲染成 pre）
       var allPre = document.querySelectorAll('pre');
       allPre.forEach(function(pre) {
-        var text = (pre.textContent || pre.innerText || '').trim();
-        // 检查是否包含 mermaid 语法关键词
-        if (text && (
-            text.indexOf('graph TD') >= 0 || 
-            text.indexOf('graph LR') >= 0 ||
-            text.indexOf('graph TB') >= 0 ||
-            text.indexOf('graph BT') >= 0 ||
-            text.indexOf('flowchart TD') >= 0 ||
-            text.indexOf('flowchart LR') >= 0 ||
-            text.indexOf('sequenceDiagram') >= 0 ||
-            text.indexOf('classDiagram') >= 0 ||
-            text.indexOf('stateDiagram') >= 0 ||
-            text.indexOf('erDiagram') >= 0 ||
-            text.indexOf('gantt') >= 0 ||
-            text.indexOf('pie') >= 0 ||
-            text.indexOf('gitgraph') >= 0
-          )) {
-          if (!pre.classList.contains('mermaid')) {
-            mermaidCodeBlocks.push(pre);
+          // 跳过已经在 figure 中的 pre
+          if (pre.closest('figure.highlight')) {
+            return;
           }
-        }
-      });
-      
-      // 如果还没找到，查找其他容器
-      if (mermaidCodeBlocks.length === 0) {
-        var containers = document.querySelectorAll('code, figure, table, div, p, article, section, td, th');
-        containers.forEach(function(container) {
-          var text = (container.textContent || container.innerText || '').trim();
-          // 检查是否包含 mermaid 语法关键词（包含即可，不要求开头）
+          
+          var text = (pre.textContent || pre.innerText || '').trim();
+          // 检查是否包含 mermaid 语法关键词
           if (text && (
               text.indexOf('graph TD') >= 0 || 
               text.indexOf('graph LR') >= 0 ||
@@ -588,43 +693,25 @@ function $(s) {
               text.indexOf('pie') >= 0 ||
               text.indexOf('gitgraph') >= 0
             )) {
-            // 检查是否已经包含 mermaid 类
-            if (!container.classList.contains('mermaid')) {
-              mermaidCodeBlocks.push(container);
+            if (!pre.classList.contains('mermaid') && !pre.classList.contains('mermaid-processed')) {
+              mermaidCodeBlocks.push(pre);
             }
           }
         });
-      }
     }
     
-    // 过滤：只保留最内层的元素
-    var innermostBlocks = [];
+      // 处理找到的代码块
     mermaidCodeBlocks.forEach(function(block) {
-      var isInnermost = true;
-      for (var i = 0; i < mermaidCodeBlocks.length; i++) {
-        if (mermaidCodeBlocks[i] !== block && block.contains(mermaidCodeBlocks[i])) {
-          isInnermost = false;
-          break;
-        }
-      }
-      if (isInnermost) {
-        innermostBlocks.push(block);
-      }
-    });
-    
-    innermostBlocks.forEach(function(block) {
-      // 获取代码内容
       var code = '';
       
-      // 如果是 pre 标签，需要特殊处理（可能包含 span.line）
+        // 如果是 pre 标签，需要特殊处理
       if (block.tagName === 'PRE') {
-        // 方法1: 尝试从 span.line 中提取代码
+          // 尝试从 span.line 中提取代码
         var lines = block.querySelectorAll('span.line');
         if (lines.length > 0) {
           var codeLines = [];
           lines.forEach(function(line) {
             var lineText = (line.textContent || line.innerText || '').trim();
-            // 跳过行号（纯数字）和空行
             if (lineText && !/^\d+$/.test(lineText) && lineText.length > 0) {
               codeLines.push(lineText);
             }
@@ -634,7 +721,7 @@ function $(s) {
           }
         }
         
-        // 方法2: 如果方法1失败，尝试从 code 标签中提取
+          // 如果方法1失败，尝试从 code 标签中提取
         if (!code) {
           var codeEl = block.querySelector('code');
           if (codeEl) {
@@ -642,17 +729,16 @@ function $(s) {
           }
         }
         
-        // 方法3: 如果都失败，直接获取整个 pre 的文本
+          // 如果都失败，直接获取整个 pre 的文本
         if (!code) {
           code = (block.textContent || block.innerText || '').trim();
-          // 移除行号（每行开头的数字）
           code = code.replace(/^\d+\s+/gm, '');
         }
       } else {
         code = (block.textContent || block.innerText || '').trim();
       }
       
-      // 提取 mermaid 代码部分（从 graph 或 flowchart 开始）
+        // 提取 mermaid 代码部分
       var mermaidStart = -1;
       var mermaidKeywords = ['graph TD', 'graph LR', 'graph TB', 'graph BT', 'flowchart TD', 'flowchart LR', 
                             'sequenceDiagram', 'classDiagram', 'stateDiagram', 'erDiagram', 'gantt', 'pie', 'gitgraph'];
@@ -686,7 +772,7 @@ function $(s) {
         mermaidDiv.style.margin = '20px 0';
         mermaidDiv.style.textAlign = 'center';
         
-        // 替换原来的元素（如果是 pre，可能需要替换父元素 figure）
+          // 替换原来的元素
         var elementToReplace = block;
         if (block.tagName === 'PRE' && block.parentElement && block.parentElement.tagName === 'FIGURE') {
           elementToReplace = block.parentElement;
@@ -698,6 +784,7 @@ function $(s) {
         }
       }
     });
+    }
     
     return converted;
   }
@@ -710,39 +797,192 @@ function $(s) {
       if (window.mermaidRetryCount < 100) {
         window.mermaidRetryCount++;
         setTimeout(initMermaid, 50);
+      } else {
+        console.warn('Mermaid library not loaded after 5 seconds');
       }
       return;
     }
     
+    console.log('Mermaid library loaded, version:', mermaid.version || 'unknown');
+    
     // 初始化 mermaid（只初始化一次）
     if (!window.mermaidInitialized) {
-      mermaid.initialize({ 
+      try {
+        var config = { 
         startOnLoad: false, // 手动控制渲染时机
         theme: 'default',
         securityLevel: 'loose',
         flowchart: {
-          useMaxWidth: true,
-          htmlLabels: true,
-          curve: 'basis'
+          useMaxWidth: true, // 使用最大宽度，保持标准流程图布局
+          htmlLabels: true, // 使用 HTML 标签，支持更好的文本渲染
+          curve: 'basis', // 使用平滑曲线
+          nodeSpacing: 80, // 节点间距：80px
+          rankSpacing: 100 // 层级间距：100px
+          // 不设置 padding，使用 mermaid 默认的标准布局
         },
         sequence: {
           diagramMarginX: 50,
           diagramMarginY: 10
-        }
-      });
+        },
+        fontFamily: "'Open Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', STHeiti, 'Helvetica Neue', 'Microsoft Yahei', Tahoma, Simsun, sans-serif",
+        fontSize: 12 // 字体大小改为12px
+        };
+        
+        console.log('Initializing mermaid with config:', config);
+        mermaid.initialize(config);
       window.mermaidInitialized = true;
+        console.log('Mermaid initialized successfully');
+      } catch (e) {
+        console.error('Failed to initialize mermaid:', e);
+      }
     }
     
     // 转换代码块为 mermaid div
     var hasConverted = convertMermaidCodeBlocks();
     
-    // 如果有转换的图表，手动渲染
-    if (hasConverted) {
-      var mermaidDivs = document.querySelectorAll('.mermaid');
+    // 查找所有需要渲染的 mermaid div（包括新转换的和已存在的）
+    var mermaidDivs = document.querySelectorAll('.mermaid:not([data-processed])');
       if (mermaidDivs.length > 0) {
-        // 使用正确的 API 渲染
-        mermaid.run();
-      }
+      console.log('Found', mermaidDivs.length, 'mermaid divs to render');
+      
+      // 标记为已处理，避免重复渲染
+      mermaidDivs.forEach(function(div) {
+        div.setAttribute('data-processed', 'true');
+      });
+      
+      // 使用 setTimeout 确保 DOM 更新完成后再渲染
+      setTimeout(function() {
+        try {
+          console.log('Attempting to render mermaid charts...');
+          
+          // 优先使用 render() API 逐个渲染（最可靠的方法）
+          if (typeof mermaid.render === 'function') {
+            console.log('Using mermaid.render() to render each div...');
+            var renderPromises = [];
+            
+            mermaidDivs.forEach(function(div, index) {
+              var id = 'mermaid-' + Date.now() + '-' + index;
+              var code = div.textContent || div.innerText || '';
+              
+              console.log('Rendering mermaid div', index + 1, 'with code length:', code.length);
+              
+              try {
+                var renderPromise = mermaid.render(id, code);
+                if (renderPromise && typeof renderPromise.then === 'function') {
+                  renderPromise.then(function(result) {
+                    console.log('Successfully rendered mermaid div', index + 1);
+                    // 替换 div 内容为渲染后的 SVG
+                    div.innerHTML = result.svg;
+                    // 移除 mermaid 类，避免重复渲染
+                    div.classList.remove('mermaid');
+                    div.classList.add('mermaid-rendered');
+                    
+                    // 确保 SVG 有正确的样式，并允许自适应
+                    var svg = div.querySelector('svg');
+                    if (svg) {
+                      svg.style.width = '100%';
+                      svg.style.height = 'auto';
+                      svg.style.display = 'block';
+                      svg.style.margin = '0 auto';
+                      svg.style.fontFamily = "'Open Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', STHeiti, 'Helvetica Neue', 'Microsoft Yahei', Tahoma, Simsun, sans-serif";
+                      
+                      // 确保所有文本元素使用正确的字体和大小
+                      var textElements = svg.querySelectorAll('text, .nodeLabel, .edgeLabel, .label, foreignObject div');
+                      textElements.forEach(function(textEl) {
+                        textEl.style.fontFamily = "'Open Sans', -apple-system, BlinkMacSystemFont, 'PingFang SC', STHeiti, 'Helvetica Neue', 'Microsoft Yahei', Tahoma, Simsun, sans-serif";
+                        textEl.style.fontSize = '12px';
+                        textEl.style.lineHeight = '1.5em';
+                      });
+                      
+                      // 只设置文字样式，让 mermaid 使用标准布局
+                      var foreignObjects = svg.querySelectorAll('foreignObject');
+                      foreignObjects.forEach(function(fo) {
+                        var foDiv = fo.querySelector('div');
+                        if (foDiv) {
+                          // 确保文字居中显示
+                          foDiv.style.textAlign = 'center';
+                          foDiv.style.display = 'flex';
+                          foDiv.style.alignItems = 'center';
+                          foDiv.style.justifyContent = 'center';
+                          foDiv.style.wordWrap = 'break-word';
+                          foDiv.style.whiteSpace = 'normal';
+                        }
+                      });
+                    }
+                  }).catch(function(err) {
+                    console.error('Failed to render mermaid div', index + 1, ':', err);
+                    console.error('Code that failed:', code.substring(0, 200));
+                  });
+                  renderPromises.push(renderPromise);
+                } else {
+                  console.warn('mermaid.render() did not return a Promise for div', index + 1);
+                }
+              } catch (e) {
+                console.error('Exception while rendering mermaid div', index + 1, ':', e);
+              }
+            });
+            
+            // 等待所有渲染完成
+            if (renderPromises.length > 0) {
+              Promise.all(renderPromises).then(function() {
+                console.log('All mermaid charts rendered successfully');
+              }).catch(function(err) {
+                console.error('Some mermaid charts failed to render:', err);
+              });
+            }
+          } 
+          // 备用方法1: 使用 run() API
+          else if (typeof mermaid.run === 'function') {
+            console.log('Using mermaid.run() as fallback...');
+            try {
+              var result = mermaid.run();
+              if (result && typeof result.then === 'function') {
+                result.then(function() {
+                  console.log('Mermaid rendering completed via run()');
+                }).catch(function(err) {
+                  console.error('Mermaid run() error:', err);
+                });
+              }
+            } catch (e) {
+              console.error('mermaid.run() failed:', e);
+            }
+          }
+          // 备用方法2: 使用 contentLoaded API
+          else if (typeof mermaid.contentLoaded === 'function') {
+            console.log('Using mermaid.contentLoaded() as fallback...');
+            try {
+              mermaid.contentLoaded();
+              console.log('Mermaid contentLoaded() called');
+            } catch (e) {
+              console.error('mermaid.contentLoaded() failed:', e);
+            }
+          }
+          // 备用方法3: 使用 init() API
+          else if (typeof mermaid.init === 'function') {
+            console.log('Using mermaid.init() as fallback...');
+            try {
+              mermaidDivs.forEach(function(div, index) {
+                try {
+                  mermaid.init(undefined, div);
+                  console.log('Rendered mermaid div', index + 1, 'via init()');
+                } catch (e) {
+                  console.error('Failed to render mermaid div', index + 1, ':', e);
+                }
+              });
+            } catch (e) {
+              console.error('mermaid.init() failed:', e);
+            }
+          } else {
+            console.error('No valid mermaid render method found');
+            console.log('Available mermaid methods:', Object.keys(mermaid || {}));
+          }
+        } catch (e) {
+          console.error('Mermaid render error:', e);
+          console.error('Error stack:', e.stack);
+        }
+      }, 300);
+    } else {
+      console.log('No mermaid divs found to render');
     }
   }
   
@@ -780,6 +1020,7 @@ function $(s) {
 })();
 
 </script>
+
 
 
 </body>
