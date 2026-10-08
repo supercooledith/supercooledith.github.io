@@ -466,3 +466,97 @@ nav .navbar-brand {
   font-size: 0.95em;
   margin-bottom: 1em;
 }
+
+// mermaid 图表样式
+.mermaid,
+.mermaid-rendered {
+  margin: 20px 0;
+  text-align: center;
+  overflow-x: auto;
+  overflow-y: visible;
+  width: 100%;
+  max-width: 100%;
+  
+  svg {
+    width: 100%;
+    height: auto;
+    font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", STHeiti, "Helvetica Neue", "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+    display: block;
+    margin: 0 auto;
+    
+    // 确保节点框根据文本内容自适应大小
+    .node rect,
+    .node circle,
+    .node ellipse,
+    .node polygon {
+      // 不设置固定尺寸，让 mermaid 根据文本内容自动计算
+      // 但确保有足够的内边距
+    }
+    
+    // 确保节点标签容器有足够的空间
+    .node .label-container {
+      width: auto !important;
+      height: auto !important;
+    }
+    
+    // 使用12px字体大小
+    .nodeLabel,
+    .edgeLabel {
+      font-size: 12px !important;
+      line-height: 1.5em !important; // 调整行高以适应小字体
+      word-wrap: break-word !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", STHeiti, "Helvetica Neue", "Microsoft Yahei", Tahoma, Simsun, sans-serif !important;
+    }
+    
+    // 确保文字容器有足够的空间
+    .label {
+      font-size: 12px !important;
+      line-height: 1.5em !important;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", STHeiti, "Helvetica Neue", "Microsoft Yahei", Tahoma, Simsun, sans-serif !important;
+    }
+    
+    // 使用 mermaid 标准布局，确保文字居中
+    foreignObject {
+      div {
+        word-wrap: break-word !important;
+        white-space: normal !important;
+        font-size: 12px !important;
+        line-height: 1.5em !important;
+        font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", STHeiti, "Helvetica Neue", "Microsoft Yahei", Tahoma, Simsun, sans-serif !important;
+        text-align: center !important; // 文字居中
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        // 不设置 padding，使用 mermaid 默认的标准布局
+      }
+    }
+    
+    // 调整节点内部文字容器
+    .node text {
+      font-size: 12px !important;
+      line-height: 1.5em !important;
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, "PingFang SC", STHeiti, "Helvetica Neue", "Microsoft Yahei", Tahoma, Simsun, sans-serif !important;
+    }
+    
+    // 确保节点可以根据文本内容自动调整大小
+    .cluster rect,
+    .cluster polygon {
+      // 不限制集群的大小
+    }
+  }
+}
+
+// 在移动设备上允许横向滚动
+@media screen and (max-width: 782px) {
+  .mermaid,
+  .mermaid-rendered {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    
+    svg {
+      // 移除最小宽度限制，让图表根据内容自适应
+    }
+  }
+}
