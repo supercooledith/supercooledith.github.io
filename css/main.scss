@@ -78,6 +78,22 @@ h6, // 标题
     font-family: 'Pacifico', Futura, AvenirNext, Avenir, sans-serif ; //  字体
 }
 
+// 首页文章列表标题：英文字体优先使用 Arial Rounded MT Bold
+.posts > .post-item > .index-title,
+.posts > .post-item > .arc-title {
+    font-family: "Arial Rounded MT Bold", 'Pacifico', Futura, AvenirNext, Avenir, sans-serif;
+}
+
+// 文章正文标题：英文字体优先使用 Arial Rounded MT Bold
+article.post h1:not(.page-title):not(.arc-title),
+article.post h2:not(.page-title):not(.arc-title),
+article.post h3:not(.page-title):not(.arc-title),
+article.post h4:not(.page-title):not(.arc-title),
+article.post h5:not(.page-title):not(.arc-title),
+article.post h6:not(.page-title):not(.arc-title) {
+    font-family: "Arial Rounded MT Bold", 'Pacifico', Futura, AvenirNext, Avenir, sans-serif;
+}
+
 article,figure,footer,nav,section { // 显示
     display: block ; //block用于需要独占一行的结构（如页眉、页脚、卡片容器）, inline用于文本内修饰（如加粗、链接）或小图标。, inline-block用于水平菜单、按钮组、栅格布局等。
 }
